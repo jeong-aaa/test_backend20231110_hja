@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+*{
+   margin: 0px;
+   padding: 0px;
+}
+.insert{
+	padding-left: 50px;
+	width:100px ;
+}
+.table1 tr>th{
+	width: 150px;
+}
+form{
+   width:800px;
+   margin: 10% auto;
+}
+
+th{
+	width: 150px;
+}

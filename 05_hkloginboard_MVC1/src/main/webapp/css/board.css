@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+*{
+   margin: 0px;
+   padding: 0px;
+
+}
+button{
+	border: 1px solid #FFDC37;
+	background-color: #FFDC37;
+	border-radius: 5px;
+	width: 150px;
+	height: 40px;
+	color: white;
+	font-weight: bold;
+}
+form{
+   width:800px;
+   margin: 10% auto;
+}
+.table{
+   border: 1px solid rgb(192, 192, 192) ;
+   width: 800px;
+   height: 230px;
+   border-radius: 5px;
+   padding-left: 10px;
+}
+.table td:nth-child(odd){
+   background-color: #dcdcdc;
+}
+input{
+	width: 30px;
+}
+.submit{
+	width: 40px;
+}
+input, button{
+   margin:5px;
+}
+
+.table tr>td{
+   padding: 5px;
+   
+}
+
