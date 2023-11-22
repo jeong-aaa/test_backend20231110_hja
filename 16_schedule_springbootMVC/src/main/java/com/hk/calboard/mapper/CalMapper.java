@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.hk.calboard.dtos.CalDto;
 
+
 @Mapper
 public interface CalMapper {
 	
