@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hk.board.mapper.BoardMapper">
+   
+   <resultMap type="boardDto" id="boardDtoMap">
+      <id property="board_seq"    column="BOARD_SEQ" />
+      <id property="id"          column="ID" />
+      <id property="title"       column="TITLE" />
+      <id property="content"       column="CONTENT" />
+      <id property="regdate"       column="REGDATE" />
+
+   </resultMap>
+   
+   
+   <select id = "getPCount" resultType = "int">
+   		SELECT CEIL(COUNT(*)/10) pageCount
+		FROM BOARDINFO
+   </select>
+   
+   
+  <select id="getAllList"   parameterType = "Map" resultType="boardDto">
+      SELECT rn, BOARD_SEQ, id, title, content, regdate
+	  FROM(
+		SELECT ROW_NUMBER() OVER(ORDER BY REGDATE DESC) rn, BOARD_SEQ, id, title, 
+			content, regdate, delflag  
+		from BOARDINFO WHERE DELFLAG ='N') a
+      <where>
+		 	<choose>
+		 		<when test = "BOARD_SEQ!=null">
+		 			BOARD_SEQ = #{board_seq}
+		 		</when>
+		 		<otherwise>
+		 			 CEIL(rn/10) = #{pnum}
+		 		</otherwise>
+		 	</choose>
+		</where>
+      
+      
+   </select>
+   
+  <!--  <select id="getAllList"   resultType="boardDto">
+
+     
+   <select id="getAllList" resultType="boardDto">
+
+      SELECT BOARD_SEQ, ID, TITLE, CONTENT, REGDATE
+      FROM BOARDINFO
+      WHERE DELFLAG ='N'
+      ORDER BY REGDATE DESC
+   </select>
+    -->
+   <select id="getBoard" parameterType="Integer" resultMap="boardDtoMap">
+      SELECT BOARD_SEQ, ID, TITLE, CONTENT, REGDATE
+           
+      FROM BOARDINFO 
+     
+      WHERE BOARD_SEQ = #{board_seq}
+   </select>
+
+   <insert id="insertBoard" parameterType="boardDto"
+      useGeneratedKeys="true" keyProperty="board_seq">
+      INSERT INTO BOARDINFO
+      VALUES(NULL ,#{id},#{title},#{content},sysdate(),'N')
+   </insert>
+   
+   <update id="updateBoard" parameterType="boardDto">
+      UPDATE BOARDINFO
+      SET TITLE=#{title}, CONTENT=#{content}
+      WHERE BOARD_SEQ=#{board_seq}
+   </update>
+   
+   <update id="mulDel" parameterType="Map">
+      UPDATE BOARDINFO SET DELFLAG='Y' WHERE BOARD_SEQ IN
+      <foreach collection="seqs" item="board_seq" open="(" close=")" separator=",">
+         #{board_seq}
+      </foreach>
+   </update>
+   
+
+</mapper>
+
+

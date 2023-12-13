@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorate="~{layouts/layout1}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+// click(), onChange()......
+// on(), bind()... 이벤트 핸들러 함수
+   $(function(){
+      // on("eventType", function(){})
+      $("input[name=id]").on("keyup",function(){
+         var id = $(this).val();   //id 입력박스에 입력한 id값 가져오기 valye -> val()
+//          console.log(id);
+         $.ajax({
+            url: "/user/idChk",
+            method: "get",
+            dataType: "json",
+            async: false,
+            data: {"id":id},
+            success: function(data){
+               if(data.id != null){ //사용할 수 없는 id
+//                   console.log("사용못함");
+                  $("#idChk").attr("class","n").css("color","red").text("사용할 수 없는 아이디입니다.");
+               } else{ //사용할 수 있는 id
+//                   console.log("사용함");
+                  $("#idChk").attr("class","y").css("color","red").text("사용 가능한 아이디입니다.");
+               }
+            },
+            error:function(e){
+               alert("통신오류:"+e);
+            }
+         });
+      });
+   });
+   
+
+</script>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+<div id="container">
+</br></br></br></br></br></br>
+<h1 style="text-align:center;">계정을 생성하세요.</h1>
+   <form onsubmit="return submitChk()" action="/user/addUser" method="post" th:object="${addUserCommand}">
+      <table class="table"> 
+      </br>
+      <div class = "why" >
+               <input style = "height:50px;" th:field="*{name}" type="text" class="form-control" name="name" placeholder="이름을 입력해주세요."/>
+               <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></span> 
+          <!--  <th>전화번호:</th>-->
+         </br>
+               <input style = "height:50px;" th:field="*{num}" type="text" class="form-control" name="num" placeholder="전화번호를 입력해주세요."/>
+               <span style = " text-align: center; " th:if="${#fields.hasErrors('num')}" th:errors="*{num}" ></span>
+
+        <!--    <th>아이디:</th>-->
+         </br>
+               <input style = "height:50px;"  th:field="*{id}" type="text" class="form-control" name="id" placeholder="아이디를 입력해주세요."/>
+               <span id="idChk" class="n"></span>
+               <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" ></span>
+          </br> 
+         <!--   <th>비밀번호:</th>-->
+         
+               <input style = "height:50px;" th:field="*{password}" type="password" class="form-control" name="password"  placeholder="비밀번호를 입력해주세요."/>
+               <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" ></span>
+        </br>
+           
+               <input style = " width:350px; height:50px; " type="submit" value="회원가입" class="btn" />
+               <br/><br/>
+               <a style = "font-size:15px;  " href="/user/login">계정이 있으신가요? 로그인하기</a>
+        
+         
+      </table>
+   </form>
+   </div>
+<img class="hospt" th:src="@{/img/t.png}" />
+</div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorate="~{layouts/layout3}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+   function allSel(bool){
+      var chks=document.getElementsByName("seq");// [seq,seq,seq,seq..]
+      for (var i = 0; i < chks.length; i++) {
+         chks[i].checked=bool;//각각의 체크박스에 체크여부를 true/false로 적용
+      }
+   }
+   
+   function isCheck(){
+      if(confirm("정말 삭제 하시겠습니까?")){
+         return true;
+      }
+      return false;
+   }
+</script>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+<div id="container">
+<!--<h1>게시판 목록</h1>-->
+<form action="/board/mulDel" method="post" th:object="${delBoardCommand}">
+   <table class="table" style = "text-align:center; ">
+   		<col width="80px"/>
+        <col width="120px"/>
+        <col width="200px"/>
+        <col width="120px"/>
+        <col width="80px"/>
+        
+        <tr>   
+			<button style = "margin-top:20px; margin-left:1000px; margin-bottom:20px; " type="button" class="btn" th:onclick = "|location.href='@{/board/boardInsert}'|">글추가</button>
+        </tr>
+    
+      <tr>      
+         <th style = "text-align:center; background-color:aliceblue;">NO.</th>
+         <th style = "text-align:center;background-color:aliceblue;">작성자</th>
+         <th style = "text-align:center;background-color:aliceblue;">제목</th>
+         <th style = "text-align:center;background-color:aliceblue;">작성일</th>
+         <th style = "text-align:center;background-color:aliceblue;">처리</th>
+      </tr>
+ 
+      <th:block th:if="${#lists.isEmpty(list)}">
+         <tr>
+            <td colspan="5" style="text-align: center;" >---작성된 글이 없습니다.---
+            <button type="button" class="btn" th:onclick = "|location.href='@{/board/boardInsert}'|">글추가</button>
+            </td>
+            
+         </tr>
+      </th:block>
+      <th:block th:unless="${#lists.isEmpty(list)}">
+      	
+         <tr th:each="dto:${list}">
+           <td th:text = "${dto.board_seq}"></td>
+            <td th:text="${dto.id}"></td>
+            <td>
+               <a th:href="@{/board/boardDetail(board_seq=${dto.board_seq})}"
+                  th:text="${dto.title}"></a>
+            </td>
+            <td th:text="${#dates.format(dto.regdate,'yyyy-MM-dd')}"></td>
+<!--            <td th:text="${#dates.format(dto.regdate,'yyyy-MM-dd')}"></td>-->
+         </tr>
+         <tr>
+            <td colspan="5" >
+     		 <nav>
+	              <ul class="pagination">
+	                <li ><a th:href="@{/board/boardList(pnum=${pMap.prePageNum})}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+	                <th:block th:each="i:${#numbers.sequence(pMap.startPage,pMap.endPage)}">
+	                   <li  th:class="${session.pnum} == ${i} ? 'active':''">
+	                   	<a th:text = "${i}" th:href="@{/board/boardList(pnum=${i})}"><span class="sr-only">(current)</span></a>
+	                   	</li>
+	                </th:block> 
+	                <li ><a th:href="@{/board/boardList(pnum=${pMap.nextPageNum})}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+	              </ul>
+	            </nav>
+      
+      
+      
+              <!-- <nav aria-label="Page navigation" style = "margin-top:20px;">
+				  <ul class="pagination">
+				    <li class="page-item">
+				      <a class="page-link" href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+				    </li>
+				    <li class="page-item"><a class="page-link" href="#">1</a></li>
+				    <li class="page-item active" aria-current="page">
+				      <span class="page-link">2</span>
+				    </li>
+				    <li class="page-item"><a class="page-link" href="#">3</a></li>
+				    <li class="page-item">
+				      <a class="page-link" href="#" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>-->
+                          
+            </td>
+         </tr>
+
+      </th:block>
+   </table>
+</form>
+</div>
+</div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+
+.test{
+   margin-top: 25px; 
+   margin-left : 1300px;
+   
+   }
+
+.test2{
+   margin-top: 25px; 
+   margin-left : 1300px;
+
+   }
+   
+ 
+
+
+.btn{
+   margin : 3px;
+}
+
+.b{
+   margin : 30px;
+   background-color: white; 
+   width:300px; 
+   height:130px
+
+}
+
+
+.test3 {
+   
+   margin-top : 100px;
+   margin-left:400px;
+   font-size:30px;
+
+   
+   }
+
+.hos{
+
+   height:480px; 
+   width : 1500px;
+   
+}
+
+.hosp{
+
+    height:170px; 
+   width : 1500px;
+   margin-top:40px;
+   
+}
+
+.hospt{
+
+   height:170px; 
+   width : 1500px;
+   
+}
+
+.ch{
+   margin-right : 20px;
+   height:65px; 
+   width :65px;
+   
+}
+
+.errorField{
+   color : red;
+   }
+ 
+footer{
+  height: 60px;
+  position : absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+
+}
+header{
+	height:130px;
+	position : relative;
+	margin: 0 auto;
+}
+
+#container{
+   
+   width: 1100px;
+  margin: 0 auto;
+  
+   font-size:12px;
+   }
+ 
+#content{
+	 margin-left:0;
+}
+   
+#inputcontainer{
+   height: 40px;
+   width: 330px;
+   margin: 0 auto;
+    font-size:12px;
+}
+
+#loginbutton{
+   height: 10px;
+   width: 30px;
+   margin: 0auto;
+    font-size:12px;
+}
+
+
+.why{
+	text-align:center;
+	width:350px;  
+	margin:auto;
+}
+
+
+.contentk{
+	margin: 0 auto; 
+
+	}
+	
+#containerk{
+ 
+   height:100px;
+   margin: 0 auto;
+   }
+   
+#containerh{
+	width: 1020px;
+  	margin: 0 auto;
+   	font-size:12px;
+}
+

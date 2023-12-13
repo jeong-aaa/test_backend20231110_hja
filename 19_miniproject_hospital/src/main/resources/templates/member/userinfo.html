@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorate="~{layouts/layout4}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+</script>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+
+<form action="/user/userinfo" method="post" th:object = "${updateUserCommand}">
+<input type="hidden" name="id" th:value="${session.mdto.id}"/>
+   <table class="table" style = " text-align:center; margin-top: 40px;  margin-left:auto; margin-right:auto; width:500px;">
+   	
+   	
+      <tr><th style = "vertical-align : middle;">이름:</th>
+      	<td><input style = "height:40px; width:300px;"  type="text" class="form-control" name="name" th:placeholder="${dto.name}" /></td>   
+      </tr>    
+              	<!--th:field="*{name}"-->
+      <tr><th style = "vertical-align : middle;">전화번호:</th>
+      	<td><input style = "height:40px; width:300px;"  type="text" class="form-control" name="number" th:placeholder="${0+dto.number}" /></td>   
+      </tr>
+      
+      <tr><th style = "vertical-align : middle;">비밀번호:</th>
+      	<td><input style = "height:40px; width:300px;"  type="text" class="form-control" name="password" /></td>   
+      </tr>
+  
+  
+      
+      <tr>
+         <td colspan="5">
+         <input style = " width:50px; height:30px;" type="submit" value="수정" class="btn" />
+<!--         <button type="button" onclick="delUser('${dto.id}')">탈퇴</button>-->
+         </td>
+      </tr>
+   </table>
+   
+   
+ 
+</form>
+</div>
+</body>
+</html>

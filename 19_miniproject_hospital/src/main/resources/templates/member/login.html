@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout2"
+     layout:decorate="~{layouts/layout1}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+</script>
+<style type="text/css">
+.loginbutton{
+
+   width: 200px;
+   height: 200px;
+   margin: auto;
+} 
+#div{
+   
+   width: 500px;
+   margin: 0 auto;
+   font-size:12px;
+}  
+
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+<div id="container">
+</br></br></br></br></br></br></br>
+<h1 style="text-align:center;">로그인을 진행해주세요</h1>
+<form action="/user/login" method="post" th:object="${loginCommand}">
+
+   <div id="login">      
+      <div id="inputcontainer" class="input-group"
+          style="margin-top: 40px">
+         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input style="height:45px;" id="id" type="text"
+                class="form-control" name="id" placeholder="Username"/>   
+        </div>
+        <div style="text-align: center; margin-top:5px;" class="inputgroup">
+           <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></span>
+      </div>
+        <div id="inputcontainer" class="input-group"
+            style="margin-top: 15px">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+          <input style="height:45px;" id="password" type="password" class="form-control" name="password" placeholder="****">
+      </div>
+      <div style="text-align: center; margin-top:5px;" class="inputgroup">
+           <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+      </div>
+      
+      <div class="loginbutton">
+           <input style="width: 200px; margin-top:17px;" class="btn" type="submit" value="로그인"/></button>
+           <input style="width: 200px;" class="btn" type="button" th:onclick="|location.href='@{/user/addUser}'|" value="회원가입"/>
+         <span th:text="${msg}"></span>
+      </div>
+   </div>
+
+</form>
+</div>
+<div style = "width:1500px; height:200px; margin-left:0px;">
+         <img class="hosp" th:src="@{/img/t.png}" />
+</div>
+</div>
+</body>
+</html>
+

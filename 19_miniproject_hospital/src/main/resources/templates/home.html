@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorate="~{layouts/layout}"
+ >
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+</script>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+<th:block th:if="${session.mdto==null}">
+   <p class = "test">
+      <button type="button" class="btn" th:onclick="|location.href='@{/user/login}'|">로그인</button>
+      <button type="button" class="btn" th:onclick="|location.href='@{/user/addUser}'|">회원가입</button>
+   </p>
+
+   <img class="hos" th:src="@{/img/병원.png}" />
+
+</th:block>
+<th:block th:unless="${session.mdto==null}">
+
+   <p class="test2"><b>
+      <span th:text="${session.mdto.name}"></b></span>
+      <th>님 안녕하세요!</th><a style = "margin-left: 10px;" href="/user/logout">로그아웃</a><br/>
+      <a style = "margin:50px; " th:href="@{/user/userinfo}">개인정보 수정하기</a>
+      
+   </p>
+   
+   <p class = "test3">
+      <button type="button" class = "b" th:onclick="|location.href='@{/schedule/calendar}'|">
+      <img class="ch" th:src="@{/img/check.png}" th:onclick="|location.href='@{/schedule/calendar}'|" />
+      진료 예약
+      </button>
+      <button type="button" class = "b" th:onclick="|location.href='@{/board/boardList(pnum=1)}'|" >
+      <img class="ch" th:src="@{/img/8answer_icon.png}" />
+      문의 하기
+      </button>
+   </p>
+
+</th:block>
+</div>
+
+</body>
+</html>
