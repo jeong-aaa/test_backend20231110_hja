@@ -26,10 +26,10 @@
     		S.S.M
   			</a>
            
-            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 880px;">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 500px;">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-<%--                 	<li class="nav-item"><a class="nav-link" href="#!">${sessionScope.ldto.username}님</a></li> --%>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Main</a></li>
+                	<li class="nav-item"><a class="nav-link active" href="#!" >${sessionScope.ldto.username}님</a></li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Main</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">Calender</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">MyPage</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">Logout</a></li>

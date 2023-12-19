@@ -29,9 +29,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 1000px;" >
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
                     <li   class="nav-item"><a class="nav-link active" aria-current="page" href="/">Main</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">SignIn</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">SignUp</a></li>
-                    <li class="nav-item"><a class="nav-link" href="loan">확인</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/signin_form">SignIn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/signup">SignUp</a></li>
+                 
                 </ul>
             </div>
         </div>

@@ -11,8 +11,5 @@ public class HomeController {
 		return "index";
 	}
 	
-	@GetMapping("loan")
-	public String loan() {
-		return "loan";
-	}
+
 }
