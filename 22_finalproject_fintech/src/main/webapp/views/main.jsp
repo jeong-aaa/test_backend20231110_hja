@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>지연아 바보야 ?</h1>
+
 </body>
 </html>
