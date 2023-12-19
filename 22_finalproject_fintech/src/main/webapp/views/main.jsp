@@ -36,7 +36,7 @@
         </div>
     </nav>
     
-<h1>낫베드</h1>
+<h1>애들아 아프지마</h1>
 
 
 		<footer class="fixed-bottom py-2 bg-warning">
