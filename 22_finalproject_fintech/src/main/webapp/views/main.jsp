@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Full Width Pics - Start Bootstrap Template</title>
+    <title>SSM</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
@@ -18,30 +18,38 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-warning" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder;">
-        <div class="container">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-warning" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder; ">
+        <div class="container" style="margin-left: 30px;">
         	
     		<img src="resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
-    		<a class="nav-link" style="color: white; font-family: Arial,  sans-serif; font-weight: bolder;" >
+    		<a class="nav-link" style="color: white; font-family: Arial,  sans-serif; font-weight: bolder; " >
     		S.S.M
   			</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Main</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">SignIn</a></li>
+           
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 1000px;" >
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
+                    <li   class="nav-item"><a class="nav-link active" aria-current="page" href="/">Main</a></li>
+                    <li class="nav-item"><a class="nav-link" href="loan">SignIn</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">SignUp</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     
-<h1>애들아 아프지마</h1>
+<div class="a" style="background: aliceblue; height: 400px; ">
 
+</div>    
+<div class="b" style="background: pink; height: 250px; ">
 
-		<footer class="fixed-bottom py-2 bg-warning">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
-        </footer>
-    
+</div>
+<div class="c" style="height: 600px; ">
+
+</div>
+<div class="d" style="background: pink; height: 250px; ">
+
+</div>
+	<footer class="fixed-bottom py-3 bg-warning">
+           <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+    </footer>  
 </body>
 </html>

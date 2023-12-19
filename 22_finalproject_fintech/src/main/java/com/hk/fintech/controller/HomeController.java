@@ -10,4 +10,9 @@ public class HomeController {
 	public String main() {
 		return "main";
 	}
+	
+	@GetMapping("loan")
+	public String loan() {
+		return "loan";
+	}
 }
