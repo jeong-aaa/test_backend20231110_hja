@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hk.fintech.apidto.UserMeDto;
 import com.hk.fintech.dtos.UserDto;
 import com.hk.fintech.feignMapper.OpenBankingFeign;
-import com.hk.fintech.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -29,9 +28,6 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/banking")
 public class BankingController {
-	
-	@Autowired
-	private UserService userService;
 	
 //	@Autowired
 //	private OpenBankingFeign openBankingFeign;
@@ -41,7 +37,6 @@ public class BankingController {
 		return "main";
 	}
 	
-	// 이지연 바보
 	@ResponseBody // 요청했던 페이지로 응답: return 값을 출력한다.(ajax로 요청했다면 ajax메서드로 값을 전달)
 	@GetMapping("/myinfo")
 	public JSONObject myInfo(HttpServletRequest request) throws IOException, ParseException {
@@ -100,12 +95,12 @@ public class BankingController {
 //		String useraccesstoken=ldto.getUseraccesstoken();//접근할 토큰
 //		
 //		//json값들을 userMeDto에 저장
-////		UserMeDto userMeDto=openBankingFeign
-////				.requestUserMe("Bearer "+useraccesstoken, userSeqNo+"");
-////		//자바객체에 결과값을 저장했으므로 Model에 담아서 JSP로 전달할 수 있다.
-////		model.addAttribute("userMeDto", userMeDto);
-////		System.out.println("계좌목록수:"+userMeDto.getRes_list().size());
-////		return "main";
+//		UserMeDto userMeDto=openBankingFeign
+//				.requestUserMe("Bearer "+useraccesstoken, userSeqNo+"");
+//		//자바객체에 결과값을 저장했으므로 Model에 담아서 JSP로 전달할 수 있다.
+//		model.addAttribute("userMeDto", userMeDto);
+//		System.out.println("계좌목록수:"+userMeDto.getRes_list().size());
+//		return "main";
 //	}
 	
 	@ResponseBody
@@ -220,9 +215,7 @@ public class BankingController {
 		String formatNow=now.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 		return formatNow;
 	}
-
 }
-
 
 
 
