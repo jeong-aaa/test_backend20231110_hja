@@ -9,3 +9,4 @@ public interface UserMapper {
 	public int addUser(UserDto dto);
 	public UserDto loginUser(UserDto dto);
 }
+//제발

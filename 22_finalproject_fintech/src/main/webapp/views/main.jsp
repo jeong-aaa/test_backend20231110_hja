@@ -17,7 +17,7 @@
     <link href="/resources/css/styles.css" rel="stylesheet" />
 </head>
 <body>
-
+<!-- 제발 -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-warning" style="font-size: 25px;  font-family: Arial,  sans-serif; font-weight: bolder; width: auto; ">
         <div class="container" style="margin-left: 30px; width: auto;">
         	

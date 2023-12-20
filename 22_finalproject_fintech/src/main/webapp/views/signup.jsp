@@ -12,7 +12,7 @@
    <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
    <!-- Core theme CSS (includes Bootstrap)-->
    <link href="/resources/css/styles.css" rel="stylesheet" />
-   
+   <!-- 제발 -->
    <script type="text/javascript">
       //사용자 인증 요청하기(사용자 인증하면서 계좌등록까지 진행함)
       function authorization(){

@@ -18,7 +18,7 @@ public class UserMeAccountDto {
     private String transfer_agree_yn;
     private String transfer_agree_dtime;
     private String payer_num;
-	
+  //제발
     public UserMeAccountDto() {
 		super();
 		// TODO Auto-generated constructor stub
