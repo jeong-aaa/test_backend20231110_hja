@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="utf-8" />
+	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
@@ -18,19 +18,19 @@
 </head>
 <body>
 
-   <nav class="navbar navbar-expand-lg navbar-dark bg-warning" style="font-size: 25px;  font-family: Arial,  sans-serif; font-weight: bolder; ">
-        <div class="container" style="margin-left: 30px; ">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-warning" style="font-size: 25px;  font-family: Arial,  sans-serif; font-weight: bolder; width: auto; ">
+        <div class="container" style="margin-left: 30px; width: auto;">
+        	
+    		<img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
+    		<a class="nav-link" style="color: white; font-family: Arial,  sans-serif; font-weight: bolder; " >
+    		S.S.M
+  			</a>
            
-          <img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
-          <a class="nav-link" style="color: white; font-family: Arial,  sans-serif; font-weight: bolder; " >
-          S.S.M
-           </a>
-           
-            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 600px;">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 800px; ">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                   <li class="nav-item"><a class="nav-link active" href="#!" >${sessionScope.ldto.username}님</a></li>
-                    <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Main</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Calendar</a></li>
+                	<li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap;" >${sessionScope.ldto.username}님</a></li>
+<!--                     <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Main</a></li> -->
+                    <li class="nav-item" ><a class="nav-link" href="#!"  >Calender</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">MyPage</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">Logout</a></li>
                 </ul>
@@ -50,7 +50,7 @@
 <div class="d" style="background: pink; height: 250px; ">
 
 </div>
-   <footer class="fixed-bottom py-3 bg-warning">
+	<footer class="fixed-bottom py-3 bg-warning">
            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
     </footer>  
 </body>
