@@ -1,3 +1,5 @@
+<%@page import="com.hk.fintech.apidto.UserMeAccountDto"%>
+<%@page import="com.hk.fintech.apidto.UserMeDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
@@ -143,12 +145,50 @@
                    <li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap;" >${sessionScope.ldto.username}님</a></li>
 <!--                     <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Main</a></li> -->
                     <li class="nav-item" ><a class="nav-link" href="#!"  >Calender</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">MyPage</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!" onclick="myInfo()">MyPage</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">Logout</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    
+    <section class="py-5">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div id="list">
+<!--                     	<div class="box container"> -->
+<!-- 	                       	<div> -->
+<!-- 	                     	   <h1>이름</h1> -->
+<!-- 	                     	   <p>번호 [은행이름]</p> -->
+<!-- 	                      	</div> -->
+<!-- 	                      	<div class="sub_menu"> -->
+<!-- 	                      		<button  onclick="balance(fintech_user_num,this)" class="balance">잔액조회</button> -->
+<!-- 	                      	</div> -->
+<!-- 	                      	<div class="balance_amt"></div> -->
+<!-- 	                    </div>	 -->
+                    </div>
+                    <div id="feignList">
+                    	<%
+                    		UserMeDto dto=(UserMeDto)request.getAttribute("userMeDto");
+                    		if(dto!=null){
+	                    		List<UserMeAccountDto>list=dto.getRes_list();
+	                    		
+	                    		for(UserMeAccountDto udto:list){
+	                    			%>
+	                    			<p><%=udto.getAccount_alias() %><br>
+	                    			   <%=udto.getFintech_use_num() %>
+	                    			   [<%=udto.getBank_name() %>]
+	                    			</p>
+	                    			<%
+	                    		}//for
+                    		}//if
+                    	%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
 <div class="a" style="background: aliceblue; height: 400px; ">
 
