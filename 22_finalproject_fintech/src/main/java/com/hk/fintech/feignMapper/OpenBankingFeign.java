@@ -18,15 +18,15 @@ public interface OpenBankingFeign {
                            @RequestParam("user_seq_no") String user_seq_no);
    
    //토큰 발급
-//   @PostMapping(params = "/oauth/v2.0/token",
-//             consumes = "application/x-www-form-urlencoded",
-//             produces = "application/json")
-//   public TokenResponseDto requestToken(
-//            @RequestParam("code") String code,
-//            @RequestParam("client_id") String client_id,
-//            @RequestParam("client_secret") String client_secret,
-//            @RequestParam("redirect_url") String redirect_url,
-//            @RequestParam("grant_type") String grant_type
-//         );
+   @PostMapping(params = "/oauth/v2.0/token",
+             consumes = "application/x-www-form-urlencoded",
+             produces = "application/json")
+   public TokenResponseDto requestToken(
+            @RequestParam("code") String code,
+            @RequestParam("client_id") String client_id,
+            @RequestParam("client_secret") String client_secret,
+            @RequestParam("redirect_url") String redirect_url,
+            @RequestParam("grant_type") String grant_type
+         );
    
 }
