@@ -9,19 +9,24 @@
 <body>
 <div id="accessToken">${access_token}</div>
 <div id="refreshToken">${refresh_token}</div>
-<div id="userseqNo">${user_seq_No}</div>
+<div id="userseqNo">${user_seq_no}</div>
 <script type="text/javascript">
 	opener.document.getElementsByName("useraccesstoken")[0].value
-	= document.getElementById("accessToken").textContent;
+	=document.getElementById("accessToken").textContent;
 	
-	opener.document.getElementsByName("userfreshtoken")[0].value
-	= document.getElementById("refreshToken").textContent;
+	opener.document.getElementsByName("userrefreshtoken")[0].value
+	=document.getElementById("refreshToken").textContent;
 	
 	opener.document.getElementsByName("userseqno")[0].value
-	= document.getElementById("userseqNo").textContent;
+	=document.getElementById("userseqNo").textContent;
 	
 	self.close();
-
 </script>
+
 </body>
 </html>
+
+
+
+
+

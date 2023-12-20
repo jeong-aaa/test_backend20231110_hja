@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hk.fintech.apidto.UserMeDto;
 import com.hk.fintech.dtos.UserDto;
 import com.hk.fintech.feignMapper.OpenBankingFeign;
+import com.hk.fintech.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -28,6 +29,9 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/banking")
 public class BankingController {
+	
+	@Autowired
+	private UserService userService;
 	
 //	@Autowired
 //	private OpenBankingFeign openBankingFeign;
@@ -37,6 +41,7 @@ public class BankingController {
 		return "main";
 	}
 	
+<<<<<<< HEAD
 	@ResponseBody // 요청했던 페이지로 응답: return 값을 출력한다.(ajax로 요청했다면 ajax메서드로 값을 전달)
 	@GetMapping("/myinfo")
 	public JSONObject myInfo(HttpServletRequest request) throws IOException, ParseException {
@@ -215,6 +220,8 @@ public class BankingController {
 		String formatNow=now.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 		return formatNow;
 	}
+=======
+>>>>>>> branch 'main' of https://github.com/jeong-aaa/test_backend20231110_hja.git
 }
 
 
