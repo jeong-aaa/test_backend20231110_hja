@@ -30,7 +30,7 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                    <li class="nav-item"><a class="nav-link active" href="#!" >${sessionScope.ldto.username}님</a></li>
                     <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Main</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Calender</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">Calendar</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">MyPage</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">Logout</a></li>
                 </ul>
