@@ -127,7 +127,7 @@ public class UserController {
 		   
 	   }
 	   
-	 //로그인 폼 이동하기
+	 //로그아웃
 	   @GetMapping("/logout")
 	   public String logout(HttpServletRequest request) {
 	      System.out.println("로그아웃");

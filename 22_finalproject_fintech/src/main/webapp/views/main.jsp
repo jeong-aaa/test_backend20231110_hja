@@ -21,7 +21,7 @@
    <nav class="navbar navbar-expand-lg navbar-dark bg-warning" style="font-size: 25px;  font-family: Arial,  sans-serif; font-weight: bolder; ">
         <div class="container" style="margin-left: 30px; ">
            
-          <img src="resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
+          <img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
           <a class="nav-link" style="color: white; font-family: Arial,  sans-serif; font-weight: bolder; " >
           S.S.M
            </a>
@@ -32,7 +32,7 @@
                     <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Main</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">Calender</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">MyPage</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/logout">Logout</a></li>
                 </ul>
             </div>
         </div>
