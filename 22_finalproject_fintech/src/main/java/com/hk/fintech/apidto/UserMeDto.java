@@ -17,7 +17,7 @@ public class UserMeDto {
    private String user_email;
    private String res_cnt;
    private List<UserMeAccountDto> res_list;
-	
+ //제발
    public UserMeDto() {
 		super();
 		// TODO Auto-generated constructor stub

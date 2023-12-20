@@ -5,7 +5,7 @@
 	
 	<insert id ="addUser">
 		INSERT INTO FINTECH_USER
-		VALUES(#{username}, #{useremail},#{userpassword},#{useraccesstoken}, #{userrefreshtoken},#{userseqno},NULL)
+		VALUES(#{username},#{useremail},#{userpassword},#{useraccesstoken},#{userrefreshtoken},#{userseqno},NULL)
 	</insert>
 	
 	<select id ="loginUser" parameterType = "UserDto" resultType="UserDto">
@@ -16,7 +16,7 @@
 
 </mapper>
 
-
+<!-- sd -->
 
 
 
