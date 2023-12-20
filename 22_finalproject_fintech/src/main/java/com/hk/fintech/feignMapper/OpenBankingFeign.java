@@ -16,7 +16,7 @@ public interface OpenBankingFeign {
    @GetMapping(path = "/v2.0/user/me")
    public UserMeDto requestUserMe(@RequestHeader("Authorization") String access_token,
                            @RequestParam("user_seq_no") String user_seq_no);
-   
+ //제발
    //토큰 발급
    @PostMapping(params = "/oauth/v2.0/token",
              consumes = "application/x-www-form-urlencoded",
