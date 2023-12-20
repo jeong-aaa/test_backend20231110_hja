@@ -23,7 +23,7 @@
         	
     		<img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
     		<a class="nav-link" style="color: white; font-family: Arial,  sans-serif; font-weight: bolder; " >
-    		S.S.M.
+    		S.S.M
   			</a>
            
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 830px; ">
