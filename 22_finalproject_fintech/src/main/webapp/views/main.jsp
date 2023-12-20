@@ -26,7 +26,7 @@
     		S.S.M
   			</a>
            
-            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 800px; ">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 830px; ">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 	<li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap;" >${sessionScope.ldto.username}님</a></li>
 <!--                     <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Main</a></li> -->
