@@ -32,7 +32,7 @@
                     <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Main</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">Calender</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">MyPage</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/user/logout">logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/logout">Logout</a></li>
                 </ul>
             </div>
         </div>
