@@ -8,4 +8,5 @@ import com.hk.fintech.dtos.UserDto;
 public interface UserMapper {
 	public int addUser(UserDto dto);
 	public UserDto loginUser(UserDto dto);
+	public int addCardToken(UserDto dto);
 }

@@ -1,6 +1,5 @@
 package com.hk.fintech.dtos;
 
-import lombok.Data;
 
 //@Data
 public class UserDto {
