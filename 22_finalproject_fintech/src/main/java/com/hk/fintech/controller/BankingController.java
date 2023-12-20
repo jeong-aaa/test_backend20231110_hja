@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hk.fintech.apidto.UserMeDto;
 import com.hk.fintech.dtos.UserDto;
 import com.hk.fintech.feignMapper.OpenBankingFeign;
+import com.hk.fintech.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -29,6 +30,9 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/banking")
 public class BankingController {
 	
+	@Autowired
+	private UserService userService;
+	
 //	@Autowired
 //	private OpenBankingFeign openBankingFeign;
 	
@@ -36,7 +40,6 @@ public class BankingController {
 	public String main() {
 		return "main";
 	}
-	
 	
 }
 
