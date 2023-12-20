@@ -17,13 +17,13 @@
     <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/resources/css/styles.css" rel="stylesheet" />
-    
+   	<style type="text/css">
+		.box{border-bottom: 1px solid gray; margin-bottom: 10px;}
+		.box > .sub_menu{text-align: right;}
+		.addAccount{text-align: right;}
+	</style>
     	<script type="text/javascript">
 
-		//나의정보2 feign 사용
-		function myInfo_feign(){
-			location.href="/banking/myinfo_feign";
-		}
 	
 		//나의 정보조회[계좌목록]
 		function myInfo(){
