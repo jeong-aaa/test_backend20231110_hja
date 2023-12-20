@@ -35,7 +35,7 @@ public class UserController {
 	public String signUp() {
 		return "signup";
 	}
-	
+	//제발
 	//사용자 인증을 완료하면 code들을 반환해준다.
 	//반환받은 code를 이용해서 토큰 발급 요청을 진행한다.
 	@GetMapping("/authresult")

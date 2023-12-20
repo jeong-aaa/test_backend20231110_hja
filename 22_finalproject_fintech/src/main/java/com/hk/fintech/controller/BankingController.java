@@ -41,6 +41,9 @@ public class BankingController {
 		return "main";
 	}
 	
+<<<<<<< HEAD
+	//ㅇ러니얼
+=======
 	// 이지연 바보
 	@ResponseBody // 요청했던 페이지로 응답: return 값을 출력한다.(ajax로 요청했다면 ajax메서드로 값을 전달)
 	@GetMapping("/myinfo")
@@ -221,12 +224,13 @@ public class BankingController {
 		return formatNow;
 	}
 
+>>>>>>> branch 'main' of https://github.com/jeong-aaa/test_backend20231110_hja.git
 }
 
 
 
 
-
+//제발
 
 
 
