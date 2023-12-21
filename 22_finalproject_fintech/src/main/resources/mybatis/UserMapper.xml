@@ -5,14 +5,20 @@
 	
 	<insert id ="addUser">
 		INSERT INTO FINTECH_USER
-		VALUES(#{username},#{useremail},#{userpassword},#{useraccesstoken},#{userrefreshtoken},#{userseqno},NULL)
+		VALUES(#{username},#{useremail},#{userpassword},#{useraccesstoken},#{userrefreshtoken},#{userseqno},'N')
 	</insert>
 	
 	<select id ="loginUser" parameterType = "UserDto" resultType="UserDto">
 		SELECT USERNAME, USEREMAIL, USERPASSWORD, USERACCESSTOKEN, USERREFRESHTOKEN, USERSEQNO
 		FROM FINTECH_USER
-		WHERE USEREMAIL = #{useremail} AND USERPASSWORD = #{userpassword}
+		WHERE USEREMAIL = #{useremail} AND USERPASSWORD = #{userpassword} AND USERDELFLAG = 'N'
 	</select>
+	
+	<update id="delUser" parameterType="String">
+	  UPDATE FINTECH_USER
+	  SET USERDELFLAG='Y'
+	  WHERE USEREMAIL = #{useremail}
+	</update>
 
 </mapper>
 

@@ -121,6 +121,14 @@
             
       window.open(url,"인증하기","width=400px,height=600px");      
    }
+   
+   function delUserEX(){
+		if(confirm("정말로 탈퇴하시겠습니까??")){
+			return true;
+		}
+		return false
+	}
+   
     </script>
     
     <!-- Favicon-->
@@ -175,6 +183,7 @@
    .dropdown:hover .dropbtn {
      background-color: #EAECCC;
    }
+   
    </style>
 </head>
 <body>
@@ -210,14 +219,14 @@
                     <div class="dropdown-content" style="margin-left:500px;">
                          <a href="#">로그인</a>
                          <a href="#">회원가입</a>
-                         <a href="#">로그아웃</a>
+                         <a href="/user/logout">로그아웃</a>
                     </div>
                </div>
                <div class="dropdown">
                     <button class="dropbtn" style="margin-left:100px; ">계좌</button>
                     <div class="dropdown-content" style="margin-left:100px; ">
-                         <a href="#">계좌추가</a>
-                         <a href="#">계좌조회</a>
+                         <a href="#" onclick="addAccount()">계좌추가</a>
+                         <a href="#" onclick="myInfo()">계좌조회</a>
                     </div>
                </div>
                <div class="dropdown">
@@ -271,6 +280,9 @@
                %>
             </div>
    </section>
+	<form action="/user/delUser" method="get" onsubmit="return delUserEX()">
+		<button type="submit" class="btn" style="color: lightgray;">회원탈퇴</button>
+	</form>
    <div>
        <footer class="footer">
               <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>

@@ -141,6 +141,30 @@ public class UserController {
 		session.invalidate();
 		return "redirect:/";
 	}
+	
+	// 회원탈퇴
+    @GetMapping(value = "/delUser")
+    public String deleteUser(HttpServletRequest request) {
+        // 세션에서 현재 로그인한 회원의 정보를 가져옴
+        UserDto loggedInUser = (UserDto) request.getSession().getAttribute("ldto");
+
+        if (loggedInUser != null) {
+            // 현재 로그인한 회원의 useremail 가져와 회원 탈퇴 진행
+            boolean deleteResult = userService.delUser(loggedInUser.getUseremail());
+
+            if (deleteResult) {
+                // 회원 탈퇴 성공 시 세션 무효화
+                request.getSession().invalidate();
+                return "redirect:/";
+            } else {
+                // 회원 탈퇴 실패 시 적절한 에러 페이지로 이동 또는 메시지 처리
+                return "redirect:/";
+            }
+        } else {
+            // 로그인한 사용자 정보가 없는 경우의 예외 처리
+            return "redirect:/"; // 또는 적절한 경로로 이동
+        }
+    }
 }
 
 
