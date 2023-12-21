@@ -12,10 +12,15 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.fintech.apidto.UserMeDto;
@@ -202,6 +207,48 @@ public class BankingController {
               +"</script>";
       return str;
    }
+   
+   //계좌해지
+   @ResponseBody
+   @PostMapping("/deleteAccount")
+   public ResponseEntity<String> deleteAccount(@RequestParam String fintech_use_num, HttpServletRequest request) {
+       try {
+           System.out.println("계좌 해지하기");
+
+           // 세션에서 사용자 정보 가져오기
+           HttpSession session = request.getSession();
+           UserDto ldto = (UserDto) session.getAttribute("ldto");
+           String userAccessToken = ldto.getUseraccesstoken();
+
+           // Open Banking API 호출을 통한 계좌 해지 로직 수행
+           URL url = new URL("https://testapi.openbanking.or.kr/v2.0/account/cancel"
+//                   + "fintech_use_num=" + fintech_use_num
+        		   + "bank_tran_id=M202201886U"+createNum());
+//                   + "&tran_dtime=" + getDateTime());
+
+           HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+           conn.setRequestMethod("POST");
+           conn.setRequestProperty("Content-Type", "application/json");
+           conn.setRequestProperty("Authorization", "Bearer " + userAccessToken);
+           conn.setDoOutput(true);
+
+           int responseCode = conn.getResponseCode();
+           if (responseCode == 200) {
+               // 성공적으로 계좌가 해지되었을 때
+               return new ResponseEntity<>("계좌가 성공적으로 해지되었습니다.", HttpStatus.OK);
+           } else {
+               // 계좌 해지에 실패한 경우
+               return new ResponseEntity<>("계좌 해지 중 오류 발생 (HTTP 코드: " + responseCode + ")", HttpStatus.INTERNAL_SERVER_ERROR);
+           }
+
+       } catch (Exception e) {
+           // 예외 처리, 에러 로깅을 수행하고 오류 응답을 반환합니다.
+           return new ResponseEntity<>("계좌 해지 중 오류 발생: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+       }
+       
+   
+   }
+
    
    //이용기관 부여번호 9자리를 생성하는 메서드
    public String createNum() {
