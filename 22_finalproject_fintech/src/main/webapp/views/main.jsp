@@ -52,6 +52,7 @@
                        +'   </div>'
                        +'   <div class="sub_menu"> '
                        +'      <button onclick="balance(\''+res_list[i].fintech_use_num+'\',this)" type="button" class="btn btn-outline-primary">잔액조회</button>'
+                       +'      <button onclick="deleteAccount(\''+res_list[i].fintech_use_num+'\', this)" type="button" class="btn btn-outline-primary">계좌삭제</button>'
                        +'   </div>'
                        +'   <div class="balance_amt"></div>'
                        +'</div>   '
@@ -60,6 +61,27 @@
          }
       });
    }
+	
+   // 계좌해지하기
+   function deleteAccount(fintech_use_num, btnEle) {
+      $.ajax({
+         url: "/banking/deleteAccount",
+         method: "Post", // 예시로 POST 메서드 사용
+         data: {"fintech_use_num": fintech_use_num},
+         dataType: "json",
+         success: function (data) {
+            // 계좌 해지에 대한 성공 처리 로직을 추가
+            console.log("계좌 해지 성공:", data);
+
+            // 예시로 성공 시 해당 계좌를 UI에서 제거하는 로직
+            $(btnEle).parents(".box").eq(0).remove();
+         },
+         error: function () {
+            alert("통신 실패") ;
+         }
+      });
+   }
+
    
    //잔액조회하기
    function balance(fintech_use_num,btnEle){
@@ -121,6 +143,14 @@
             
       window.open(url,"인증하기","width=400px,height=600px");      
    }
+   
+   function delUserEX(){
+		if(confirm("정말로 탈퇴하시겠습니까??")){
+			return true;
+		}
+		return false
+	}
+   
     </script>
     
     <!-- Favicon-->
@@ -175,6 +205,7 @@
    .dropdown:hover .dropbtn {
      background-color: #EAECCC;
    }
+   
    </style>
 </head>
 <body>
@@ -208,16 +239,14 @@
                <div class="dropdown">
                     <button class="dropbtn" style="margin-left:500px; ">계정</button>
                     <div class="dropdown-content" style="margin-left:500px;">
-                         <a href="#">로그인</a>
-                         <a href="#">회원가입</a>
-                         <a href="#">로그아웃</a>
+                         <a href="/user/logout">로그아웃</a>
                     </div>
                </div>
                <div class="dropdown">
                     <button class="dropbtn" style="margin-left:100px; ">계좌</button>
                     <div class="dropdown-content" style="margin-left:100px; ">
-                         <a href="#">계좌추가</a>
-                         <a href="#">계좌조회</a>
+                         <a href="#" onclick="addAccount()">계좌추가</a>
+                         <a href="#" onclick="myInfo()">계좌조회</a>
                     </div>
                </div>
                <div class="dropdown">
@@ -233,8 +262,8 @@
                     <button class="dropbtn" style="margin-left:100px; ">마이페이지</button>
                     <div class="dropdown-content" style="margin-left:100px; ">
                          <a href="#" onclick="myInfo()">계좌관리</a>
-                         <a href="#">회원탈퇴</a>
-                    </div>
+<!--                          <a href="/user/delUser">회원탈퇴</a> -->
+                    </div> 
                </div>
          
             </div>
@@ -271,6 +300,9 @@
                %>
             </div>
    </section>
+	<form action="/user/delUser" method="get" onsubmit="return delUserEX()">
+		<button type="submit" class="btn" style="color: lightgray;">회원탈퇴</button>
+	</form>
    <div>
        <footer class="footer">
               <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
