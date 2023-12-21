@@ -213,7 +213,7 @@
          
          <div class="d" style="background: #F0F0F0; height: 90px; ">
             <div class="main_service_menu">
-               <h2 class="blind" style="margin-left:630px; font-size: 25px; clolr:#163020;">주요 서비스 바로가기</h2>
+               <h2 class="blind" style="margin-left:630px; font-size: 25px; clolr:#163020; ">주요 서비스 바로가기</h2>
                <div class="dropdown">
                     <button class="dropbtn" style="margin-left:500px; ">계정</button>
                     <div class="dropdown-content" style="margin-left:500px;">
@@ -249,8 +249,8 @@
             </div>
          </div>
          
-         <div class="e" style="background: #00000; height: 180px;" >
-         <h5  style="color: #163020; margin-left:100px; margin-right:100px;">
+         <div class="e" style="background: #00000;" >
+         <h5  style="color: #163020; margin-left:130px; margin-right:130px;">
          <br/>
          당신의 재무 건강을 관리하는 것은 매우 중요합니다. 우리의 삶은 돈과 밀접하게 연관되어 있기 때문에 재정 거래를 효과적으로 관리하는 것은 생활의 질을 향상시키고 안정성을 높이는 데 큰 도움이 됩니다.<br/>
          
