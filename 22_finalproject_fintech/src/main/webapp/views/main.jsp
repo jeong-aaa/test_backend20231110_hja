@@ -217,8 +217,6 @@
                <div class="dropdown">
                     <button class="dropbtn" style="margin-left:500px; ">계정</button>
                     <div class="dropdown-content" style="margin-left:500px;">
-                         <a href="#">로그인</a>
-                         <a href="#">회원가입</a>
                          <a href="/user/logout">로그아웃</a>
                     </div>
                </div>

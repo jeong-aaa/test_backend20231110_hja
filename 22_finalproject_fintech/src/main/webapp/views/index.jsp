@@ -93,32 +93,31 @@
 		      <div class="dropdown">
 		           <button class="dropbtn" style="margin-left:500px; ">계정</button>
 		           <div class="dropdown-content" style="margin-left:500px;">
-		                <a href="#">로그인</a>
-		                <a href="#">회원가입</a>
-		                <a href="#">로그아웃</a>
+		                <a href="/user/signin_form">로그인</a>
+		                <a href="/user/signup">회원가입</a>
 		           </div>
 		      </div>
 		      <div class="dropdown">
 		           <button class="dropbtn" style="margin-left:100px; ">계좌</button>
 		           <div class="dropdown-content" style="margin-left:100px; ">
-		                <a href="#">계좌추가</a>
-		                <a href="#">계좌조회</a>
+		                <a href="/user/signin_form">계좌추가</a>
+		                <a href="/user/signin_form">계좌조회</a>
 		           </div>
 		      </div>
 		      <div class="dropdown">
 		           <button class="dropbtn" style="margin-left:100px; ">가계부</button>
 		           <div class="dropdown-content" style="margin-left:100px; ">
-		                <a href="#">수입/지출</a>
-		                <a href="#">거래상세내역</a>
-		                <a href="#">현금거래내역</a>
-		                <a href="#">월별지출그래프</a>
+		                <a href="/user/signin_form">수입/지출</a>
+		                <a href="/user/signin_form">거래상세내역</a>
+		                <a href="/user/signin_form">현금거래내역</a>
+		                <a href="/user/signin_form">월별지출그래프</a>
 		           </div>
 		      </div>
 		      <div class="dropdown">
 		           <button class="dropbtn" style="margin-left:100px; ">마이페이지</button>
 		           <div class="dropdown-content" style="margin-left:100px; ">
-		                <a href="#">계좌관리</a>
-		                <a href="#">회원탈퇴</a>
+		                <a href="/user/signin_form">계좌관리</a>
+<!-- 		                <a href="#">회원탈퇴</a> -->
 		           </div>
 		      </div>
 			</div>
