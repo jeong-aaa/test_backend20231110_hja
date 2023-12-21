@@ -12,12 +12,13 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>SSM</title>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js">
-  //나의정보2 feign 사용
-   function myInfo_feign(){
-      location.href="/banking/myinfo_feign";
-   }
-
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<style type="text/css">
+   .box{border-bottom: 1px solid gray; margin-bottom: 10px;}
+   .box > .sub_menu{text-align: right;}
+   .addAccount{text-align: right;}
+   </style>
+   <script type="text/javascript">
    //나의 정보조회[계좌목록]
    function myInfo(){
       $.ajax({
