@@ -196,8 +196,6 @@
     </nav>
     
 <div class="a" style="background: #277BC0; height: 10px; ">
-			<div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;">
-			</div> 
     <section class="py-5">
       <div id="list">
          <div class="c" style="background: #00000; height: 250px; ">
@@ -241,7 +239,7 @@
             </div>
          </div>
          
-         <div class="e" style="background: #00000; height: 240px;" >
+         <div class="e" style="background: #00000; height: 180px;" >
          <h5  style="color: #163020; margin-left:100px; margin-right:100px;">
          <br/>
          당신의 재무 건강을 관리하는 것은 매우 중요합니다. 우리의 삶은 돈과 밀접하게 연관되어 있기 때문에 재정 거래를 효과적으로 관리하는 것은 생활의 질을 향상시키고 안정성을 높이는 데 큰 도움이 됩니다.<br/>
@@ -273,13 +271,14 @@
             </div>
    </section>
    <div>
-	    <footer class="footer">
-	           <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
-	    </footer> 
+       <footer class="footer">
+              <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
+       </footer> 
    </div>
 </div>    
 
-
+<div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;">
+</div> 
 
 </body>
 </html>
