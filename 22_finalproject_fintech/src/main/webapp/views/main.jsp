@@ -12,12 +12,14 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>SSM</title>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js">
-  //나의정보2 feign 사용
-   function myInfo_feign(){
-      location.href="/banking/myinfo_feign";
-   }
-
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+   <style type="text/css">
+   .box{border-bottom: 1px solid gray; margin-bottom: 10px;}
+   .box > .sub_menu{text-align: right;}
+   .addAccount{text-align: right;}
+   </style>
+   <script type="text/javascript">
+   
    //나의 정보조회[계좌목록]
    function myInfo(){
       $.ajax({
@@ -34,7 +36,7 @@
             
             //계좌등록 버튼
             $("#list").html("<div class='addAccount'>"
-                        +"  <button onclick='addAccount()'>계좌등록</button>"
+                        +"  <button type='button' class='btn btn-primary' onclick='addAccount()' style='margin-right:110px'>계좌등록</button>"
                         +"</div>"
                           );
             
@@ -49,7 +51,7 @@
                        +'      <p>'+res_list[i].fintech_use_num+' ['+res_list[i].bank_name+']</p>'
                        +'   </div>'
                        +'   <div class="sub_menu"> '
-                       +'      <button  onclick="balance(\''+res_list[i].fintech_use_num+'\',this)" class="balance">잔액조회</button>'
+                       +'      <button onclick="balance(\''+res_list[i].fintech_use_num+'\',this)" type="button" class="btn btn-outline-primary">잔액조회</button>'
                        +'   </div>'
                        +'   <div class="balance_amt"></div>'
                        +'</div>   '
@@ -71,7 +73,7 @@
             var box=$(btnEle).parents(".box").eq(0);
             box.find(".balance_amt").html(
                                "<p>잔액:"+data.balance_amt+"</p>"
-                              +"<p><button onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
+                              +"<p><button type='button' class='btn btn-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
                               +"<div class='transaction_list'></div>"  //거래내역이 출력될 div 
                               );          
          },
@@ -120,6 +122,7 @@
       window.open(url,"인증하기","width=400px,height=600px");      
    }
     </script>
+    
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -178,7 +181,7 @@
    <nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder; width: auto; background:#00000;">
         <div class="container" style="margin-left: 30px; width: auto;">           
           <img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
-          <a class="nav-link" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
+          <a class="nav-link" href="/banking/main" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
           S.S.M
            </a>           
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 830px; ">
@@ -195,104 +198,88 @@
     
 <div class="a" style="background: #277BC0; height: 10px; ">
     <section class="py-5">
-        <div class="container my-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div id="list">
-<!--                        <div class="box container"> -->
-<!--                              <div> -->
-<!--                               <h1>이름</h1> -->
-<!--                               <p>번호 [은행이름]</p> -->
-<!--                             </div> -->
-<!--                             <div class="sub_menu"> -->
-<!--                                <button  onclick="balance(fintech_user_num,this)" class="balance">잔액조회</button> -->
-<!--                             </div> -->
-<!--                             <div class="balance_amt"></div> -->
-<!--                        </div>    -->
+      <div id="list">
+         <div class="c" style="background: #00000; height: 250px; ">
+         </div>
+         
+         <div class="d" style="background: #F0F0F0; height: 90px; ">
+            <div class="main_service_menu">
+               <h2 class="blind" style="margin-left:630px; font-size: 25px; clolr:#163020;">주요 서비스 바로가기</h2>
+               <div class="dropdown">
+                    <button class="dropbtn" style="margin-left:500px; ">계정</button>
+                    <div class="dropdown-content" style="margin-left:500px;">
+                         <a href="#">로그인</a>
+                         <a href="#">회원가입</a>
+                         <a href="#">로그아웃</a>
                     </div>
-                    <div id="feignList">
-                       <%
-                          UserMeDto dto=(UserMeDto)request.getAttribute("userMeDto");
-                          if(dto!=null){
-                             List<UserMeAccountDto>list=dto.getRes_list();
-                             
-                             for(UserMeAccountDto udto:list){
-                                %>
-                                <p><%=udto.getAccount_alias() %><br>
-                                   <%=udto.getFintech_use_num() %>
-                                   [<%=udto.getBank_name() %>]
-                                </p>
-                                <%
-                             }//for
-                          }//if
-                       %>
+               </div>
+               <div class="dropdown">
+                    <button class="dropbtn" style="margin-left:100px; ">계좌</button>
+                    <div class="dropdown-content" style="margin-left:100px; ">
+                         <a href="#">계좌추가</a>
+                         <a href="#">계좌조회</a>
                     </div>
-                </div>
+               </div>
+               <div class="dropdown">
+                    <button class="dropbtn" style="margin-left:100px; ">가계부</button>
+                    <div class="dropdown-content" style="margin-left:100px; ">
+                         <a href="#">수입/지출</a>
+                         <a href="#">거래상세내역</a>
+                         <a href="#">현금거래내역</a>
+                         <a href="#">월별지출그래프</a>
+                    </div>
+               </div>
+               <div class="dropdown">
+                    <button class="dropbtn" style="margin-left:100px; ">마이페이지</button>
+                    <div class="dropdown-content" style="margin-left:100px; ">
+                         <a href="#" onclick="myInfo()">계좌관리</a>
+                         <a href="#">회원탈퇴</a>
+                    </div>
+               </div>
+         
             </div>
-        </div>
-    </section>
+         </div>
+         
+         <div class="e" style="background: #00000; height: 180px;" >
+         <h5  style="color: #163020; margin-left:100px; margin-right:100px;">
+         <br/>
+         당신의 재무 건강을 관리하는 것은 매우 중요합니다. 우리의 삶은 돈과 밀접하게 연관되어 있기 때문에 재정 거래를 효과적으로 관리하는 것은 생활의 질을 향상시키고 안정성을 높이는 데 큰 도움이 됩니다.<br/>
+         
+         우리 플랫폼은 물건 구매부터 월급까지 모든 재정 거래를 손쉽게 관리할 수 있도록 도와줍니다. 간편한 가계부 기능을 통해 일일 지출과 수입을 체계적으로 기록할 수 있습니다. 이것은 여러분이 어디서든 자신의 재무 상태를 파악하고 관리할 수 있도록 도와줍니다.<br/>
+         
+         뿐만 아니라, 플랫폼은 여러 은행이나 금융 기관의 계좌를 한 곳에서 효과적으로 관리할 수 있는 기능을 제공합니다. 여러 은행 계좌를 간편하게 모니터링하고, 자산을 효율적으로 이동시키며, 예산을 관리하며, 투자 및 저축 목표를 설정할 수 있습니다.<br/>
+         
+         우리의 플랫폼은 신속한 기능과 직관적인 인터페이스를 통해 사용자가 금융을 더 효율적으로 관리할 수 있도록 도와줍니다. 걱정 없는 재무 거래를 위한 완벽한 도구로 여러분의 편의를 위해 설계되었습니다. 함께하여 여러분의 재무 건강을 향상시키고 안정성을 높이는 데 도움을 드리겠습니다.</h5>
+         <br/>
+         </div> 
+            </div>
+            <div id="feignList">
+               <%
+                  UserMeDto dto=(UserMeDto)request.getAttribute("userMeDto");
+                  if(dto!=null){
+                     List<UserMeAccountDto>list=dto.getRes_list();
+                     
+                     for(UserMeAccountDto udto:list){
+                        %>
+                        <p><%=udto.getAccount_alias() %><br>
+                           <%=udto.getFintech_use_num() %>
+                           [<%=udto.getBank_name() %>]
+                        </p>
+                        <%
+                     }//for
+                  }//if
+               %>
+            </div>
+   </section>
+   <div>
+       <footer class="footer">
+              <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
+       </footer> 
+   </div>
 </div>    
 
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;">
 </div> 
 
-<div class="c" style="background: #00000; height: 250px; ">
-</div>
-
-<div class="d" style="background: #F0F0F0; height: 90px; ">
-   <div class="main_service_menu">
-      <h2 class="blind" style="margin-left:650px; font-size: 25px; clolr:#163020;">주요 서비스 바로가기</h2>
-      <div class="dropdown">
-           <button class="dropbtn" style="margin-left:500px; ">계정</button>
-           <div class="dropdown-content" style="margin-left:500px;">
-                <a href="#">로그인</a>
-                <a href="#">회원가입</a>
-                <a href="#">로그아웃</a>
-           </div>
-      </div>
-      <div class="dropdown">
-           <button class="dropbtn" style="margin-left:100px; ">계좌</button>
-           <div class="dropdown-content" style="margin-left:100px; ">
-                <a href="#">계좌추가</a>
-                <a href="#">계좌조회</a>
-           </div>
-      </div>
-      <div class="dropdown">
-           <button class="dropbtn" style="margin-left:100px; ">가계부</button>
-           <div class="dropdown-content" style="margin-left:100px; ">
-                <a href="#">수입/지출</a>
-                <a href="#">거래상세내역</a>
-                <a href="#">현금거래내역</a>
-                <a href="#">월별지출그래프</a>
-           </div>
-      </div>
-      <div class="dropdown">
-           <button class="dropbtn" style="margin-left:100px; ">마이페이지</button>
-           <div class="dropdown-content" style="margin-left:100px; ">
-                <a href="#">계좌관리</a>
-                <a href="#">회원탈퇴</a>
-           </div>
-      </div>
-
-   </div>
-</div>
-
-<div class="e" style="background: #00000; height: 240px;" >
-<h5  style="color: #163020; margin-left:100px; margin-right:100px;">
-<br/>
-당신의 재무 건강을 관리하는 것은 매우 중요합니다. 우리의 삶은 돈과 밀접하게 연관되어 있기 때문에 재정 거래를 효과적으로 관리하는 것은 생활의 질을 향상시키고 안정성을 높이는 데 큰 도움이 됩니다.<br/>
-
-우리 플랫폼은 물건 구매부터 월급까지 모든 재정 거래를 손쉽게 관리할 수 있도록 도와줍니다. 간편한 가계부 기능을 통해 일일 지출과 수입을 체계적으로 기록할 수 있습니다. 이것은 여러분이 어디서든 자신의 재무 상태를 파악하고 관리할 수 있도록 도와줍니다.<br/>
-
-뿐만 아니라, 플랫폼은 여러 은행이나 금융 기관의 계좌를 한 곳에서 효과적으로 관리할 수 있는 기능을 제공합니다. 여러 은행 계좌를 간편하게 모니터링하고, 자산을 효율적으로 이동시키며, 예산을 관리하며, 투자 및 저축 목표를 설정할 수 있습니다.<br/>
-
-우리의 플랫폼은 신속한 기능과 직관적인 인터페이스를 통해 사용자가 금융을 더 효율적으로 관리할 수 있도록 도와줍니다. 걱정 없는 재무 거래를 위한 완벽한 도구로 여러분의 편의를 위해 설계되었습니다. 함께하여 여러분의 재무 건강을 향상시키고 안정성을 높이는 데 도움을 드리겠습니다.</h5>
-<br/>
-</div>
-<div>
-   <footer class="footer">
-          <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
-   </footer> 
-</div> 
 </body>
 </html>
