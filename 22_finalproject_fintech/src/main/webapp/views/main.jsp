@@ -127,6 +127,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/resources/css/styles.css" rel="stylesheet" />
     <style type="text/css">
+
    /* Style The Dropdown Button */
    .dropbtn {
      background-color: #277BC0;
@@ -254,11 +255,11 @@
 						우리의 플랫폼은 신속한 기능과 직관적인 인터페이스를 통해 사용자가 금융을 더 효율적으로 관리할 수 있도록 도와줍니다. 걱정 없는 재무 거래를 위한 완벽한 도구로 여러분의 편의를 위해 설계되었습니다. 함께하여 여러분의 재무 건강을 향상시키고 안정성을 높이는 데 도움을 드리겠습니다.</h5>
 						<br/>
 						</div>
-						<div>
-						   <footer class="footer">
-						          <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
-						   </footer> 
-						</div>
+<!-- 						<div> -->
+<!-- 						   <footer class="footer"> -->
+<!-- 						          <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div> -->
+<!-- 						   </footer>  -->
+<!-- 						</div> -->
 
                     </div>
                     <div id="feignList">
@@ -340,10 +341,10 @@
 <!-- 우리의 플랫폼은 신속한 기능과 직관적인 인터페이스를 통해 사용자가 금융을 더 효율적으로 관리할 수 있도록 도와줍니다. 걱정 없는 재무 거래를 위한 완벽한 도구로 여러분의 편의를 위해 설계되었습니다. 함께하여 여러분의 재무 건강을 향상시키고 안정성을 높이는 데 도움을 드리겠습니다.</h5> -->
 <!-- <br/> -->
 <!-- </div> -->
-<!-- <div> -->
-<!--    <footer class="footer"> -->
-<!--           <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div> -->
-<!--    </footer>  -->
-<!-- </div>  -->
+<div>
+   <footer class="footer">
+          <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
+   </footer> 
+</div> 
 </body>
 </html>
