@@ -143,6 +143,14 @@
             
       window.open(url,"인증하기","width=400px,height=600px");      
    }
+   
+   function delUserEX(){
+		if(confirm("정말로 탈퇴하시겠습니까??")){
+			return true;
+		}
+		return false
+	}
+   
     </script>
     
     <!-- Favicon-->
@@ -197,6 +205,7 @@
    .dropdown:hover .dropbtn {
      background-color: #EAECCC;
    }
+   
    </style>
 </head>
 <body>
@@ -226,20 +235,18 @@
          
          <div class="d" style="background: #F0F0F0; height: 90px; ">
             <div class="main_service_menu">
-               <h2 class="blind" style="margin-left:630px; font-size: 25px; clolr:#163020;">주요 서비스 바로가기</h2>
+               <h2 class="blind" style="margin-left:630px; font-size: 25px; clolr:#163020; ">주요 서비스 바로가기</h2>
                <div class="dropdown">
                     <button class="dropbtn" style="margin-left:500px; ">계정</button>
                     <div class="dropdown-content" style="margin-left:500px;">
-                         <a href="#">로그인</a>
-                         <a href="#">회원가입</a>
-                         <a href="#">로그아웃</a>
+                         <a href="/user/logout">로그아웃</a>
                     </div>
                </div>
                <div class="dropdown">
                     <button class="dropbtn" style="margin-left:100px; ">계좌</button>
                     <div class="dropdown-content" style="margin-left:100px; ">
-                         <a href="#">계좌추가</a>
-                         <a href="#">계좌조회</a>
+                         <a href="#" onclick="addAccount()">계좌추가</a>
+                         <a href="#" onclick="myInfo()">계좌조회</a>
                     </div>
                </div>
                <div class="dropdown">
@@ -255,15 +262,15 @@
                     <button class="dropbtn" style="margin-left:100px; ">마이페이지</button>
                     <div class="dropdown-content" style="margin-left:100px; ">
                          <a href="#" onclick="myInfo()">계좌관리</a>
-                         <a href="#">회원탈퇴</a>
-                    </div>
+<!--                          <a href="/user/delUser">회원탈퇴</a> -->
+                    </div> 
                </div>
          
             </div>
          </div>
          
-         <div class="e" style="background: #00000; height: 180px;" >
-         <h5  style="color: #163020; margin-left:100px; margin-right:100px;">
+         <div class="e" style="background: #00000;" >
+         <h5  style="color: #163020; margin-left:130px; margin-right:130px;">
          <br/>
          당신의 재무 건강을 관리하는 것은 매우 중요합니다. 우리의 삶은 돈과 밀접하게 연관되어 있기 때문에 재정 거래를 효과적으로 관리하는 것은 생활의 질을 향상시키고 안정성을 높이는 데 큰 도움이 됩니다.<br/>
          
@@ -293,6 +300,9 @@
                %>
             </div>
    </section>
+	<form action="/user/delUser" method="get" onsubmit="return delUserEX()">
+		<button type="submit" class="btn" style="color: lightgray;">회원탈퇴</button>
+	</form>
    <div>
        <footer class="footer">
               <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
