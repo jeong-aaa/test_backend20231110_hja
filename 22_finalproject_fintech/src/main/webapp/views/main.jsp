@@ -19,6 +19,7 @@
    .addAccount{text-align: right;}
    </style>
    <script type="text/javascript">
+   
    //나의 정보조회[계좌목록]
    function myInfo(){
       $.ajax({
@@ -35,7 +36,7 @@
             
             //계좌등록 버튼
             $("#list").html("<div class='addAccount'>"
-                        +"  <button onclick='addAccount()'>계좌등록</button>"
+                        +"  <button type='button' class='btn btn-primary' onclick='addAccount()' style='margin-right:100px'>계좌등록</button>"
                         +"</div>"
                           );
             
@@ -50,7 +51,7 @@
                        +'      <p>'+res_list[i].fintech_use_num+' ['+res_list[i].bank_name+']</p>'
                        +'   </div>'
                        +'   <div class="sub_menu"> '
-                       +'      <button  onclick="balance(\''+res_list[i].fintech_use_num+'\',this)" class="balance">잔액조회</button>'
+                       +'      <button onclick="balance(\''+res_list[i].fintech_use_num+'\',this)" class="balance">잔액조회</button>'
                        +'   </div>'
                        +'   <div class="balance_amt"></div>'
                        +'</div>   '
@@ -72,7 +73,7 @@
             var box=$(btnEle).parents(".box").eq(0);
             box.find(".balance_amt").html(
                                "<p>잔액:"+data.balance_amt+"</p>"
-                              +"<p><button onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
+                              +"<p><button type='button' class='btn btn-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
                               +"<div class='transaction_list'></div>"  //거래내역이 출력될 div 
                               );          
          },
@@ -180,11 +181,7 @@
    <nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder; width: auto; background:#00000;">
         <div class="container" style="margin-left: 30px; width: auto;">           
           <img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
-<<<<<<< HEAD
-          <a class="nav-link" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " href="/banking/main">
-=======
           <a class="nav-link" href="/banking/main" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
->>>>>>> branch 'main' of https://github.com/jeong-aaa/test_backend20231110_hja.git
           S.S.M
            </a>           
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 830px; ">
