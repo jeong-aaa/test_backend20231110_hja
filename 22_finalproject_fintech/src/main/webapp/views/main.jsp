@@ -36,7 +36,7 @@
             
             //계좌등록 버튼
             $("#list").html("<div class='addAccount'>"
-                        +"  <button type='button' class='btn btn-primary' onclick='addAccount()' style='margin-right:100px'>계좌등록</button>"
+                        +"  <button type='button' class='btn btn-primary' onclick='addAccount()' style='margin-right:110px'>계좌등록</button>"
                         +"</div>"
                           );
             
@@ -51,7 +51,7 @@
                        +'      <p>'+res_list[i].fintech_use_num+' ['+res_list[i].bank_name+']</p>'
                        +'   </div>'
                        +'   <div class="sub_menu"> '
-                       +'      <button onclick="balance(\''+res_list[i].fintech_use_num+'\',this)" class="balance">잔액조회</button>'
+                       +'      <button onclick="balance(\''+res_list[i].fintech_use_num+'\',this)" type="button" class="btn btn-outline-primary">잔액조회</button>'
                        +'   </div>'
                        +'   <div class="balance_amt"></div>'
                        +'</div>   '
