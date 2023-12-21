@@ -77,7 +77,7 @@
             $(btnEle).parents(".box").eq(0).remove();
          },
          error: function () {
-            alert("통신 실패");
+            alert("통신 실패") ;
          }
       });
    }

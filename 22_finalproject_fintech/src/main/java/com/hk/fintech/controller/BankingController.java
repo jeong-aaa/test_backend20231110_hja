@@ -237,7 +237,7 @@ public class BankingController {
                // 성공적으로 계좌가 해지되었을 때
                return new ResponseEntity<>("계좌가 성공적으로 해지되었습니다.", HttpStatus.OK);
            } else {
-               // 계좌 해지에 실패한 경우
+               //계좌 해지에 실패한 경우
                return new ResponseEntity<>("계좌 해지 중 오류 발생 (HTTP 코드: " + responseCode + ")", HttpStatus.INTERNAL_SERVER_ERROR);
            }
 
