@@ -180,7 +180,7 @@
    <nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder; width: auto; background:#00000;">
         <div class="container" style="margin-left: 30px; width: auto;">           
           <img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
-          <a class="nav-link" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
+          <a class="nav-link" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " href="/banking/main">
           S.S.M
            </a>           
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 830px; ">
