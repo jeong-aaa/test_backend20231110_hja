@@ -37,14 +37,17 @@
 	  <img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
 	  <a class="nav-link" href="/banking/main" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
 	  S.S.M
-	   </a> 
+	   </a>           
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 830px; ">
+	        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
+	            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/" style="color: #3C4048;">Main</a></li>
+	            <li class="nav-item"><a class="nav-link" href="/user/signin_form" style="color: #3C4048;">SignIn</a></li>
+	            <li class="nav-item"><a class="nav-link" href="/user/signup" style="color: #3C4048;">SignUp</a></li> 
+	        </ul>
+	    </div>
 	</div>
-	<div class="collapse navbar-collapse" id="navbarSupportedContent"  style="margin-right: 320px;">
-	    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
-	        <li   class="nav-item"><a class="nav-link active" aria-current="page" href="/" style="color: #3C4048;">Main</a></li>
-	    </ul>
-    </div>
 </nav>
+
 <div class="a" style="background: #277BC0; height: 10px; "></div>
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
 
@@ -52,42 +55,42 @@
 	<div class="mb-3 row" style="width: 500px; margin: 0 auto;">
 		<label for="staticEmail" class="col-sm-2 col-form-label" style="width: 110px; text-align: center; " >이름</label>
 		<div class="col-sm-10" style="width: 270px;">
-			<input type="text" class="form-control" id="username"  >
+			<input type="text" class="form-control" name="username"  >
 		</div>
 	</div>
 	
 	<div class="mb-3 row" style="width: 500px; margin: 0 auto;">
 		<label for="staticEmail" class="col-sm-2 col-form-label" style="width: 110px; text-align: center;" >이메일</label>
 		<div class="col-sm-10" style="width: 270px;">
-			<input type="email" class="form-control" id="useremail"  >
+			<input type="email" class="form-control" name="useremail"  >
 		</div>
 	</div>
 	
 	<div class="mb-3 row" style="width: 500px; margin: 0 auto;">
 		<label for="inputPassword" class="col-sm-2 col-form-label" style="width: 110px; text-align: center;">비밀번호</label>
 		<div class="col-sm-10" style="width: 270px;">
-			<input type="password" class="form-control" id="userpassword">
+			<input type="password" class="form-control" name="userpassword">
 		</div>
 	</div>
 	
 	<div class="mb-3 row" style="width: 500px; margin: 0 auto;">
 		<label for="inputPassword" class="col-sm-2 col-form-label" style="width: 110px; text-align: center;">AccessToken</label>
 		<div class="col-sm-10" style="width: 270px;">
-			<input type="text" class="form-control" id="useraccesstoken" >
+			<input type="text" class="form-control" name="useraccesstoken" >
 		</div>
 	</div>
 	
 	<div class="mb-3 row" style="width: 500px; margin: 0 auto;">
 		<label for="inputPassword" class="col-sm-2 col-form-label" style="width: 110px; text-align: center;">RefreshToken</label>
 		<div class="col-sm-10" style="width: 270px;">
-			<input type="text" class="form-control" id="userrefreshtoken">
+			<input type="text" class="form-control" name="userrefreshtoken">
 		</div>
 	</div>
 	
 	<div class="mb-3 row" style="width: 500px; margin: 0 auto;">
 		<label for="inputPassword" class="col-sm-2 col-form-label" style="width: 110px; text-align: center;">userSeqNo</label>
 		<div class="col-sm-10" style="width: 270px;">
-			<input type="text" class="form-control" id="userseqno" >
+			<input type="text" class="form-control" name="userseqno" >
 		</div>
 	</div>
 	<div style="text-align: center; padding: 20px;">
