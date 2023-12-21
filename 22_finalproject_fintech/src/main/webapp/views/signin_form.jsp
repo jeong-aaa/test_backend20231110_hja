@@ -39,7 +39,8 @@
                           <tr>
                              <td colspan="2">
                                 
-                                <input type="submit" value="signIn" class="btn btn-dark"/>
+                                <input type="submit" value="SignIn" class="btn btn-dark"/>
+                                <a href="/user/adduser">회원이 아니신가요?</a>
                              </td>
                           </tr>
                        </table>
