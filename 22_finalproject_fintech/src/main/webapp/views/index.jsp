@@ -69,7 +69,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder; width: auto; background:#00000;">
         <div class="container" style="margin-left: 30px; width: auto;">           
           <img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
-          <a class="nav-link" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
+          <a class="nav-link" href="/banking/main" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
           S.S.M
            </a>           
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 950px; ">
@@ -143,9 +143,9 @@
 <br/>
 </div>
 <div>
-   <footer class="footer">
-          <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
-   </footer> 
-</div> 
+	<footer class="footer">
+	       <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
+	</footer> 
+</div>
 </body>
 </html>
