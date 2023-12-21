@@ -196,6 +196,8 @@
     </nav>
     
 <div class="a" style="background: #277BC0; height: 10px; ">
+			<div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;">
+			</div> 
     <section class="py-5">
 		<div id="list">
 			<div class="c" style="background: #00000; height: 250px; ">
@@ -278,8 +280,7 @@
 	</section>
 </div>    
 
-<div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;">
-</div> 
+
 
 <!-- <div class="c" style="background: #00000; height: 250px; "> -->
 <!-- </div> -->
