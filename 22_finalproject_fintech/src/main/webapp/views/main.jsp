@@ -19,6 +19,7 @@
    .addAccount{text-align: right;}
    </style>
    <script type="text/javascript">
+   
    //나의 정보조회[계좌목록]
    function myInfo(){
       $.ajax({
@@ -35,7 +36,7 @@
             
             //계좌등록 버튼
             $("#list").html("<div class='addAccount'>"
-                        +"  <button onclick='addAccount()'>계좌등록</button>"
+                        +"  <button type='button' class='btn btn-primary' onclick='addAccount()' style='margin-right:110px'>계좌등록</button>"
                         +"</div>"
                           );
             
@@ -50,7 +51,7 @@
                        +'      <p>'+res_list[i].fintech_use_num+' ['+res_list[i].bank_name+']</p>'
                        +'   </div>'
                        +'   <div class="sub_menu"> '
-                       +'      <button  onclick="balance(\''+res_list[i].fintech_use_num+'\',this)" class="balance">잔액조회</button>'
+                       +'      <button onclick="balance(\''+res_list[i].fintech_use_num+'\',this)" type="button" class="btn btn-outline-primary">잔액조회</button>'
                        +'   </div>'
                        +'   <div class="balance_amt"></div>'
                        +'</div>   '
@@ -72,7 +73,7 @@
             var box=$(btnEle).parents(".box").eq(0);
             box.find(".balance_amt").html(
                                "<p>잔액:"+data.balance_amt+"</p>"
-                              +"<p><button onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
+                              +"<p><button type='button' class='btn btn-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
                               +"<div class='transaction_list'></div>"  //거래내역이 출력될 div 
                               );          
          },
