@@ -31,7 +31,7 @@ public class UserService {
 		try {
             //  회원 탈퇴를 위해 UserMapper의 delUser 메서드 호출
             userMapper.delUser(useremail);
-            return true;
+            return true ;
             
         } catch (Exception e) {
             // 예외 발생 시 로그 출력
@@ -40,5 +40,6 @@ public class UserService {
             return false;
         }
 	}
+
 }
 //제발
