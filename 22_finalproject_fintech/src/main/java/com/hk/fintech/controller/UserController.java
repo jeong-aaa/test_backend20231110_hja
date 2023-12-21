@@ -90,6 +90,11 @@ public class UserController {
 		return "authresult";
 	}
 	
+	@GetMapping("/adduser")
+	public String addUserForm(UserDto dto) {
+		return "redirect:/user/signup";
+	}
+	
 	//회원가입
 	@PostMapping("/adduser")
 	public String addUser(UserDto dto) {

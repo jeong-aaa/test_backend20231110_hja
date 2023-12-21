@@ -76,9 +76,7 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
                     <li   class="nav-item"><a class="nav-link active" aria-current="page" href="/" style="color: #3C4048;">Main</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/signin_form" style="color: #3C4048;">SignIn</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/user/signup" style="color: #3C4048;">SignUp</a></li>
-                    
-                  
+                    <li class="nav-item"><a class="nav-link" href="/user/signup" style="color: #3C4048;">SignUp</a></li> 
                 </ul>
             </div>
         </div>
