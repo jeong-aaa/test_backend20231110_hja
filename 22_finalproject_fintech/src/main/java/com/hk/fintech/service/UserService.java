@@ -29,7 +29,7 @@ public class UserService {
 	@Transactional
 	public boolean delUser(String useremail) {
 		try {
-            // 회원 탈퇴를 위해 UserMapper의 delUser 메서드 호출
+            //  회원 탈퇴를 위해 UserMapper의 delUser 메서드 호출
             userMapper.delUser(useremail);
             return true;
             

@@ -143,7 +143,7 @@ public class UserController {
 	}
 	
 	// 회원탈퇴
-    @GetMapping(value = "/delUser")
+    @GetMapping(value ="/delUser")
     public String deleteUser(HttpServletRequest request) {
         // 세션에서 현재 로그인한 회원의 정보를 가져옴
         UserDto loggedInUser = (UserDto) request.getSession().getAttribute("ldto");

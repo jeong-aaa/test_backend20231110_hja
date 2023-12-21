@@ -242,8 +242,8 @@
                     <button class="dropbtn" style="margin-left:100px; ">마이페이지</button>
                     <div class="dropdown-content" style="margin-left:100px; ">
                          <a href="#" onclick="myInfo()">계좌관리</a>
-                         <a href="#">회원탈퇴</a>
-                    </div>
+                         <a href="/user/delUser">회원탈퇴</a>
+                    </div> 
                </div>
          
             </div>

@@ -17,7 +17,7 @@
 	<update id="delUser" parameterType="String">
 	  UPDATE FINTECH_USER
 	  SET USERDELFLAG='Y'
-	  WHERE USEREMAIL = #{useremail}
+	  WHERE USEREMAIL =#{useremail}
 	</update>
 
 </mapper>
