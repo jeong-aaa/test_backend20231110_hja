@@ -4,6 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+ <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <style type="text/css">
    .cal{width: 100%;}
    .cal #thead > div, .cal #tbody > div{display: inline-block;
@@ -49,11 +52,41 @@
     font-size: 15px;
     text-align:center;
     }
+    
+    
+    
+    .modal {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        display: none;
+
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      
+/*        #exampleModal{  */
+/* 	       	display: none;  */
+/* 	       	position:absolute;  */
+/* 	      	top:100px;  */
+/* 	       	left:500px;  */
+/* 	       	width:300px;  */
+/* 	       	height:400px;  */
+/* 	       	z-index: 1000;  */
+/*        }  */
 </style>
 <script type="text/javascript">
 	$(function(){
 	
+// 		$(".btn-primary").click(function(){
+// 			$("#exampleModal").show();
+// 		});
+		
 		$(".d").each(function(i){
+// 			수입지출 데이터 이 ajax에서 받아오기
 			//controller로 전달할 파라미터 yyyyMM를 구함
 			var aDate=$(this); // 현재 마우스가 올라간 a태그구함
 			var year = $(".y").text().trim(); // 년도
@@ -94,7 +127,8 @@
 			}
       })
    });
-
+	
+	
 </script>
 </head>
 <body>
@@ -106,7 +140,6 @@
 
 <div layout:fragment="content">
    <div id="containerh">
-   
 <!--      <h1>예약하기</h1>-->
       <div class="cal">
          <div id="ctitle">
@@ -129,8 +162,9 @@
             </th:block>
             <th:block th:each="i:${#numbers.sequence(1,calMap.lastDay)}">
                <div>
-                  <a class="d" th:text="${i}" th:style="'color:'+${@util.fontColor(i,calMap.dayOfWeek)}"
-                     th:href="@{/schedule/calBoardList(year=${calMap.year},month=${calMap.month},date=${i})}">
+               		<a data-bs-toggle="modal" data-bs-target="#exampleModal" class="d btn btn-primary" th:text="${i}" data-toggle="modal" th:style="'color:'+${@util.fontColor(i,calMap.dayOfWeek)}"
+               		th:attr="data-target=${'#exampleModal'}" >
+<!-- 		            th:href="@{/schedule/calBoardList(year=${calMap.year},month=${calMap.month},date=${i})}">   -->
                   </a>
                   <a th:href="@{/schedule/addCalBoardForm(year=${calMap.year},month=${calMap.month},date=${i})}">
                      <img class="pen" th:src="@{/img/pen.png}" />
@@ -139,10 +173,41 @@
                </div>
             </th:block>
             
+            
+            
          </div>
       </div>
    </div>
 </div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+<!--         날짜 누르기 -> ajax에서 받아온 수입지출 data 받아서 여기에 뿌리기 -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
 
