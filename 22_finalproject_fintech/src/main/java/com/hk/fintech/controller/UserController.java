@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.fintech.dtos.UserDto;
 import com.hk.fintech.service.UserService;
@@ -165,6 +166,7 @@ public class UserController {
             return "redirect:/"; // 또는 적절한 경로로 이동
         }
     }
+    
 }
 
 

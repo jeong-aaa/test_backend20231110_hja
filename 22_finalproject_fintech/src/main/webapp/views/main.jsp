@@ -36,7 +36,8 @@
             
             //계좌등록 버튼
             $("#list").html("<div class='addAccount'>"
-                        +"  <button type='button' class='btn btn-primary' onclick='addAccount()' style='margin-right:110px'>계좌등록</button>"
+                        +"  <button type='button' class='btn btn-primary' onclick='addAccount()'>계좌등록</button>"
+                        +"  <button type='submit' class='btn btn-outline-secondary' onclick='delUserEX()' style='margin-right:110px'>회원탈퇴</button>"
                         +"</div>"
                           );
             
@@ -58,7 +59,7 @@
                        +'</div>   '
                )
             }
-         }
+         } //success
       });
    }
    
@@ -144,12 +145,14 @@
       window.open(url,"인증하기","width=400px,height=600px");      
    }
    
+   //회원 탈퇴하기
    function delUserEX(){
       if(confirm("정말로 탈퇴하시겠습니까??")){
-         return true;
+         location.href = "/user/delUser";
+         alert("회원탈퇴되었습니다.");
       }
-      return false
    }
+   
    
     </script>
     
@@ -218,13 +221,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 830px; ">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                    <li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap; color: #3C4048;" >${sessionScope.ldto.username}님</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/schedule/calendar" style="color: #3C4048;" >Calender</a></li>
+<!--                     <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Main</a></li> -->
+                    <li class="nav-item"><a class="nav-link" href="/schedule/calendar" style="color: #3C4048;" ">Calender</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!" style="color: #3C4048;" onclick="myInfo()">MyPage</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout" style="color: #3C4048;">Logout</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    
 <div class="a" style="background: #277BC0; height: 10px; ">
     <section class="py-5">
       <div id="list">
@@ -248,16 +253,16 @@
                     </div>
                </div>
                <div class="dropdown">
-                    <button class="dropbtn" style="margin-left:100px; ">가계부</button>
+                    <button class="dropbtn" style="margin-left:100px;">가계부</button>
                     <div class="dropdown-content" style="margin-left:100px; ">
-                         <a href="/banking/cal">수입/지출</a>
+                         <a href="#">수입/지출</a>
                          <a href="#">거래상세내역</a>
                          <a href="#">현금거래내역</a>
                          <a href="#">월별지출그래프</a>
                     </div>
                </div>
                <div class="dropdown">
-                    <button class="dropbtn" style="margin-left:100px; ">마이페이지</button>
+                    <button class="dropbtn" style="margin-left:100px;" onclick="myInfo()">마이페이지</button>
                     <div class="dropdown-content" style="margin-left:100px; ">
                          <a href="#" onclick="myInfo()">계좌관리</a>
 <!--                          <a href="/user/delUser">회원탈퇴</a> -->
@@ -298,12 +303,12 @@
                %>
             </div>
    </section>
-   <form action="/user/delUser" method="get" onsubmit="return delUserEX()">
-      <button type="submit" class="btn" style="color: lightgray;">회원탈퇴</button>
-   </form>
+<!--    <form action="/user/delUser" method="get" onsubmit="return delUserEX()"> -->
+<!--       <button type="submit" class="btn" style="color: lightgray;">회원탈퇴</button> -->
+<!--    </form> -->
    <div>
        <footer class="footer">
-              <div class="footer" style="background:#277BC0; height:60px;"><p class="text-white" style="text-align : center;"><br/>Copyright &copy; S.S.M Website 2023</p></div>
+              <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
        </footer> 
    </div>
 </div>    
