@@ -19,7 +19,7 @@
 	  SET USERDELFLAG='Y'
 	  WHERE USEREMAIL =#{useremail}
 	</update>
-
+	
 </mapper>
 
 <!-- sd -->

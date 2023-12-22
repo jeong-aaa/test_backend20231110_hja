@@ -36,7 +36,8 @@
             
             //계좌등록 버튼
             $("#list").html("<div class='addAccount'>"
-                        +"  <button type='button' class='btn btn-primary' onclick='addAccount()' style='margin-right:110px'>계좌등록</button>"
+                        +"  <button type='button' class='btn btn-primary' onclick='addAccount()'>계좌등록</button>"
+                        +"  <button type='submit' class='btn btn-outline-secondary' onclick='delUserEX()' style='margin-right:110px'>회원탈퇴</button>"
                         +"</div>"
                           );
             
@@ -58,7 +59,7 @@
                        +'</div>   '
                )
             }
-         }
+         } //success
       });
    }
 	
@@ -144,12 +145,14 @@
       window.open(url,"인증하기","width=400px,height=600px");      
    }
    
+   //회원 탈퇴하기
    function delUserEX(){
 		if(confirm("정말로 탈퇴하시겠습니까??")){
-			return true;
+			location.href = "/user/delUser";
+			alert("회원탈퇴되었습니다.");
 		}
-		return false
 	}
+   
    
     </script>
     
@@ -252,14 +255,14 @@
                <div class="dropdown">
                     <button class="dropbtn" style="margin-left:100px; ">가계부</button>
                     <div class="dropdown-content" style="margin-left:100px; ">
-                         <a href="#"">수입/지출</a>
+                         <a href="#">수입/지출</a>
                          <a href="#">거래상세내역</a>
                          <a href="#">현금거래내역</a>
                          <a href="#">월별지출그래프</a>
                     </div>
                </div>
                <div class="dropdown">
-                    <button class="dropbtn" style="margin-left:100px; ">마이페이지</button>
+                    <button class="dropbtn" style="margin-left:100px;" onclick="myInfo()">마이페이지</button>
                     <div class="dropdown-content" style="margin-left:100px; ">
                          <a href="#" onclick="myInfo()">계좌관리</a>
 <!--                          <a href="/user/delUser">회원탈퇴</a> -->
@@ -300,9 +303,9 @@
                %>
             </div>
    </section>
-	<form action="/user/delUser" method="get" onsubmit="return delUserEX()">
-		<button type="submit" class="btn" style="color: lightgray;">회원탈퇴</button>
-	</form>
+<!-- 	<form action="/user/delUser" method="get" onsubmit="return delUserEX()"> -->
+<!-- 		<button type="submit" class="btn" style="color: lightgray;">회원탈퇴</button> -->
+<!-- 	</form> -->
    <div>
        <footer class="footer">
               <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
