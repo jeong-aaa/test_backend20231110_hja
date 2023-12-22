@@ -252,7 +252,7 @@
                <div class="dropdown">
                     <button class="dropbtn" style="margin-left:100px; ">가계부</button>
                     <div class="dropdown-content" style="margin-left:100px; ">
-                         <a href="#"">수입/지출</a>
+                         <a href="/banking/cal">수입/지출</a>
                          <a href="#">거래상세내역</a>
                          <a href="#">현금거래내역</a>
                          <a href="#">월별지출그래프</a>
@@ -305,7 +305,7 @@
    </form>
    <div>
        <footer class="footer">
-              <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
+              <div class="footer" style="background:#277BC0; height:60px;"><p class="text-white" style="text-align : center;"><br/>Copyright &copy; S.S.M Website 2023</p></div>
        </footer> 
    </div>
 </div>    
