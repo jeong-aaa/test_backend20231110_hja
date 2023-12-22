@@ -61,26 +61,26 @@
          }
       });
    }
-	
+   
    // 계좌해지하기
-   function deleteAccount(fintech_use_num, btnEle) {
-      $.ajax({
-         url: "/banking/deleteAccount",
-         method: "Post", // 예시로 POST 메서드 사용
-         data: {"fintech_use_num": fintech_use_num},
-         dataType: "json",
-         success: function (data) {
-            // 계좌 해지에 대한 성공 처리 로직을 추가
-            console.log("계좌 해지 성공:", data);
+//    function deleteAccount(fintech_use_num, btnEle) {
+//       $.ajax({
+//          url: "/banking/deleteAccount",
+//          method: "Post", // 예시로 POST 메서드 사용
+//          data: {"fintech_use_num": fintech_use_num},
+//          dataType: "json",
+//          success: function (data) {
+//             // 계좌 해지에 대한 성공 처리 로직을 추가
+//             console.log("계좌 해지 성공:", data);
 
-            // 예시로 성공 시 해당 계좌를 UI에서 제거하는 로직
-            $(btnEle).parents(".box").eq(0).remove();
-         },
-         error: function () {
-            alert("통신 실패") ;
-         }
-      });
-   }
+//             // 예시로 성공 시 해당 계좌를 UI에서 제거하는 로직
+//             $(btnEle).parents(".box").eq(0).remove(); 
+//          },
+//          error: function () {
+//             alert("통신 실패") ;
+//          }
+//       });
+//    }
 
    
    //잔액조회하기
@@ -145,11 +145,11 @@
    }
    
    function delUserEX(){
-		if(confirm("정말로 탈퇴하시겠습니까??")){
-			return true;
-		}
-		return false
-	}
+      if(confirm("정말로 탈퇴하시겠습니까??")){
+         return true;
+      }
+      return false
+   }
    
     </script>
     
@@ -219,7 +219,7 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                    <li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap; color: #3C4048;" >${sessionScope.ldto.username}님</a></li>
 <!--                     <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Main</a></li> -->
-                    <li class="nav-item"><a class="nav-link" href="/schedule/calendar" style="color: #3C4048;" onclick="calendar()">Calender</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/banking/cal" style="color: #3C4048;" ">Calender</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!" style="color: #3C4048;" onclick="myInfo()">MyPage</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout" style="color: #3C4048;">Logout</a></li>
                 </ul>
@@ -300,9 +300,9 @@
                %>
             </div>
    </section>
-	<form action="/user/delUser" method="get" onsubmit="return delUserEX()">
-		<button type="submit" class="btn" style="color: lightgray;">회원탈퇴</button>
-	</form>
+   <form action="/user/delUser" method="get" onsubmit="return delUserEX()">
+      <button type="submit" class="btn" style="color: lightgray;">회원탈퇴</button>
+   </form>
    <div>
        <footer class="footer">
               <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>

@@ -93,8 +93,4 @@ public class UserDto {
 				+ userrefreshtoken + ", userseqno=" + userseqno + "]";
 	}
    
-   
-   
-   
-   
 }
