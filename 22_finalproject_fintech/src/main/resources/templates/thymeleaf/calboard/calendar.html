@@ -1,7 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+
 <head>
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>SSM</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/resources/css/styles.css" rel="stylesheet" />
 <title></title>
 <style type="text/css">
    .cal{width: 100%;}
@@ -48,6 +60,55 @@
     font-size: 15px;
     text-align:center;
     }
+    
+    /* Style The Dropdown Button */
+   .dropbtn {
+     background-color: #277BC0;
+     color: white;
+     padding: 10px;
+     font-size: 16px;
+     border: none;
+     cursor: pointer;
+   }
+   
+   /* The container <div> - needed to position the dropdown content */
+   .dropdown {
+     position: relative;
+     display: inline-block;
+   }
+   
+   /* Dropdown Content (Hidden by Default) */
+   .dropdown-content {
+     display: none;
+     position: absolute;
+     background-color: #f9f9f9;
+     min-width: 160px;
+     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+     z-index: 1;
+     
+   }
+   
+   /* Links inside the dropdown */
+   .dropdown-content a {
+     color: black;
+     padding: 12px 16px;
+     text-decoration: none;
+     display: block;
+   }
+   
+   /* Change color of dropdown links on hover */
+   .dropdown-content a:hover {background-color: #EAECCC}
+   
+   /* Show the dropdown menu on hover */
+   .dropdown:hover .dropdown-content {
+     display: block;
+   }
+   
+   /* Change the background color of the dropdown button when the dropdown content is shown */
+   .dropdown:hover .dropbtn {
+     background-color: #EAECCC;
+   }
+    
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -97,22 +158,25 @@
 </script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder; width: auto; background-color: white;">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder;  width: auto; background-color:white;">
 	<div class="container" style="margin-left: 30px; width: auto;">           
 		<img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
-		<a class="nav-link" th:onclick="|location.href='@{/banking/main}'|" style="color: #3C4048; font-family: Arial, sans-serif; font-weight: bolder;" >
+		<a class="nav-link" href="/banking/main" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
 		S.S.M
 		</a>           
-		<div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 830px; ">
-			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-<!--				<li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap; color: #3C4048;" th:text="${session.ldto.usernamae"}>님</a></li>-->
-				<ul class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048; float:left; margin:20px;">Calender</a></ul>
-				<ul class="nav-item"><a class="nav-link" th:href="@{/banking/myinfo}" style="color: #3C4048; float:left; margin:20px;" th:onclick="myinfo()">MyPage</a></ul>
-				<ul class="nav-item"><a class="nav-link" th:href="@{/user/logout}" style="color: #3C4048; float:left; margin:20px;">Logout</a></ul>
-			</ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 830px; ">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
+<!--                <li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap; color: #3C4048;" th:text="${session.ldto.usernamae"}>님</a></li>-->
+				<ul class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;;">Calender</a></ul>
+				<ul class="nav-item"><a class="nav-link" th:href="@{/banking/myinfo}" style="color: #3C4048;;" th:onclick="myinfo()">MyPage</a></ul>
+				<ul class="nav-item"><a class="nav-link" th:href="@{/user/logout}" style="color: #3C4048;">Logout</a></ul>
+            </ul>
 		</div>
 	</div>
 </nav>
+
 <div class="a" style="background: #277BC0; height: 10px; "></div>
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
 
