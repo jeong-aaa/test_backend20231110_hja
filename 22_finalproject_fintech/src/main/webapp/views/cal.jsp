@@ -234,7 +234,7 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                    <li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap; color: #3C4048;" >${sessionScope.ldto.username}님</a></li>
 <!--                     <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Main</a></li> -->
-                    <li class="nav-item"><a class="nav-link" href="/banking/cal" style="color: #3C4048;" ">Calender</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/banking/cal" style="color: #3C4048;">Calender</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!" style="color: #3C4048;" onclick="myInfo()">MyPage</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout" style="color: #3C4048;">Logout</a></li>
                 </ul>
