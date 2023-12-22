@@ -10,8 +10,6 @@ public interface UserMapper {
 	public UserDto loginUser(UserDto dto);
 	public int addCardToken(UserDto dto);
 
-	public boolean delete(UserDto dto);
-
 	public boolean delUser(String useremail);
 
 }
