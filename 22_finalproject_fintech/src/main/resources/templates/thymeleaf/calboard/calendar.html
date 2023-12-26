@@ -16,19 +16,35 @@
     <link href="/resources/css/styles.css" rel="stylesheet" />
 <title></title>
 <style type="text/css">
-   .cal{width: 100%;}
-   .cal #thead > div, .cal #tbody > div{display: inline-block;
-                               width: 140px;
-                               }
-      
-   .cal #thead > div{ text-align:center;}   
+	#content{
+	width: 1200px;
+  	margin: 0 auto;
+    font-size:12px;
+	}
+	.money{
+	width:1020px;
+	margin: 0 auto;
+	text-align: center;
+	}
+   .cal{
+   width: 1200px;
+   text-align: center;
+   margin: 0 auto;
+   }
+   .cal #thead > div{
+   display: inline-block;
+   width: 168px;
+   text-align: center;
+   }
    
 /*     날짜표현 div */
     .cal #tbody > div{
-       height: 100px;
+       height: 130px;
        vertical-align: top;
        border-top:1px solid gray;
-       position : relative;
+       display: inline-block;
+   		width: 170px;
+   		float: left;
     }            
     #ctitle{
        text-align: center;
@@ -40,6 +56,7 @@
     }      
     .d{
        font-weight: bold;
+       text-align: center;
     }    
     
     #tbody > div > p{background-color:#a9bcf5; border: 1px solid darkgray; color:darksgray;}
@@ -166,10 +183,10 @@
 		<a class="nav-link" href="/banking/main" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
 		S.S.M
 		</a>           
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 830px; ">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
-<!--                <li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap; color: #3C4048;" th:text="${session.ldto.usernamae"}>님</a></li>-->
-				<ul class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;;">Calender</a></ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 800px; ">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul class="nav-item"><a class="nav-link active" th:href="@{/banking/main}" style="color: #3C4048;" th:text="${session.ldto.username}+'님'"></a></ul>
+<!--				<ul class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;;">Calender</a></ul>-->
 				<ul class="nav-item"><a class="nav-link" th:href="@{/banking/myinfo}" style="color: #3C4048;;" th:onclick="myinfo()">MyPage</a></ul>
 				<ul class="nav-item"><a class="nav-link" th:href="@{/user/logout}" style="color: #3C4048;">Logout</a></ul>
             </ul>
@@ -181,9 +198,16 @@
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
 
 
-<div layout:fragment="content">
-   <div id="containerh">
-   
+<div class="content">
+   		<div class="money">
+	   		<span>수입</span>
+	   		<a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}">원</a>
+	   		<span>지출</span>
+			<a th:href="@{/schedule/calendar(year=${calMap.year},month=${calMap.month-1})}">원</a>
+			<span>총 합</span>
+			<span class="y" th:text="${calMap.year}">원</span>
+		</div>
+		
 <!--      <h1>예약하기</h1>-->
       <div class="cal">
          <div id="ctitle">
@@ -215,11 +239,9 @@
               
                </div>
             </th:block>
-            
          </div>
       </div>
    </div>
-</div>
 </body>
 </html>
 
