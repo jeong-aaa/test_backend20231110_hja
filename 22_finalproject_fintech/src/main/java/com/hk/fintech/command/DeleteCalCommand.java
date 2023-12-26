@@ -1,4 +1,4 @@
-package com.hk.board.command;
+package com.hk.fintech.command;
 
 import java.util.Arrays;
 
