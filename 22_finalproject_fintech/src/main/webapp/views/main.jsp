@@ -62,7 +62,7 @@
          } //success
       });
    }
-	
+   
    // 계좌해지하기
 //    function deleteAccount(fintech_use_num, btnEle) {
 //       $.ajax({
@@ -147,11 +147,11 @@
    
    //회원 탈퇴하기
    function delUserEX(){
-		if(confirm("정말로 탈퇴하시겠습니까??")){
-			location.href = "/user/delUser";
-			alert("회원탈퇴되었습니다.");
-		}
-	}
+      if(confirm("정말로 탈퇴하시겠습니까??")){
+         location.href = "/user/delUser";
+         alert("회원탈퇴되었습니다.");
+      }
+   }
    
    
     </script>
@@ -303,9 +303,9 @@
                %>
             </div>
    </section>
-<!-- 	<form action="/user/delUser" method="get" onsubmit="return delUserEX()"> -->
-<!-- 		<button type="submit" class="btn" style="color: lightgray;">회원탈퇴</button> -->
-<!-- 	</form> -->
+<!--    <form action="/user/delUser" method="get" onsubmit="return delUserEX()"> -->
+<!--       <button type="submit" class="btn" style="color: lightgray;">회원탈퇴</button> -->
+<!--    </form> -->
    <div>
        <footer class="footer">
               <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
