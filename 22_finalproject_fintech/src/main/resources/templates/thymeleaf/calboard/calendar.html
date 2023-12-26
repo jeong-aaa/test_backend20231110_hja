@@ -16,6 +16,7 @@
     <link href="/resources/css/styles.css" rel="stylesheet" />
 <title></title>
 <style type="text/css">
+   
    #content{
    width: 1200px;
      margin: 0 auto;
@@ -43,8 +44,8 @@
        vertical-align: top;
        border-top:1px solid gray;
        display: inline-block;
-         width: 170px;
-         float: left;
+	   width: 170px;
+	   float: left;
     }            
     #ctitle{
        text-align: center;
@@ -170,50 +171,6 @@
          } //success
       });
    }
-   
-   $(function(){
-   
-      $(".d").each(function(i){
-         //controller로 전달할 파라미터 yyyyMM를 구함
-         var aDate=$(this); // 현재 마우스가 올라간 a태그구함
-         var year = $(".y").text().trim(); // 년도
-         var month = $(".m").text().trim(); // 월
-         var date = aDate.text().trim(); // 일
-         var yyyyMMdd = year+(month.length<2?"0"+month:month) + (date.length<2?"0" + date:date); // 8자리 만들기
-         //alert(yyyyMMdd);
-         console.log(aDate.nextAll("p").length);
-         if(aDate.nextAll("p").length>0){
-            $.ajax({
-               url:"/schedule/calCountAjax",
-               method:"get",
-               data:{"yyyyMMdd":yyyyMMdd},   //서버로 전달하는 값
-               dataType:"json",   //서버에서 전달받은 데이터 타입
-               async:false,   //ajax()메서드가 비동기로 실행되는것을 막음:false설정
-               success:function(data){ //성공하면 데이터가 data변수에 저장됨
-               //   alert(data.count);
-                   if(data.count>0){
-                      aDate.hover(function(){
-                         aDate.after("<div class='cp'>"+data.count+"</div>");
-                      },function(){
-                         $(".cp").remove(); // 마우스가 나갔을때
-                      });
-                   }
-                   if(data.count>6){
-                      //aDate.after("<div class='cp'>"+data.count+"</div>");    
-                      aDate.nextAll("a").eq(0).click(function(e){
-                         //e.preventDefault();
-                         alert("예약 마감되었습니다.");
-                         return false;
-                      });          
-                   }
-               },
-               error:function(){
-                  alert("통신실패");
-               }
-            });
-         }
-      })
-   });
 
 </script>
 </head>
