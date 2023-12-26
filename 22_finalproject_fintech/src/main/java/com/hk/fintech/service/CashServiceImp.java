@@ -81,7 +81,7 @@ public class CashServiceImp implements ICashService{
       dto.setMoney(insertCalCommand.getMoney());
       dto.setMdate(mdate);
         
-      int count=cashMapper.insertCalBoard(dto);
+      int count=cashMapper.addCash(dto);
       
       return count>0?true:false;
    }

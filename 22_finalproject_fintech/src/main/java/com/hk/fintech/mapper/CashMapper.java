@@ -13,7 +13,7 @@ import com.hk.fintech.dtos.CashDto;
 public interface CashMapper {
 	
 	//일정 추가
-	public int insertCalBoard(CashDto dto);
+	public int addCash(CashDto dto);
 	//일정 목록
 //	public List<CalDto> calBoardList(String yyyyMMdd);
 //	public List<CalDto> checkinfoBydept(String yyyyMMdd );

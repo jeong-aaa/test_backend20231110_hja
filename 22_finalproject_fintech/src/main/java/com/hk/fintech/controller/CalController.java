@@ -94,7 +94,7 @@ public class CalController {
 		
 		calService.insertCalBoard(insertCalCommand);
 		
-		return "redirect:/thymeleaf/schedule/calendar?year="+insertCalCommand.getYear()
+		return "redirect:/schedule/calendar?year="+insertCalCommand.getYear()
 										+"&month="+insertCalCommand.getMonth();
 	}
   
