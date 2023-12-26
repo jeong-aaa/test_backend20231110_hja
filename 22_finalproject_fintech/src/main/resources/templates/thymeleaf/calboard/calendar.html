@@ -128,6 +128,49 @@
     
 </style>
 <script type="text/javascript">
+//나의 정보조회[계좌목록]
+   function myInfo(){
+      $.ajax({
+//            url:"https://testapi.openbanking.or.kr/v2.0/user/me",
+//            headers:{"Authorization":"Bearer token"},
+//            data:{"user_seq_no":"사용자번호"}
+         url:"/banking/myinfo",
+         method:"get",
+         dataType:"json",
+         success:function(data){
+            console.log(data.res_list);
+            var res_list=data.res_list;//나의 계좌목록 저장
+            
+            
+            //계좌등록 버튼
+            $("#list").html("<div class='addAccount'>"
+                        +"  <button type='button' class='btn btn-primary' onclick='addAccount()'>계좌등록</button>"
+                        +"  <button type='submit' class='btn btn-outline-secondary' onclick='delUserEX()' style='margin-right:110px'>회원탈퇴</button>"
+                        +"</div>"
+                          );
+            
+            //출력할 내용
+            //계좌이름
+            //핀테크이용번호 [은행이름]
+            for (var i = 0; i < res_list.length; i++) {
+               $("#list").append(
+                  '<div class="box container">'
+                       +'   <div>'
+                       +'      <h1>'+res_list[i].account_alias+'</h1>'
+                       +'      <p>'+res_list[i].fintech_use_num+' ['+res_list[i].bank_name+']</p>'
+                       +'   </div>'
+                       +'   <div class="sub_menu"> '
+                       +'      <button onclick="balance(\''+res_list[i].fintech_use_num+'\',this)" type="button" class="btn btn-outline-primary">잔액조회</button>'
+                       +'      <button onclick="deleteAccount(\''+res_list[i].fintech_use_num+'\', this)" type="button" class="btn btn-outline-primary">계좌삭제</button>'
+                       +'   </div>'
+                       +'   <div class="balance_amt"></div>'
+                       +'</div>   '
+               )
+            }
+         } //success
+      });
+   }
+   
    $(function(){
    
       $(".d").each(function(i){
@@ -183,18 +226,18 @@
       <a class="nav-link" href="/banking/main" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
       S.S.M
       </a>           
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 800px; ">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <ul class="nav-item"><a class="nav-link active" th:href="@{/banking/main}" style="color: #3C4048;" th:text="${session.ldto.username}+'님'"></a></ul>
-<!--            <ul class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;;">Calender</a></ul>-->
-            <ul class="nav-item"><a class="nav-link" th:href="@{/banking/myinfo}" style="color: #3C4048;;" th:onclick="myinfo()">MyPage</a></ul>
-            <ul class="nav-item"><a class="nav-link" th:href="@{/user/logout}" style="color: #3C4048;">Logout</a></ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 830px; ">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link active" th:href="@{/banking/main}" style="color: #3C4048;" th:text="${session.ldto.username}+'님'"></a></li>
+<!--            <ul class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;">Calender</a></ul>-->
+	            <li class="nav-item"><a class="nav-link" th:href="@{/banking/myinfo}" style="color: #3C4048;" th:onclick="myInfo()">MyPage</a></li>
+	            <li class="nav-item"><a class="nav-link" th:href="@{/user/logout}" style="color: #3C4048;">Logout</a></li>
             </ul>
       </div>
    </div>
 </nav>
 
-<div class="a" style="background: #277BC0; height: 10px; "></div>
+<div class="a" style="background: #277BC0; height: 10px;"></div>
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
 
 

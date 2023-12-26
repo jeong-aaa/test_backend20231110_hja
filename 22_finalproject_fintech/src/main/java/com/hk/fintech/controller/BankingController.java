@@ -87,7 +87,6 @@ public class BankingController {
       result=(JSONObject)new JSONParser().parse(response.toString());
       System.out.println("result:"+result.get("res_list"));
       
-      
       return result;
    }
    
