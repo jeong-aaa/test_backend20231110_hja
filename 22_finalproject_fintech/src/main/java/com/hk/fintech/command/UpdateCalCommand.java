@@ -1,4 +1,4 @@
-package com.hk.board.command;
+package com.hk.fintech.command;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/layout2}">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title></title>
@@ -16,8 +14,8 @@
 <div layout:fragment="content">
 <div id="container">
    <h1>일정 추가하기</h1>
-   <form th:action="@{/schedule/addCalBoard}" method="post" 
-                                    th:object="${insertCalCommand}">
+   <form th:action="@{/schedule/addCalBoard}" method="post" th:object="${insertCalCommand}">
+   <input type="hidden" name="useremail" th:value="${session.ldto.useremail}"/>
 
 	   <table class="table">
   
@@ -62,8 +60,8 @@
             <th>거래구분</th>
             <td>
 				<select>
-			        <option value="income">수입</option>
-			        <option value="expenspe">지출</option>
+			        <option th:value="income">수입</option>
+			        <option th:value="expenspe">지출</option>
 			    </select>
             </td>
          </tr>
@@ -82,6 +80,8 @@
             <td>
                <input type="number" name="money" th:field="*{money}" 
 												class="form-control"/>
+												
+										
             </td>
          </tr>
     

@@ -1,10 +1,12 @@
 package com.hk.fintech.controller;
 
+import java.net.HttpURLConnection;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hk.board.command.InsertCalCommand;
-import com.hk.fintech.service.ICalService;
+import com.hk.fintech.command.InsertCalCommand;
+import com.hk.fintech.dtos.UserDto;
+import com.hk.fintech.service.ICashService;
 import com.hk.fintech.utils.Util;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,7 +35,7 @@ public class CalController {
    private static final Logger logger=LoggerFactory.getLogger(CalController.class);
    
    @Autowired
-   private ICalService calService;
+   private ICashService calService;
    
    @GetMapping(value="/calendar")
    public String calendar(Model model, HttpServletRequest request) {
@@ -64,11 +67,38 @@ public class CalController {
 	public String addCalBoardForm(Model model, InsertCalCommand insertCalCommand) {
 		logger.info("일정추가폼이동");
 		System.out.println(insertCalCommand);
-		//addCalBoardfForm 페이지에서 유효값 처리를 위해 insertCalCommand 받고 있기때문에
+		
+//		HttpSession session=request.getSession();
+//	    UserDto ldto=(UserDto)session.getAttribute("ldto");
+//		model.addAttribute("ldto", new UserDto());
+		
 		model.addAttribute("insertCalCommand", insertCalCommand);
 		return "thymeleaf/calboard/addCalBoardForm";
 	}
  
+  
+  @PostMapping(value = "/addCalBoard")
+	public String addCalBoard(@Validated InsertCalCommand insertCalCommand,
+							  BindingResult result, Model model) throws Exception {
+		logger.info("일정추가하기");
+	      
+//	    HttpSession session=request.getSession();
+//	    UserDto ldto=(UserDto)session.getAttribute("ldto");
+//	    model.addAttribute("ldto", new UserDto());
+	      
+		System.out.println(insertCalCommand);
+		if(result.hasErrors()) {
+			System.out.println("글을 모두 입력해야 함");
+			return "thymeleaf/calboard/addCalBoardForm";
+		}
+		
+		calService.insertCalBoard(insertCalCommand);
+		
+		return "redirect:/thymeleaf/schedule/calendar?year="+insertCalCommand.getYear()
+										+"&month="+insertCalCommand.getMonth();
+	}
+  
+
 }
 
 
