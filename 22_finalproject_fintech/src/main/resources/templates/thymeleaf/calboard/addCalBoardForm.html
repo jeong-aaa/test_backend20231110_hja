@@ -4,16 +4,20 @@
 <meta charset="UTF-8">
 <title></title>
 <style type="text/css">
+
+
    
 </style>
 <script type="text/javascript">
 
+
 </script>
 </head>
 <body>
-<div layout:fragment="content">
+
+
 <div id="container">
-   <h1>일정 추가하기</h1>
+<!--   <h1>일정 추가하기</h1>-->
    <form th:action="@{/schedule/addCalBoard}" method="post" th:object="${insertCalCommand}">
    <input type="hidden" name="useremail" th:value="${session.ldto.useremail}"/>
 
@@ -94,7 +98,9 @@
       </table>
    </form>
 </div>
-</div>
+
+
+
 </body>
 </html>
 

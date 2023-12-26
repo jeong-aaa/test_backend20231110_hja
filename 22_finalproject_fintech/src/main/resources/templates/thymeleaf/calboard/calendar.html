@@ -187,7 +187,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <ul class="nav-item"><a class="nav-link active" th:href="@{/banking/main}" style="color: #3C4048;" th:text="${session.ldto.username}+'님'"></a></ul>
 <!--            <ul class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;;">Calender</a></ul>-->
-            <ul class="nav-item"><a class="nav-link" th:href="@{/banking/myinfo}" style="color: #3C4048;;" th:onclick="myinfo()">MyPage</a></ul>
+            <ul class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar/myinfo}" style="color: #3C4048;;" th:onclick="myinfo()">MyPage</a></ul>
             <ul class="nav-item"><a class="nav-link" th:href="@{/user/logout}" style="color: #3C4048;">Logout</a></ul>
             </ul>
       </div>
@@ -199,6 +199,10 @@
 
 
 <div class="content">
+
+
+
+
          <div class="money">
             <span>수입</span>
             <a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}">원</a>
@@ -241,7 +245,9 @@
             </th:block>
          </div>
       </div>
-   </div>
+ 
+   </div>  
+   
 </body>
 </html>
 
