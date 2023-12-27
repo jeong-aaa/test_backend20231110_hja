@@ -63,8 +63,6 @@
       });
    }
    
-
-   
    //잔액조회하기
    function balance(fintech_use_num,btnEle){
       $.ajax({
@@ -175,7 +173,7 @@
         </div>
     </nav>
     
-<div class="a" style="background: #277BC0; height: 10px; ">
+<div class="a" style="background: #277BC0; height: 10px; "></div>
 
 </body>
 </html>

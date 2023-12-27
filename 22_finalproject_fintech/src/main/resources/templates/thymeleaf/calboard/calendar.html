@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
 
 <meta charset="UTF-8">
@@ -16,12 +15,9 @@
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <title></title>
 <style type="text/css">
-   .box{border-bottom: 1px solid gray; margin-bottom: 10px;}
-   .box > .sub_menu{text-align: right;}
-   .addAccount{text-align: right;}
    #content{
-   width: 1200px;
-     margin: 0 auto;
+    width: 1200px;
+    margin: 0 auto;
     font-size:12px;
    }
    .money{
@@ -46,8 +42,8 @@
        vertical-align: top;
        border-top:1px solid gray;
        display: inline-block;
-         width: 170px;
-         float: left;
+       width: 170px;
+       float: left;
     }            
     #ctitle{
        text-align: center;
@@ -128,15 +124,15 @@
    .dropdown:hover .dropbtn {
      background-color: #EAECCC;
    }
+   .d{
+   cursor:pointer; 
+   }
     
 </style>
 <script type="text/javascript">
    //나의 정보조회[계좌목록]
    function myInfo(){
       $.ajax({
-//            url:"https://testapi.openbanking.or.kr/v2.0/user/me",
-//            headers:{"Authorization":"Bearer token"},
-//            data:{"user_seq_no":"사용자번호"}
          url:"/banking/myinfo",
          method:"get",
          dataType:"json",
@@ -173,27 +169,6 @@
          } //success
       });
    }
-   
-   // 계좌해지하기
-//    function deleteAccount(fintech_use_num, btnEle) {
-//       $.ajax({
-//          url: "/banking/deleteAccount",
-//          method: "Post", // 예시로 POST 메서드 사용
-//          data: {"fintech_use_num": fintech_use_num},
-//          dataType: "json",
-//          success: function (data) {
-//             // 계좌 해지에 대한 성공 처리 로직을 추가
-//             console.log("계좌 해지 성공:", data);
-
-//             // 예시로 성공 시 해당 계좌를 UI에서 제거하는 로직
-//             $(btnEle).parents(".box").eq(0).remove(); 
-//          },
-//          error: function () {
-//             alert("통신 실패") ;
-//          }
-//       });
-//    }
-
    
    //잔액조회하기
    function balance(fintech_use_num,btnEle){
@@ -263,26 +238,23 @@
       }
    }
    
-</script>
+   
+    </script>
+
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder;  width: auto; background-color:white;">
    <div class="container" style="margin-left: 30px; width: auto;">           
       <img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
       <a class="nav-link" href="/banking/main" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
       S.S.M
       </a>           
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 750px; ">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <ul class="nav-item"><a class="nav-link active" th:href="@{/banking/main}" style="color: #3C4048;" th:text="${session.ldto.username}+'님'"></a></ul>
-<!--            <ul class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;;">Calender</a></ul>-->
-            <!-- 네비게이션 바에서 MyPage 링크 -->
-			<ul class="nav-item">
-			    <a class="nav-link" th:href="@{/banking/myinfo}" style="color: #3C4048;" onclick="myInfo()">MyPage</a>
-			</ul>
-            <ul class="nav-item"><a class="nav-link" th:href="@{/user/logout}" style="color: #3C4048;">Logout</a></ul>
-            </ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 730px; ">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
+                <li class="nav-item"><a class="nav-link active" th:href="@{/banking/main}" style="color: #3C4048;" th:text="${session.ldto.username}+'님'"></a></li>
+<!--            <ul class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;;">Calender</a></li>-->
+               <li class="nav-item"><a class="nav-link" th:href="@{/banking/info}" style="color: #3C4048;;" onclick="myInfo()">MyPage</a></li>
+               <li class="nav-item"><a class="nav-link" th:href="@{/user/logout}" style="color: #3C4048;">Logout</a></li>
       </div>
    </div>
 </nav>
@@ -290,8 +262,8 @@
 <div class="a" style="background: #277BC0; height: 10px; "></div>
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
 
-
 <div class="content">
+
    <div class="money">
       <span>수입</span>
       <a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}">원</a>
@@ -300,7 +272,7 @@
       <span>총 합</span>
       <span class="y" th:text="${calMap.year}">원</span>
    </div>
-      
+
 <!--      <h1>예약하기</h1>-->
       <div class="cal">
          <div id="ctitle">
@@ -324,7 +296,7 @@
             <th:block th:each="i:${#numbers.sequence(1,calMap.lastDay)}">
                <div>
                   <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="d" th:text="${i}" data-toggle="modal" th:style="'color:'+${@util.fontColor(i,calMap.dayOfWeek)}"
-                     th:attr="data-target=${'#exampleModal'}" >
+                     th:attr="data-target=${'#exampleModal'}">
 <!--                      th:href="@{/schedule/calBoardList(year=${calMap.year},month=${calMap.month},date=${i})}"> -->
                   </a>
                   <a data-bs-toggle="modal" data-bs-target="#exampleModal2" th:attr="data-target=${'#exampleModal2'}">
@@ -338,7 +310,6 @@
  
    </div>  
    
-
 <!--    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> -->
 <!--   Launch demo modal -->
 <!-- </button> -->
@@ -371,11 +342,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      	<form th:action="@{/schedule/addCalBoard}" method="post" th:object="${insertCalCommand}">
-   		<input type="hidden" name="useremail" th:value="${session.ldto.useremail}"/>
+         <form th:action="@{/schedule/addCalBoard}" method="post" th:object="${insertCalCommand}">
+         <input type="hidden" name="useremail" th:value="${session.ldto.useremail}"/>
         <table class="table">
   
-  		<tr>
+        <tr>
             <th>일정</th>
             <td>
                <select name="year" >
@@ -414,22 +385,22 @@
          <tr>
             <th>거래구분</th>
             <td>
-				<select name = "mio">
-			        <option th:value="수입">수입</option>
-			        <option th:value="지출">지출</option>
-			    </select>
+            <select name = "mio">
+                 <option th:value="수입">수입</option>
+                 <option th:value="지출">지출</option>
+             </select>
             </td>
          </tr>
          <tr>
             <th>내용</th>
             <td>
-            	<input type="text" class="form-control" name="content">   
+               <input type="text" class="form-control" name="content">   
             </td>
          </tr>
         <tr>
             <th>금액</th>
             <td>
-            	<input type="number" class="form-control" name="money">      				
+               <input type="number" class="form-control" name="money">                  
             </td>
          </tr>
                 
@@ -452,7 +423,6 @@
 
 </body>
 </html>
-
 
 
 
