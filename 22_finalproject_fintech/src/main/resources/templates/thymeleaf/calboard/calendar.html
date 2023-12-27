@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
->
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -18,8 +17,8 @@
 <title></title>
 <style type="text/css">
    #content{
-   width: 1200px;
-     margin: 0 auto;
+    width: 1200px;
+    margin: 0 auto;
     font-size:12px;
    }
    .money{
@@ -44,8 +43,8 @@
        vertical-align: top;
        border-top:1px solid gray;
        display: inline-block;
-         width: 170px;
-         float: left;
+       width: 170px;
+       float: left;
     }            
     #ctitle{
        text-align: center;
@@ -126,57 +125,16 @@
    .dropdown:hover .dropbtn {
      background-color: #EAECCC;
    }
+   .d{
+   cursor:pointer; 
+   }
     
 </style>
 <script type="text/javascript">
-   $(function(){
-   
-      $(".d").each(function(i){
-         //controller로 전달할 파라미터 yyyyMM를 구함
-         var aDate=$(this); // 현재 마우스가 올라간 a태그구함
-         var year = $(".y").text().trim(); // 년도
-         var month = $(".m").text().trim(); // 월
-         var date = aDate.text().trim(); // 일
-         var yyyyMMdd = year+(month.length<2?"0"+month:month) + (date.length<2?"0" + date:date); // 8자리 만들기
-         //alert(yyyyMMdd);
-         console.log(aDate.nextAll("p").length);
-         if(aDate.nextAll("p").length>0){
-            $.ajax({
-               url:"/schedule/calCountAjax",
-               method:"get",
-               data:{"yyyyMMdd":yyyyMMdd},   //서버로 전달하는 값
-               dataType:"json",   //서버에서 전달받은 데이터 타입
-               async:false,   //ajax()메서드가 비동기로 실행되는것을 막음:false설정
-               success:function(data){ //성공하면 데이터가 data변수에 저장됨
-               //   alert(data.count);
-                   if(data.count>0){
-                      aDate.hover(function(){
-                         aDate.after("<div class='cp'>"+data.count+"</div>");
-                      },function(){
-                         $(".cp").remove(); // 마우스가 나갔을때
-                      });
-                   }
-                   if(data.count>6){
-                      //aDate.after("<div class='cp'>"+data.count+"</div>");    
-                      aDate.nextAll("a").eq(0).click(function(e){
-                         //e.preventDefault();
-                         alert("예약 마감되었습니다.");
-                         return false;
-                      });          
-                   }
-               },
-               error:function(){
-                  alert("통신실패");
-               }
-            });
-         }
-      })
-   });
 
 </script>
 </head>
 <body>
-
 
 <nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder;  width: auto; background-color:white;">
    <div class="container" style="margin-left: 30px; width: auto;">           
@@ -185,7 +143,7 @@
       S.S.M
       </a>           
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 750px; ">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
                 <ul class="nav-item"><a class="nav-link active" th:href="@{/banking/main}" style="color: #3C4048;" th:text="${session.ldto.username}+'님'"></a></ul>
 <!--            <ul class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;;">Calender</a></ul>-->
             <ul class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar/myinfo}" style="color: #3C4048;;" th:onclick="myinfo()">MyPage</a></ul>
@@ -200,18 +158,14 @@
 
 
 <div class="content">
-
-
-
-
-         <div class="money">
-            <span>수입</span>
-            <a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}">원</a>
-            <span>지출</span>
-         <a th:href="@{/schedule/calendar(year=${calMap.year},month=${calMap.month-1})}">원</a>
-         <span>총 합</span>
-         <span class="y" th:text="${calMap.year}">원</span>
-      </div>
+	<div class="money">
+		<span>수입</span>
+		<a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}">원</a>
+		<span>지출</span>
+		<a th:href="@{/schedule/calendar(year=${calMap.year},month=${calMap.month-1})}">원</a>
+		<span>총 합</span>
+		<span class="y" th:text="${calMap.year}">원</span>
+	</div>
       
 <!--      <h1>예약하기</h1>-->
       <div class="cal">
@@ -236,7 +190,7 @@
             <th:block th:each="i:${#numbers.sequence(1,calMap.lastDay)}">
                <div>
                   <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="d" th:text="${i}" data-toggle="modal" th:style="'color:'+${@util.fontColor(i,calMap.dayOfWeek)}"
-                     th:attr="data-target=${'#exampleModal'}" >
+                     th:attr="data-target=${'#exampleModal'}">
 <!--                      th:href="@{/schedule/calBoardList(year=${calMap.year},month=${calMap.month},date=${i})}"> -->
                   </a>
                   <a th:href="@{/schedule/addCalBoardForm(year=${calMap.year},month=${calMap.month},date=${i})}">

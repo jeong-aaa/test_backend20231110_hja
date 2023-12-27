@@ -63,8 +63,6 @@
       });
    }
    
-
-   
    //잔액조회하기
    function balance(fintech_use_num,btnEle){
       $.ajax({
