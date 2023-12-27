@@ -44,15 +44,17 @@ public class CalController {
       //달력에서 일일별 일정목록 구하기
 //      String id = "kbj"; // 나중에 세션에서 가져온 아이디 사용     
        String year = request.getParameter("year");
-       String month = request.getParameter("month");   
+       String month = request.getParameter("month"); 
+       String date = request.getParameter("date");
          
-       if(year==null||month==null) {
+       if(year==null||month==null||date==null) {
           Calendar cal = Calendar.getInstance();
            year = cal.get(Calendar.YEAR)+"";
            month = (cal.get(Calendar.MONTH)+1)+"";
+           date = cal.get(Calendar.DATE)+"";
          }
       
-       String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
+       String yyyyMMdd=year+Util.isTwo(month)+date;//202311 6자리변환
 //       List<CalDto>clist=calService.calViewList(id, yyyyMM);
 //       model.addAttribute("clist", clist);
       
@@ -63,33 +65,30 @@ public class CalController {
       return "thymeleaf/calboard/calendar";
    }
    
-   @GetMapping(value = "/addCalBoardForm")
-	public String addCalBoardForm(Model model, InsertCalCommand insertCalCommand) {
-		logger.info("일정추가폼이동");
-		System.out.println(insertCalCommand);
-		
-//		HttpSession session=request.getSession();
-//	    UserDto ldto=(UserDto)session.getAttribute("ldto");
-//		model.addAttribute("ldto", new UserDto());
-		
-		model.addAttribute("insertCalCommand", insertCalCommand);
-		return "thymeleaf/calboard/addCalBoardForm";
-	}
- 
+//   @GetMapping(value = "/addCalBoardForm")
+//	public String addCalBoardForm(Model model, InsertCalCommand insertCalCommand) {
+//		logger.info("일정추가폼이동");
+//		System.out.println(insertCalCommand);
+//		
+////		HttpSession session=request.getSession();
+////	    UserDto ldto=(UserDto)session.getAttribute("ldto");
+////		model.addAttribute("ldto", new UserDto());
+//		
+//		model.addAttribute("insertCalCommand", insertCalCommand);
+//		return "thymeleaf/calboard/addCalBoardForm";
+//	}
+// 
   
   @PostMapping(value = "/addCalBoard")
 	public String addCalBoard(@Validated InsertCalCommand insertCalCommand,
 							  BindingResult result, Model model) throws Exception {
 		logger.info("일정추가하기");
 	      
-//	    HttpSession session=request.getSession();
-//	    UserDto ldto=(UserDto)session.getAttribute("ldto");
-//	    model.addAttribute("ldto", new UserDto());
 	      
 		System.out.println(insertCalCommand);
 		if(result.hasErrors()) {
 			System.out.println("글을 모두 입력해야 함");
-			return "thymeleaf/calboard/addCalBoardForm";
+			return "thymeleaf/calboard/calendar";
 		}
 		
 		calService.insertCalBoard(insertCalCommand);

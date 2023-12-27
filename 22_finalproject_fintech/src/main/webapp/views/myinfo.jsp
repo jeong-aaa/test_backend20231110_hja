@@ -173,7 +173,7 @@
         </div>
     </nav>
     
-<div class="a" style="background: #277BC0; height: 10px; ">
+<div class="a" style="background: #277BC0; height: 10px; "></div>
 
 </body>
 </html>

@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hk.fintech.mapper.AccountMapper">
-	
 
+    <resultMap id="accountResultMap" type="com.hk.fintech.dtos.AccountDto">
+        <id property="useremail" column="USEREMAIL"/>
+        <result property="tran_date" column="TRAN_DATE"/>
+        <result property="inout_type" column="INOUT_TYPE"/>
+        <result property="tran_amt" column="TRAN_AMT"/>
+        <result property="print_content" column="PRINT_CONTENT"/>
+    </resultMap>
 
+    <insert id="insertTransactionData" parameterType="AccountDto">
+        INSERT INTO FINTECH_ACCOUNT VALUES (#{useremail},#{tran_date},#{inout_type},#{tran_amt},#{print_content})
+    </insert>
 
 </mapper>
-
-
-
-
-
