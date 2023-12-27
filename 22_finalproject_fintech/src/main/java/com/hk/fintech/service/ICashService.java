@@ -3,17 +3,19 @@ package com.hk.fintech.service;
 import java.util.List;
 import java.util.Map;
 
+import com.hk.fintech.command.InsertCalCommand;
+
 import jakarta.servlet.http.HttpServletRequest;
 
 
 
-public interface ICalService {
+public interface ICashService {
 	
 	//달력생성시 필요한 값 구하는 메서드
 	public Map<String, Integer> makeCalendar(HttpServletRequest request);
 	
 //	//일정 추가
-//	public boolean insertCalBoard(InsertCalCommand insertCalCommand) ;
+	public boolean insertCalBoard(InsertCalCommand insertCalCommand) ;
 //	//일정 목록
 ////	public List<CalDto> calBoardList(String yyyyMMdd);
 //	public List<CalDto> checkinfoBydept(String yyyyMMdd );

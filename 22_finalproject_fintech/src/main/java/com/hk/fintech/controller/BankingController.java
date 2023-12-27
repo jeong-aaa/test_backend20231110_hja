@@ -47,10 +47,11 @@ public class BankingController {
       return "main";
    }
    
-//   @GetMapping("/cal")
-//	public String cal() {
-//		return "cal";
-//	}
+//   @GetMapping("/info")
+//   public String info() {
+//      return "myinfo";
+//   }
+
    
    @ResponseBody // 요청했던 페이지로 응답: return 값을 출력한다.(ajax로 요청했다면 ajax메서드로 값을 전달)
    @GetMapping("/myinfo")
@@ -92,7 +93,6 @@ public class BankingController {
       
       System.out.println("result:"+result.get("res_list"));
 
-            
       return result;
    }
    
@@ -281,7 +281,6 @@ public class BankingController {
 
 
 
-//제발
 
 
 

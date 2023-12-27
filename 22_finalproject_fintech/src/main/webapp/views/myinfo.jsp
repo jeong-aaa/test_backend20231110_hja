@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="utf-8" />
+<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
@@ -63,25 +63,6 @@
       });
    }
    
-   // 계좌해지하기
-//    function deleteAccount(fintech_use_num, btnEle) {
-//       $.ajax({
-//          url: "/banking/deleteAccount",
-//          method: "Post", // 예시로 POST 메서드 사용
-//          data: {"fintech_use_num": fintech_use_num},
-//          dataType: "json",
-//          success: function (data) {
-//             // 계좌 해지에 대한 성공 처리 로직을 추가
-//             console.log("계좌 해지 성공:", data);
-
-//             // 예시로 성공 시 해당 계좌를 UI에서 제거하는 로직
-//             $(btnEle).parents(".box").eq(0).remove(); 
-//          },
-//          error: function () {
-//             alert("통신 실패") ;
-//          }
-//       });
-//    }
 
    
    //잔액조회하기
@@ -171,48 +152,12 @@
      cursor: pointer;
    }
    
-   /* The container <div> - needed to position the dropdown content */
-   .dropdown {
-     position: relative;
-     display: inline-block;
-   }
-   
-   /* Dropdown Content (Hidden by Default) */
-   .dropdown-content {
-     display: none;
-     position: absolute;
-     background-color: #f9f9f9;
-     min-width: 160px;
-     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-     z-index: 1;
-     
-   }
-   
-   /* Links inside the dropdown */
-   .dropdown-content a {
-     color: black;
-     padding: 12px 16px;
-     text-decoration: none;
-     display: block;
-   }
-   
-   /* Change color of dropdown links on hover */
-   .dropdown-content a:hover {background-color: #EAECCC}
-   
-   /* Show the dropdown menu on hover */
-   .dropdown:hover .dropdown-content {
-     display: block;
-   }
-   
-   /* Change the background color of the dropdown button when the dropdown content is shown */
-   .dropdown:hover .dropbtn {
-     background-color: #EAECCC;
-   }
+ 
    
    </style>
 </head>
 <body>
-   <nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder; width: auto; background:#00000;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder; width: auto; background:#00000;">
         <div class="container" style="margin-left: 30px; width: auto;">           
           <img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
           <a class="nav-link" href="/banking/main" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
@@ -223,7 +168,7 @@
                    <li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap; color: #3C4048;" >${sessionScope.ldto.username}님</a></li>
 <!--                     <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Main</a></li> -->
                     <li class="nav-item"><a class="nav-link" href="/schedule/calendar" style="color: #3C4048;">Calender</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!" style="color: #3C4048;" onclick="myInfo()">MyPage</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/banking/info" style="color: #3C4048;" onclick="myInfo()">MyPage</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout" style="color: #3C4048;">Logout</a></li>
                 </ul>
             </div>
@@ -231,90 +176,6 @@
     </nav>
     
 <div class="a" style="background: #277BC0; height: 10px; ">
-    <section class="py-5">
-      <div id="list">
-         <div class="c" style="background: #00000; height: 250px; ">
-         </div>
-         
-         <div class="d" style="background: #F0F0F0; height: 90px; ">
-            <div class="main_service_menu">
-               <h2 class="blind" style="margin-left:630px; font-size: 25px; clolr:#163020; ">주요 서비스 바로가기</h2>
-               <div class="dropdown">
-                    <button class="dropbtn" style="margin-left:500px; ">계정</button>
-                    <div class="dropdown-content" style="margin-left:500px;">
-                         <a href="/user/logout">로그아웃</a>
-                    </div>
-               </div>
-               <div class="dropdown">
-                    <button class="dropbtn" style="margin-left:100px; ">계좌</button>
-                    <div class="dropdown-content" style="margin-left:100px; ">
-                         <a href="#" onclick="addAccount()">계좌추가</a>
-                         <a href="#" onclick="myInfo()">계좌조회</a>
-                    </div>
-               </div>
-               <div class="dropdown">
-                    <button class="dropbtn" style="margin-left:100px;">가계부</button>
-                    <div class="dropdown-content" style="margin-left:100px; ">
-                         <a href="#">수입/지출</a>
-                         <a href="#">거래상세내역</a>
-                         <a href="#">현금거래내역</a>
-                         <a href="#">월별지출그래프</a>
-                    </div>
-               </div>
-               <div class="dropdown">
-                    <button class="dropbtn" style="margin-left:100px;" onclick="myInfo()">마이페이지</button>
-                    <div class="dropdown-content" style="margin-left:100px; ">
-                         <a href="#" onclick="myInfo()">계좌관리</a>
-<!--                          <a href="/user/delUser">회원탈퇴</a> -->
-                    </div> 
-               </div>
-         
-            </div>
-         </div>
-         
-         <div class="e" style="background: #00000;" >
-         <h5  style="color: #163020; margin-left:130px; margin-right:130px;">
-         <br/>
-         당신의 재무 건강을 관리하는 것은 매우 중요합니다. 우리의 삶은 돈과 밀접하게 연관되어 있기 때문에 재정 거래를 효과적으로 관리하는 것은 생활의 질을 향상시키고 안정성을 높이는 데 큰 도움이 됩니다.<br/>
-         
-         우리 플랫폼은 물건 구매부터 월급까지 모든 재정 거래를 손쉽게 관리할 수 있도록 도와줍니다. 간편한 가계부 기능을 통해 일일 지출과 수입을 체계적으로 기록할 수 있습니다. 이것은 여러분이 어디서든 자신의 재무 상태를 파악하고 관리할 수 있도록 도와줍니다.<br/>
-         
-         뿐만 아니라, 플랫폼은 여러 은행이나 금융 기관의 계좌를 한 곳에서 효과적으로 관리할 수 있는 기능을 제공합니다. 여러 은행 계좌를 간편하게 모니터링하고, 자산을 효율적으로 이동시키며, 예산을 관리하며, 투자 및 저축 목표를 설정할 수 있습니다.<br/>
-         
-         우리의 플랫폼은 신속한 기능과 직관적인 인터페이스를 통해 사용자가 금융을 더 효율적으로 관리할 수 있도록 도와줍니다. 걱정 없는 재무 거래를 위한 완벽한 도구로 여러분의 편의를 위해 설계되었습니다. 함께하여 여러분의 재무 건강을 향상시키고 안정성을 높이는 데 도움을 드리겠습니다.</h5>
-         <br/>
-         </div> 
-            </div>
-            <div id="feignList">
-               <%
-                  UserMeDto dto=(UserMeDto)request.getAttribute("userMeDto");
-                  if(dto!=null){
-                     List<UserMeAccountDto>list=dto.getRes_list();
-                     
-                     for(UserMeAccountDto udto:list){
-                        %>
-                        <p><%=udto.getAccount_alias() %><br>
-                           <%=udto.getFintech_use_num() %>
-                           [<%=udto.getBank_name() %>]
-                        </p>
-                        <%
-                     }//for
-                  }//if
-               %>
-            </div>
-   </section>
-<!--    <form action="/user/delUser" method="get" onsubmit="return delUserEX()"> -->
-<!--       <button type="submit" class="btn" style="color: lightgray;">회원탈퇴</button> -->
-<!--    </form> -->
-   <div>
-       <footer class="footer">
-              <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
-       </footer> 
-   </div>
-</div>    
-
-<div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;">
-</div> 
 
 </body>
 </html>

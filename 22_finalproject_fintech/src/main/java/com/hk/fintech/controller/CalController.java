@@ -1,10 +1,12 @@
 package com.hk.fintech.controller;
 
+import java.net.HttpURLConnection;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hk.board.command.InsertCalCommand;
-import com.hk.fintech.service.ICalService;
+import com.hk.fintech.command.InsertCalCommand;
+import com.hk.fintech.dtos.UserDto;
+import com.hk.fintech.service.ICashService;
 import com.hk.fintech.utils.Util;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,7 +35,7 @@ public class CalController {
    private static final Logger logger=LoggerFactory.getLogger(CalController.class);
    
    @Autowired
-   private ICalService calService;
+   private ICashService calService;
    
    @GetMapping(value="/calendar")
    public String calendar(Model model, HttpServletRequest request) {
@@ -41,15 +44,17 @@ public class CalController {
       //달력에서 일일별 일정목록 구하기
 //      String id = "kbj"; // 나중에 세션에서 가져온 아이디 사용     
        String year = request.getParameter("year");
-       String month = request.getParameter("month");   
+       String month = request.getParameter("month"); 
+       String date = request.getParameter("date");
          
-       if(year==null||month==null) {
+       if(year==null||month==null||date==null) {
           Calendar cal = Calendar.getInstance();
            year = cal.get(Calendar.YEAR)+"";
            month = (cal.get(Calendar.MONTH)+1)+"";
+           date = cal.get(Calendar.DATE)+"";
          }
       
-       String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
+       String yyyyMMdd=year+Util.isTwo(month)+date;//202311 6자리변환
 //       List<CalDto>clist=calService.calViewList(id, yyyyMM);
 //       model.addAttribute("clist", clist);
       
@@ -60,15 +65,39 @@ public class CalController {
       return "thymeleaf/calboard/calendar";
    }
    
-   @GetMapping(value = "/addCalBoardForm")
-	public String addCalBoardForm(Model model, InsertCalCommand insertCalCommand) {
-		logger.info("일정추가폼이동");
+//   @GetMapping(value = "/addCalBoardForm")
+//	public String addCalBoardForm(Model model, InsertCalCommand insertCalCommand) {
+//		logger.info("일정추가폼이동");
+//		System.out.println(insertCalCommand);
+//		
+////		HttpSession session=request.getSession();
+////	    UserDto ldto=(UserDto)session.getAttribute("ldto");
+////		model.addAttribute("ldto", new UserDto());
+//		
+//		model.addAttribute("insertCalCommand", insertCalCommand);
+//		return "thymeleaf/calboard/addCalBoardForm";
+//	}
+// 
+  
+  @PostMapping(value = "/addCalBoard")
+	public String addCalBoard(@Validated InsertCalCommand insertCalCommand,
+							  BindingResult result, Model model) throws Exception {
+		logger.info("일정추가하기");
+	      
+	      
 		System.out.println(insertCalCommand);
-		//addCalBoardfForm 페이지에서 유효값 처리를 위해 insertCalCommand 받고 있기때문에
-		model.addAttribute("insertCalCommand", insertCalCommand);
-		return "thymeleaf/calboard/addCalBoardForm";
+		if(result.hasErrors()) {
+			System.out.println("글을 모두 입력해야 함");
+			return "thymeleaf/calboard/calendar";
+		}
+		
+		calService.insertCalBoard(insertCalCommand);
+		
+		return "redirect:/schedule/calendar?year="+insertCalCommand.getYear()
+										+"&month="+insertCalCommand.getMonth();
 	}
- 
+  
+
 }
 
 
