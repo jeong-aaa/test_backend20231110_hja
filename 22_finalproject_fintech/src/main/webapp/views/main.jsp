@@ -13,7 +13,7 @@
     <meta name="author" content="" />
     <title>SSM</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-   <style type="text/css">
+    <style type="text/css">
    .box{border-bottom: 1px solid gray; margin-bottom: 10px;}
    .box > .sub_menu{text-align: right;}
    .addAccount{text-align: right;}

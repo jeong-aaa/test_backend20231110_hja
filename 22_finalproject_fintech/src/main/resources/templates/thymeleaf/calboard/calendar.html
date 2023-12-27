@@ -262,8 +262,13 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
                 <li class="nav-item"><a class="nav-link active" th:href="@{/banking/main}" style="color: #3C4048;" th:text="${session.ldto.username}+'님'"></a></li>
 <!--            <ul class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;;">Calender</a></li>-->
+<<<<<<< HEAD
                <li class="nav-item"><a class="nav-link" href="#!" style="color: #3C4048;;" onclick="myInfo()">MyPage</a></li>
                <li class="nav-item"><a class="nav-link" th:href="@{/user/logout}" style="color: #3C4048;">Logout</a></li>
+=======
+            	<li class="nav-item"><a class="nav-link" href="#!" style="color: #3C4048;" th:onclick="myInfo()">MyPage</a></li>
+            	<li class="nav-item"><a class="nav-link" th:href="@{/user/logout}" style="color: #3C4048;">Logout</a></li>
+>>>>>>> branch 'main' of https://github.com/jeong-aaa/test_backend20231110_hja.git
       </div>
    </div>
 </nav>
@@ -272,6 +277,7 @@
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
 
 <div class="content">
+<<<<<<< HEAD
    <div class="money">
       <span>수입</span>
       <a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}">원</a>
@@ -280,6 +286,17 @@
       <span>총 합</span>
       <span class="y" th:text="${calMap.year}">원</span>
    </div>
+=======
+<div id="list">
+	<div class="money">
+		<span>수입</span>
+		<a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}">원</a>
+		<span>지출</span>
+		<a th:href="@{/schedule/calendar(year=${calMap.year},month=${calMap.month-1})}">원</a>
+		<span>총 합</span>
+		<span class="y" th:text="${calMap.year}">원</span>
+	</div>
+>>>>>>> branch 'main' of https://github.com/jeong-aaa/test_backend20231110_hja.git
 
 <!--      <h1>예약하기</h1>-->
       <div class="cal">
@@ -315,7 +332,7 @@
             </th:block>
          </div>
       </div>
- 
+	</div>
    </div>  
    
 <!--    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> -->

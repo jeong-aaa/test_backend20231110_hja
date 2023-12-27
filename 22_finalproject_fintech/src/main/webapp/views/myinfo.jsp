@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
+   <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
@@ -63,6 +63,27 @@
       });
    }
    
+   // 계좌해지하기
+//    function deleteAccount(fintech_use_num, btnEle) {
+//       $.ajax({
+//          url: "/banking/deleteAccount",
+//          method: "Post", // 예시로 POST 메서드 사용
+//          data: {"fintech_use_num": fintech_use_num},
+//          dataType: "json",
+//          success: function (data) {
+//             // 계좌 해지에 대한 성공 처리 로직을 추가
+//             console.log("계좌 해지 성공:", data);
+
+//             // 예시로 성공 시 해당 계좌를 UI에서 제거하는 로직
+//             $(btnEle).parents(".box").eq(0).remove(); 
+//          },
+//          error: function () {
+//             alert("통신 실패") ;
+//          }
+//       });
+//    }
+
+   
    //잔액조회하기
    function balance(fintech_use_num,btnEle){
       $.ajax({
@@ -98,11 +119,10 @@
             // data.res_list  -->  배열
             for (var i = 0; i < data.res_list.length; i++) {
                var res=data.res_list[i];// json객체를 가져온다 {key:value,...}
-               list+="<li>"+res.tran_date
-                           +" ["+res.branch_name+"] "
+               list+="<li>"+res.tran_date+" "
                            +res.inout_type+" "
                            +res.print_content+":"
-                           +res.tran_amt+"</li>"
+                           +res.tran_amt+"원"+"</li>"
             }
             list+="</ul>";// <ul><li>거래내역1</li><li>거래내역2</li>..</ul>
             //button .   p    . <div> 
@@ -150,12 +170,10 @@
      cursor: pointer;
    }
    
- 
-   
    </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder; width: auto; background:#00000;">
+   <nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder; width: auto; background:#00000;">
         <div class="container" style="margin-left: 30px; width: auto;">           
           <img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
           <a class="nav-link" href="/banking/main" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
@@ -166,14 +184,23 @@
                    <li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap; color: #3C4048;" >${sessionScope.ldto.username}님</a></li>
 <!--                     <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Main</a></li> -->
                     <li class="nav-item"><a class="nav-link" href="/schedule/calendar" style="color: #3C4048;">Calender</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/banking/info" style="color: #3C4048;" onclick="myInfo()">MyPage</a></li>
+                    <li class="nav-item"><a class="nav-link" href="banking/myinfo" style="color: #3C4048;" onclick="myInfo()">MyPage</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout" style="color: #3C4048;">Logout</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     
-<div class="a" style="background: #277BC0; height: 10px; "></div>
+<div class="a" style="background: #277BC0; height: 10px; ">
+   <div>
+       <footer class="footer">
+              <div class="footer" style="background:#277BC0; height:50px;"><p class="m-0 text-white" style="text-align : center; align-items : center;">Copyright &copy; S.S.M Website 2023</p></div>
+       </footer> 
+   </div>
+</div>    
+
+<div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;">
+</div> 
 
 </body>
 </html>
