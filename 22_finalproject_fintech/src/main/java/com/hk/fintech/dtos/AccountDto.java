@@ -8,7 +8,7 @@ public class AccountDto {
 	private Date tran_date;
 	private String inout_type;
 	private int tran_amt;
-	private String printed_content;
+	private String print_content;
 	private int after_balance_amt;
 	private int acc_sum;
 	
@@ -17,14 +17,14 @@ public class AccountDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AccountDto(String useremail, Date tran_date, String inout_type, int tran_amt, String printed_content,
+	public AccountDto(String useremail, Date tran_date, String inout_type, int tran_amt, String print_content,
 			int after_balance_amt, int acc_sum) {
 		super();
 		this.useremail = useremail;
 		this.tran_date = tran_date;
 		this.inout_type = inout_type;
 		this.tran_amt = tran_amt;
-		this.printed_content = printed_content;
+		this.print_content = print_content;
 		this.after_balance_amt = after_balance_amt;
 		this.acc_sum = acc_sum;
 	}
@@ -61,12 +61,12 @@ public class AccountDto {
 		this.tran_amt = tran_amt;
 	}
 
-	public String getPrinted_content() {
-		return printed_content;
+	public String getPrint_content() {
+		return print_content;
 	}
 
-	public void setPrinted_content(String printed_content) {
-		this.printed_content = printed_content;
+	public void setPrint_content(String print_content) {
+		this.print_content = print_content;
 	}
 
 	public int getAfter_balance_amt() {
@@ -88,7 +88,7 @@ public class AccountDto {
 	@Override
 	public String toString() {
 		return "AccountDto [useremail=" + useremail + ", tran_date=" + tran_date + ", inout_type=" + inout_type
-				+ ", tran_amt=" + tran_amt + ", printed_content=" + printed_content + ", after_balance_amt="
+				+ ", tran_amt=" + tran_amt + ", print_content=" + print_content + ", after_balance_amt="
 				+ after_balance_amt + ", acc_sum=" + acc_sum + "]";
 	}
 	

@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+	
 <mapper namespace="com.hk.fintech.mapper.AccountMapper">
 	
-
-
+	<insert id="transactionList" parameterType="AccountDto">
+		SELECT USEREMAIL, TRAN_DATE, INOUT_TYPE, TRAN_AMT, PRINTED_CONTENT, AFTER_BALANCE_AMT
+		FROM FINTECH_ACCOUNT
+		WHERE USEREMAIL=#{useremail}
+	</insert>
 
 </mapper>
 

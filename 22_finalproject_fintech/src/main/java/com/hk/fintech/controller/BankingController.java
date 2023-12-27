@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.fintech.apidto.UserMeDto;
+import com.hk.fintech.dtos.AccountDto;
 import com.hk.fintech.dtos.UserDto;
 import com.hk.fintech.feignMapper.OpenBankingFeign;
 import com.hk.fintech.service.UserService;
@@ -81,17 +82,17 @@ public class BankingController {
             );
       
       StringBuilder response=new StringBuilder();
-      String responseLine=null;
-      
+      String responseLine=null;     
       while((responseLine=br.readLine())!=null) {
          response.append(responseLine.trim());
       }
       
       // json형태의 문자열을 json객체로 변환 -> 값을 가져오기 편함
       result=(JSONObject)new JSONParser().parse(response.toString());
+      
       System.out.println("result:"+result.get("res_list"));
-      
-      
+
+            
       return result;
    }
    
@@ -159,7 +160,8 @@ public class BankingController {
    @GetMapping("/transactionList")
    @ResponseBody
    public JSONObject transactionList(String fintech_use_num
-                                  ,HttpServletRequest request) throws IOException, ParseException {
+                                  ,HttpServletRequest request
+                                  ,Model model) throws IOException, ParseException {
       System.out.println("거래내역 조회하기");
       HttpURLConnection conn=null;
       JSONObject result=null;
@@ -196,8 +198,10 @@ public class BankingController {
       
       //읽은 값이 json 형태로 된 문자열 --> json객체로 변환하자
       result=(JSONObject)new JSONParser().parse(response.toString());
+      AccountDto accountDto = new AccountDto();
+      accountDto.setUseremail(ldto.getUseremail());
       System.out.println("거래내역:"+result.get("res_list"));
-      
+            
       return result;
    }
    
