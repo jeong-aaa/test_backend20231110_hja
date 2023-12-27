@@ -7,5 +7,5 @@ import com.hk.fintech.dtos.AccountDto;
 @Mapper
 public interface AccountMapper {
 
-	public AccountDto transactionList(AccountDto adto);
+	void insertTransactionData(AccountDto adto);
 }

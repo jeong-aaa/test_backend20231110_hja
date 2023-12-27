@@ -119,11 +119,10 @@
             // data.res_list  -->  배열
             for (var i = 0; i < data.res_list.length; i++) {
                var res=data.res_list[i];// json객체를 가져온다 {key:value,...}
-               list+="<li>"+res.tran_date
-                           +" ["+res.branch_name+"] "
+               list+="<li>"+res.tran_date+" "
                            +res.inout_type+" "
                            +res.print_content+":"
-                           +res.tran_amt+"</li>"
+                           +res.tran_amt+"원"+"</li>"
             }
             list+="</ul>";// <ul><li>거래내역1</li><li>거래내역2</li>..</ul>
             //button .   p    . <div> 
