@@ -232,7 +232,8 @@
 <div class="a" style="background: #277BC0; height: 10px; ">
     <section class="py-5">
       <div id="list">
-         <div class="c" style="background: #00000; height: 250px; ">
+         <div class="c" style="background: #00000; height: 250px; text-align : center;" >
+         	<img src="/resources/img/MAIN01.jpg" alt="" style="height: 220px; width: 900px;"/>
          </div>
          
          <div class="d" style="background: #F0F0F0; height: 90px; ">
