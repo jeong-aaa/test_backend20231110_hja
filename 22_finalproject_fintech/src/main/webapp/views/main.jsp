@@ -234,9 +234,9 @@
                <div class="dropdown">
                     <button class="dropbtn" style="margin-left:100px;">가계부</button>
                     <div class="dropdown-content" style="margin-left:100px; ">
-                         <a href="#">수입/지출</a>
-                         <a href="#">거래상세내역</a>
-                         <a href="#">현금거래내역</a>
+                         <a href="/schedule/calendar">수입/지출</a>
+                         <a href="/schedule/calendar">거래상세내역</a>
+                         <a href="/schedule/calendar">현금거래내역</a>
                          <a href="#">월별지출그래프</a>
                     </div>
                </div>
