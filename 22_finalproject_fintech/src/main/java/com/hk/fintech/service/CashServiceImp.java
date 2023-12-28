@@ -121,11 +121,17 @@ public class CashServiceImp implements ICashService{
 //      return calMapper.calMulDel(map);
 //   }
 //
-//   @Override
-//   public List<CalDto> calViewList(String id, String yyyyMM) {
-//      // TODO Auto-generated method stub
-//      return calMapper.calViewList(id, yyyyMM);
-//   }
+   @Override
+   public List<CashDto> Cash(String email, String yyyyMM) {
+	   
+	   Map<String ,String> map=new HashMap<>();
+	   
+	   map.put("useremail",email);
+	   map.put("yyyyMM",yyyyMM);
+	  
+	      
+      return cashMapper.Cash(map);
+   }
 //
 //   @Override
 //   public int calBoardCount(String yyyyMMdd) {

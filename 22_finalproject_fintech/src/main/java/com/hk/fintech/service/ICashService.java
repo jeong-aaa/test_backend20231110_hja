@@ -38,6 +38,8 @@ public interface ICashService {
 //
 //	public List<CalDto> getAllList(String yyyyMMdd);
 
+	public List<CashDto> Cash(String email, String yyyyMM);
+
 }
 
 
