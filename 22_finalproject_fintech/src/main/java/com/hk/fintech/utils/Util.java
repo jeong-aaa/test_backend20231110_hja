@@ -58,8 +58,8 @@ public class Util {
 			if(clist.get(j).getMdate().substring(8).equals(d)) {
 				calList+="<p>"
 						+(+clist.get(j).getMio().length()>7?
-						clist.get(j).getMio().substring(0,7)+"..":
-						clist.get(j).getMio()+" : "+clist.get(j).getMoney())
+				                  clist.get(j).getMio().substring(0,7)+"..":
+								clist.get(j).getMio()+" : "+clist.get(j).getMoney()+"원")
 
 						+"</p>";
 			}
@@ -76,7 +76,7 @@ public class Util {
 				calList+="<p>"
 						+(+alist.get(j).getInout_type().length()>7?
 						alist.get(j).getInout_type().substring(0,7)+"..":
-						alist.get(j).getInout_type()+" : "+alist.get(j).getTran_amt())
+						alist.get(j).getInout_type()+" : "+alist.get(j).getTran_amt()+"원")
 
 						+"</p>";
 			}

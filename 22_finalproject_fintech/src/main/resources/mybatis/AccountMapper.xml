@@ -26,7 +26,7 @@
 		FROM (SELECT ROW_NUMBER() OVER(PARTITION BY tran_date ORDER BY tran_date) RN, USEREMAIL, tran_date, inout_type, tran_amt, print_content
 			FROM FINTECH_ACCOUNT
 			WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(tran_date, '%Y%m') =#{yyyyMM}) cal
-		WHERE RN BETWEEN 1 AND 3
+		WHERE RN BETWEEN 1 AND 2
 	</select>
 
 </mapper>
