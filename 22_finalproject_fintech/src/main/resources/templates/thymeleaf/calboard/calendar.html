@@ -257,8 +257,17 @@
 		   var i=$(this).text();
 		   $(".day").text(i);
 		   
-		   //각 day에 넣을 데이터 넣기
 	   });
+		   //각 day에 넣을 데이터 넣기
+		   
+		$(".dd").click(function(){ 
+		   var i=$(this).prev().text();  
+		   $("select[name=date] option").each(function(){
+		   		if($(this).val()==i){
+		   			$(this).attr("selected","selected");
+		   		}
+		   });
+		});
    });
    
 </script>
@@ -322,7 +331,7 @@
                      th:attr="data-target=${'#exampleModal'}">
 <!--                      th:href="@{/schedule/calBoardList(year=${calMap.year},month=${calMap.month},date=${i})}"> -->
                   </a>
-                  <a data-bs-toggle="modal" data-bs-target="#exampleModal2" th:attr="data-target=${'#exampleModal2'}">
+                  <a data-bs-toggle="modal" class="dd" data-bs-target="#exampleModal2" th:attr="data-target=${'#exampleModal2'}">
                      <img class="pen" th:src="@{/img/pen.png}" />
                   </a>
                   [(${@util.Cash(i,clist)})]
@@ -443,14 +452,27 @@
                </select>월
                <select name="date" >
                   <th:block th:each="i:${#numbers.sequence(1,calMap.lastDay)}">
-<!--                     <th:block th:if="${calMap.date == i}">-->
-                        <option th:value="${i}" th:text="${i}" selected="selected" ></option>
+<!--                     <th:block th:if="${day}">-->
+                        <option th:value="${i}" th:text="${i}" ></option>
 <!--                     </th:block>-->
 <!--                     <th:block th:unless="${calMap.date == i}">-->
 <!--                        <option th:value="${i}" th:text="${i}"></option>-->
-                     </th:block>
-                  </th:block>
+<!--                     </th:block>-->
+<!--                  </th:block>-->
                </select>일
+              
+              
+              
+<!--              <span class="y" th:text="${calMap.year}"></span>-->
+<!--            <span>년</span>-->
+<!--            <span class="m" th:text="${calMap.month}"></span>-->
+<!--            <span>월</span>-->
+<!--            <span class="day"></span>-->
+<!--            <span>일</span>-->
+              
+              
+              
+              
               
             </td>
          </tr>
