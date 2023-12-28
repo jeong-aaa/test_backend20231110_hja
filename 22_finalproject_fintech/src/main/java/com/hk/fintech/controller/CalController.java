@@ -67,6 +67,17 @@ public class CalController {
        String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
        List<CashDto>clist=calService.Cash(email, yyyyMM);
        model.addAttribute("clist", clist);
+       int insum = 0;
+       int outsum=0;
+       for (CashDto cashDto : clist) {
+    	   if (cashDto.getMio().equals("수입"))
+    		   insum+=cashDto.getMoney();
+    	   else {
+    		   outsum+=cashDto.getMoney();
+    	   }
+	}
+       model.addAttribute("insum", insum+"");
+       model.addAttribute("outsum", outsum+"");
        
        List<AccountDto>alist=calService.Account(email, yyyyMM);
        model.addAttribute("alist", alist);

@@ -64,10 +64,15 @@
     .d{
        font-weight: bold;
        text-align: center;
+       cursor:pointer; 
     }    
     
-    #tbody > div > p{background-color:#a9bcf5; border: 1px solid darkgray; color:darksgray;}
-    
+    #tbody > div > p{
+    background-color: #E0EBFF;
+    width: 130px;
+    text-align: center;
+	margin: 0px 0px 10px;
+    }
     .cp{
        position : absolute;
        left : 20px;
@@ -132,9 +137,6 @@
    /* Change the background color of the dropdown button when the dropdown content is shown */
    .dropdown:hover .dropbtn {
      background-color: #EAECCC;
-   }
-   .d{
-   cursor:pointer; 
    }
     
 </style>
@@ -297,11 +299,12 @@
 <div id="list">
 <!--   총 합      -->
    <div class="money">
-      <span style="color: #4169e1;">수입</span>
-      <a th:text="${calMap.year}+원"></a>
-      <span style="color: #dc143c;">지출</span>
-      <a th:text="${calMap.year}+원"></a>
-     <span>합계</span>
+      <span style="color: #1E90FF;">수입</span>
+      <a th:text="${insum}+원"></a>
+      <span style="color: #FF4646;">지출</span>
+      <a th:text="${outsum}+원"></a>
+	  <span>합계</span>
+
       <span class="y" th:text="${calMap.year}+원"></span>
    </div>    
 

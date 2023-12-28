@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Equals;
 import org.springframework.stereotype.Component;
 
 import com.hk.fintech.dtos.AccountDto;
@@ -56,17 +57,39 @@ public class Util {
 		for (int j = 0; j < clist.size(); j++) {
 			//한달 일정 목록중에 해당일(i)값과 일치하는지 여부 판단
 			if(clist.get(j).getMdate().substring(8).equals(d)) {
-				calList+="<p>"
-						+(+clist.get(j).getMio().length()>7?
-						clist.get(j).getMio().substring(0,7)+"..":
-						clist.get(j).getMio()+" : "+clist.get(j).getMoney())
+				calList+="<p style='color:"+
+						(("수입".equals(clist.get(j).getMio()))?"blue":"red")
+						+"'>"
+		                  +(+clist.get(j).getMio().length()>7?
+		                  clist.get(j).getMio().substring(0,7)+"..":
+		                  clist.get(j).getMio()+" : "+clist.get(j).getMoney())
+		                  +"</p>";
 
-						+"</p>";
 			}
 		}
 		return calList;
-	}
+	}	
+//	public static String Color(String mio, List<CashDto> calList) {
+//		if((calList.getClass(CashDto.mio).value.equals("수입"))) {//토요일
+//			str="blue";
+//		}else if((dayOfWeek-1+i)%7==1){ //일요일
+//			str="red";
+//		}
+//	return str;
+//	}
 	
+
+//	public static String Color(List<CashDto> clist) {
+//
+//		String str = "red";
+//				
+//		if("수입".equals(((CashDto) clist).getMio())) {
+//			
+//			str+="<p>"+"blue"+"</p>";
+//		}
+//	return str;
+//	}
+
 	public static String Account(int i, List<AccountDto> alist) {
 		String d=isTwo(i+""); //1 --> "01" 2자리로 변환
 		String calList=""; //"<p>title</p><p>title</p><p>title</p>"
@@ -76,7 +99,7 @@ public class Util {
 				calList+="<p>"
 						+(+alist.get(j).getInout_type().length()>7?
 						alist.get(j).getInout_type().substring(0,7)+"..":
-						alist.get(j).getInout_type()+" : "+alist.get(j).getTran_amt())
+						alist.get(j).getInout_type()+" : "+alist.get(j).getTran_amt()+"원")
 
 						+"</p>";
 			}
@@ -84,12 +107,5 @@ public class Util {
 		return calList;
 	}
 	
-	
-
-}
-
-
-
-
-
+	}
 
