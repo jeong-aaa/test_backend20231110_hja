@@ -16,6 +16,14 @@
 			WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(mdate, '%Y%m') =#{yyyyMM}) cal
 		WHERE RN BETWEEN 1 AND 3
 	</select>
+	
+<!-- 	답니 -->
+<!--     해당 날짜의 거래내역 조회 -->
+<!--     <select id="getTransactionDataByDate" resultType="com.hk.fintech.dtos.CashDto"> -->
+<!--         SELECT * FROM FINTECH_CASH -->
+<!--         WHERE USEREMAIL = #{useremail} -->
+<!--         AND MDATE LIKE CONCAT(#{date}, '%') -->
+<!--     </select> -->
 
 <!-- 	<select id="calViewList" parameterType="Map" resultType="CalDto"> -->
 <!-- 		SELECT rn, seq, USEREMAIL, MDATE, CONTENT, MIO, MONEY -->

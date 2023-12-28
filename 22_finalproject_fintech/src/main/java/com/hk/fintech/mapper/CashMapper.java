@@ -32,7 +32,11 @@ public interface CashMapper {
 //	public List<CalDto> getAllList(String yyyyMM);
 //	
 
+
+//	public List<CashDto> getTransactionDataByDate(String yyyyMMdd);
+
 	public List<CashDto> Cash(Map<String, String>map);
+
 	
 
 }

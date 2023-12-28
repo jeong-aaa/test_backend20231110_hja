@@ -1,6 +1,7 @@
 package com.hk.fintech.apidto;
 
 public class UserMeAccountDto {
+	
 	private String fintech_use_num;
     private String account_alias;
     private String bank_code_std;

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 
 import com.hk.fintech.command.InsertCalCommand;
+import com.hk.fintech.dtos.AccountDto;
 import com.hk.fintech.dtos.CashDto;
+import com.hk.fintech.mapper.AccountMapper;
 import com.hk.fintech.mapper.CashMapper;
 import com.hk.fintech.utils.Util;
 
@@ -19,9 +21,12 @@ import jakarta.servlet.http.HttpServletRequest;
 @Service
 public class CashServiceImp implements ICashService{
 
-	@Autowired
-	private CashMapper cashMapper;
-	
+   @Autowired
+   private CashMapper cashMapper;
+   
+   @Autowired
+   private AccountMapper accountMapper;
+   
    public Map<String, Integer> makeCalendar(HttpServletRequest request){
       Map<String ,Integer> map=new HashMap<>();
       
@@ -89,7 +94,7 @@ public class CashServiceImp implements ICashService{
 //   @Override
 //   public List<CalDto> checkinfoBydept(String yyyyMMdd ){
 ////   public List<CalDto> calBoardList( String yyyyMMdd) {
-//	   System.out.println("service:"+yyyyMMdd);
+//      System.out.println("service:"+yyyyMMdd);
 //      return calMapper.checkinfoBydept(yyyyMMdd);
 //   }
 //
@@ -132,6 +137,18 @@ public class CashServiceImp implements ICashService{
 	      
       return cashMapper.Cash(map);
    }
+   
+   @Override
+   public List<AccountDto> Account(String email, String yyyyMM) {
+	   
+	   Map<String ,String> map=new HashMap<>();
+	   
+	   map.put("useremail",email);
+	   map.put("yyyyMM",yyyyMM);
+	  
+	      
+      return accountMapper.Account(map);
+   }
 //
 //   @Override
 //   public int calBoardCount(String yyyyMMdd) {
@@ -140,11 +157,11 @@ public class CashServiceImp implements ICashService{
 //   }
 //   
 //
-//	@Override
-//	public List<CalDto> getAllList(String yyyyMMdd) {
-//		// TODO Auto-generated method stub
-//		return calMapper.getAllList(yyyyMMdd);
-//		
-//	}
+//   @Override
+//   public List<CalDto> getAllList(String yyyyMMdd) {
+//      // TODO Auto-generated method stub
+//      return calMapper.getAllList(yyyyMMdd);
+//      
+//   }
 
 }

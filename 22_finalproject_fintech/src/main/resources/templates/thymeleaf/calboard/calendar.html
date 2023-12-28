@@ -13,8 +13,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/resources/css/styles.css" rel="stylesheet" />
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<title></title>
-	<style type="text/css">
+   <title></title>
+   <style type="text/css">
    .box{border-bottom: 1px solid gray; margin-bottom: 10px;}
    .box > .sub_menu{text-align: right;}
    .addAccount{text-align: right;}
@@ -252,6 +252,26 @@
       }
    }
    
+   //
+   $(function(){
+	   $(".d").click(function(){
+		   //각 day뜨도록
+		   var i=$(this).text();
+		   $(".day").text(i);
+		   
+	   });
+		   //각 day에 넣을 데이터 넣기
+		   
+		$(".dd").click(function(){ 
+		   var i=$(this).prev().text();  
+		   $("select[name=date] option").each(function(){
+		   		if($(this).val()==i){
+		   			$(this).attr("selected","selected");
+		   		}
+		   });
+		});
+   });
+   
 </script>
 </head>
 <body>
@@ -264,7 +284,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 850px; ">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
                 <li class="nav-item"><a class="nav-link active" th:href="@{/banking/main}" style="color: #3C4048; white-space: nowrap;" th:text="${session.ldto.username}+'님'"></a></li>
-            	<li class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;">Calender</a></li>
+               <li class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;">Calender</a></li>
                <li class="nav-item"><a class="nav-link" href="#!" style="color: #3C4048;" th:onclick="myInfo()">MyPage</a></li>
                <li class="nav-item"><a class="nav-link" th:href="@{/user/logout}" style="color: #3C4048;">Logout</a></li>
       </div>
@@ -277,17 +297,18 @@
 <div class="content">
 <section class="py-4">
 <div id="list">
-<!--	총 합		-->
+<!--   총 합      -->
    <div class="money">
       <span style="color: #1E90FF;">수입</span>
       <a th:text="${insum}+원"></a>
       <span style="color: #FF4646;">지출</span>
       <a th:text="${outsum}+원"></a>
 	  <span>합계</span>
+
       <span class="y" th:text="${calMap.year}+원"></span>
    </div>    
 
-<!--	캘린더	-->
+<!--   캘린더   -->
       <div class="cal">
          <div id="ctitle">
             <a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}"><br/>◁</a>
@@ -313,9 +334,10 @@
                      th:attr="data-target=${'#exampleModal'}">
 <!--                      th:href="@{/schedule/calBoardList(year=${calMap.year},month=${calMap.month},date=${i})}"> -->
                   </a>
-                  <a data-bs-toggle="modal" data-bs-target="#exampleModal2" th:attr="data-target=${'#exampleModal2'}">
+                  <a data-bs-toggle="modal" class="dd" data-bs-target="#exampleModal2" th:attr="data-target=${'#exampleModal2'}">
                      <img class="pen" th:src="@{/img/pen.png}" />
                   </a>
+                  [(${@util.Account(i,alist)})]
                   [(${@util.Cash(i,clist)})]
               
                </div>
@@ -333,16 +355,63 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">
+			<span class="y" th:text="${calMap.year}"></span>
+            <span>년</span>
+            <span class="m" th:text="${calMap.month}"></span>
+            <span>월</span>
+            <span class="day"></span>
+            <span>일</span>
+		</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+      
+      
+		<div id="container">
+			<h1>일정목록보기</h1>
+			<form action="@{/schedule/calMulDel}" method="post">
+				<table class="DataList">
+					<col width="200px"/>
+		            <col width="300px"/>
+		            <col width="200px"/>
+		            <tr>
+		               <th>거래구분</th>
+		               <th>금액</th>
+		               <th>내용</th>
+		            </tr>
+		            <th:block th:if="${#lists.isEmpty(list)}">
+		               <tr>
+		                  <td colspan="4" style="text-align: center">작성된 일정이 없습니다.</td>
+		               </tr>            
+		            </th:block>
+		            <th:block th:unless="${#lists.isEmpty(list)}">
+<!-- 						<tr th:each="dto:${list}"> -->
+<!-- 							<td th:text="${@util.toDates(dto.mdate)}"></td> -->
+<!-- 						<td> -->
+<!-- 							<a th:href="@{/schedule/calBoardDetail(seq=${dto.seq})}" th:text="${dto.deptDto.deptname}"></a>	 -->
+<!-- 						</td> -->
+<!-- 		                  	<td th:text="${#dates.format(dto.regdate, 'yyyy-MM-dd')}"></td> -->
+<!-- 		               	</tr> -->
+					</th:block>
+					<tr>
+<!-- 						<td colspan="4"> -->
+<!-- 							<button type="button" title="달력보기" class="btn btn-default" -->
+<!-- 			                        th:onclick="|location.href='@{/schedule/calendar(year=${session.ymdMap.year},month=${session.ymdMap.month})}'|" > -->
+<!-- 			                    <span class="glyphicon glyphicon-calendar" ></span> -->
+<!-- 			               </button> -->
+<!-- 						</td> -->
+					</tr>
+				</table>
+			</form>
+		</div>
+      
+        
 <!--         날짜 누르기 -> ajax에서 받아온 수입지출 data 받아서 여기에 뿌리기 -->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>
   </div>
@@ -387,14 +456,27 @@
                </select>월
                <select name="date" >
                   <th:block th:each="i:${#numbers.sequence(1,calMap.lastDay)}">
-<!--                     <th:block th:if="${calMap.date == i}">-->
-                        <option th:value="${i}" th:text="${i}" selected="selected" ></option>
+<!--                     <th:block th:if="${day}">-->
+                        <option th:value="${i}" th:text="${i}" ></option>
 <!--                     </th:block>-->
 <!--                     <th:block th:unless="${calMap.date == i}">-->
 <!--                        <option th:value="${i}" th:text="${i}"></option>-->
-                     </th:block>
-                  </th:block>
+<!--                     </th:block>-->
+<!--                  </th:block>-->
                </select>일
+              
+              
+              
+<!--              <span class="y" th:text="${calMap.year}"></span>-->
+<!--            <span>년</span>-->
+<!--            <span class="m" th:text="${calMap.month}"></span>-->
+<!--            <span>월</span>-->
+<!--            <span class="day"></span>-->
+<!--            <span>일</span>-->
+              
+              
+              
+              
               
             </td>
          </tr>
@@ -439,7 +521,6 @@
 
 </body>
 </html>
-
 
 
 

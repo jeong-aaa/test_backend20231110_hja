@@ -96,65 +96,45 @@ public class BankingController {
       return result;
    }
    
-   //Feign 적용할 경우
-   //나의정보조회
-//   @GetMapping("/myinfo_feign")
-//   public String myinfo_feign(HttpServletRequest request,
-//                            Model model) throws IOException, ParseException {
-//      System.out.println("나의정보조회[계좌목록]");
-//
-//      //사용자 일련 번호를 가져오기 위해 session객체 구함
-//      HttpSession session=request.getSession();
-//      UserDto ldto=(UserDto)session.getAttribute("ldto");
-//      int userSeqNo=ldto.getUserseqno();//사용자 일련번호
-//      String useraccesstoken=ldto.getUseraccesstoken();//접근할 토큰
-//      
-//      //json값들을 userMeDto에 저장
-////      UserMeDto userMeDto=openBankingFeign
-////            .requestUserMe("Bearer "+useraccesstoken, userSeqNo+"");
-////      //자바객체에 결과값을 저장했으므로 Model에 담아서 JSP로 전달할 수 있다.
-////      model.addAttribute("userMeDto", userMeDto);
-////      System.out.println("계좌목록수:"+userMeDto.getRes_list().size());
-////      return "main";
-//   }
+	@ResponseBody
+	@GetMapping("/balance")
+	public JSONObject balance(String fintech_use_num,HttpServletRequest request) throws IOException, ParseException {
+		System.out.println("잔액조회하기");
+		HttpURLConnection conn=null;
+		JSONObject result=null;
+		
+		HttpSession session=request.getSession();
+		UserDto ldto=(UserDto)session.getAttribute("ldto");
+		
+		URL url=new URL("https://testapi.openbanking.or.kr/v2.0/account/balance/fin_num?"
+				      + "bank_tran_id=M202201886U"+createNum()
+				      + "&fintech_use_num="+fintech_use_num
+				      + "&tran_dtime="+getDateTime());
+		
+		conn = (HttpURLConnection)url.openConnection();
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Content-Type", "application/json");
+		conn.setRequestProperty("Authorization", "Bearer "+ldto.getUseraccesstoken());
+		conn.setDoOutput(true);
+		
+		// java에서 사용할 수 있도록 읽어들이는 코드
+		BufferedReader br=new BufferedReader(
+					new InputStreamReader(conn.getInputStream(),"utf-8")
+				);
+		StringBuilder response=new StringBuilder();
+		String responseLine=null;
+		
+		while((responseLine=br.readLine())!=null) {
+			response.append(responseLine.trim());
+		}
+		
+		result=(JSONObject)new JSONParser().parse(response.toString());
+		System.out.println("잔액:"+result.get("balance_amt"));
+		
+		return result;
+	}
    
-   @ResponseBody
-   @GetMapping("/balance")
-   public JSONObject balance(String fintech_use_num,HttpServletRequest request) throws IOException, ParseException {
-      System.out.println("잔액조회하기");
-      HttpURLConnection conn=null;
-      JSONObject result=null;
-      
-      HttpSession session=request.getSession();
-      UserDto ldto=(UserDto)session.getAttribute("ldto");
-      
-      URL url=new URL("https://testapi.openbanking.or.kr/v2.0/account/balance/fin_num?"
-                  + "bank_tran_id=M202201886U"+createNum()
-                  + "&fintech_use_num="+fintech_use_num
-                  + "&tran_dtime="+getDateTime());
-      
-      conn = (HttpURLConnection)url.openConnection();
-      conn.setRequestMethod("GET");
-      conn.setRequestProperty("Content-Type", "application/json");
-      conn.setRequestProperty("Authorization", "Bearer "+ldto.getUseraccesstoken());
-      conn.setDoOutput(true);
-      
-      // java에서 사용할 수 있도록 읽어들이는 코드
-      BufferedReader br=new BufferedReader(
-               new InputStreamReader(conn.getInputStream(),"utf-8")
-            );
-      StringBuilder response=new StringBuilder();
-      String responseLine=null;
-      
-      while((responseLine=br.readLine())!=null) {
-         response.append(responseLine.trim());
-      }
-      
-      result=(JSONObject)new JSONParser().parse(response.toString());
-      System.out.println("잔액:"+result.get("balance_amt"));
-      
-      return result;
-   }
+   
    //거래내역 조회
    @GetMapping("/transactionList")
    @ResponseBody
@@ -206,71 +186,66 @@ public class BankingController {
 
    //거래내역 저장
    private void saveTransaction(String useremail, JSONObject result) {
-	   JSONArray resList = (JSONArray) result.get("res_list");
-	   System.out.println("resList.size():"+resList.size());
-	   for (Object obj : resList) {
-	      JSONObject res = (JSONObject) obj;
-	      AccountDto accountDto = new AccountDto();
-	      accountDto.setUseremail(useremail);
-	      accountDto.setTran_date((String) res.get("tran_date"));
-	      accountDto.setInout_type((String) res.get("inout_type"));
-	      accountDto.setPrint_content((String) res.get("print_content"));
-	      accountDto.setTran_amt((String) res.get("tran_amt"));
-	      System.out.println(accountDto);
-	      // 거래내역을 저장하는 서비스 메서드 호출
-	      accountService.saveTransactionData(accountDto);
-	   }
+	    JSONArray resList = (JSONArray) result.get("res_list");
+	    System.out.println("resList.size():" + resList.size());
+
+	    // 입금 합계를 저장할 변수
+	    int incomeSum = 0;
+	    // 출금 합계를 저장할 변수
+	    int expenseSum = 0;
+
+	    for (Object obj : resList) {
+	        JSONObject res = (JSONObject) obj;
+	        AccountDto accountDto = new AccountDto();
+	        accountDto.setUseremail(useremail);
+	        accountDto.setTran_date((String) res.get("tran_date"));
+	        accountDto.setInout_type((String) res.get("inout_type"));
+	        accountDto.setPrint_content((String) res.get("print_content"));
+	        accountDto.setTran_amt((String) res.get("tran_amt"));
+	        System.out.println(accountDto);
+
+	        // 거래내역을 저장하는 서비스 메서드 호출
+	        accountService.saveTransactionData(accountDto);
+
+	        // 입금인 경우 합산
+	        if ("입금".equals(accountDto.getInout_type())) {
+	            int amount = Integer.parseInt(accountDto.getTran_amt().replaceAll("[^0-9]", ""));
+	            incomeSum += amount;
+	        }
+	        // 출금인 경우 합산
+	        else if ("출금".equals(accountDto.getInout_type())) {
+	            int amount = Integer.parseInt(accountDto.getTran_amt().replaceAll("[^0-9]", ""));
+	            expenseSum += amount;
+	        }
+	    }
+
+	    // 수익을 출력
+	    System.out.println("수익 합계: " + incomeSum);
+	    // 지출을 출력
+	    System.out.println("지출 합계: " + expenseSum);
+	    // 총 지출 - 총 수입을 출력
+	    System.out.println("총 지출 - 총 수입: " + (expenseSum - incomeSum));
 	}
 
+
+//   private void saveTransaction(String useremail, JSONObject result) {
+//	   JSONArray resList = (JSONArray) result.get("res_list");
+//	   System.out.println("resList.size():"+resList.size());
+//	   for (Object obj : resList) {
+//	      JSONObject res = (JSONObject) obj;
+//	      AccountDto accountDto = new AccountDto();
+//	      accountDto.setUseremail(useremail);
+//	      accountDto.setTran_date((String) res.get("tran_date"));
+//	      accountDto.setInout_type((String) res.get("inout_type"));
+//	      accountDto.setPrint_content((String) res.get("print_content"));
+//	      accountDto.setTran_amt((String) res.get("tran_amt"));
+//	      System.out.println(accountDto);
+//	      // 거래내역을 저장하는 서비스 메서드 호출
+//	      accountService.saveTransactionData(accountDto);
+//	   }
+//	}
+
    
-//   //거래내역 조회
-//   @GetMapping("/transactionList")
-//   @ResponseBody
-//   public JSONObject transactionList(String fintech_use_num
-//                                  ,HttpServletRequest request
-//                                  ,Model model) throws IOException, ParseException {
-//      System.out.println("거래내역 조회하기");
-//      HttpURLConnection conn=null;
-//      JSONObject result=null;
-//      
-//      HttpSession session=request.getSession();
-//      UserDto ldto=(UserDto)session.getAttribute("ldto");
-//      
-//      URL url=new URL("https://testapi.openbanking.or.kr/v2.0/account/transaction_list/fin_num?"
-//                  + "bank_tran_id=M202201886U"+createNum()
-//                  + "&fintech_use_num="+fintech_use_num
-//                  + "&inquiry_type=A"
-//                  + "&inquiry_base=D"
-//                  + "&from_date=20190101"
-//                  + "&to_date=20190131"
-//                  + "&sort_order=D"
-//                  + "&tran_dtime="+getDateTime());
-//      
-//      conn = (HttpURLConnection)url.openConnection();
-//      conn.setRequestMethod("GET");
-//      conn.setRequestProperty("Content-Type", "application/json");
-//      conn.setRequestProperty("Authorization", "Bearer "+ldto.getUseraccesstoken());
-//      conn.setDoOutput(true);
-//      
-//      // java에서 사용할 수 있도록 읽어들이는 코드
-//      BufferedReader br=new BufferedReader(
-//               new InputStreamReader(conn.getInputStream(),"utf-8")
-//            );
-//      StringBuilder response=new StringBuilder();
-//      String responseLine=null;
-//      
-//      while((responseLine=br.readLine())!=null) {
-//         response.append(responseLine.trim());
-//      }
-//      
-//      //읽은 값이 json 형태로 된 문자열 --> json객체로 변환하자
-//      result=(JSONObject)new JSONParser().parse(response.toString());
-//      AccountDto accountDto = new AccountDto();
-//      accountDto.setUseremail(ldto.getUseremail());
-//      System.out.println("거래내역:"+result.get("res_list"));
-//            
-//      return result;
-//   }
 //   
    //계좌등록
    @ResponseBody
@@ -285,48 +260,6 @@ public class BankingController {
       return str;
    }
    
-   //계좌해지
-//   @ResponseBody
-//   @PostMapping("/deleteAccount")
-//   public ResponseEntity<String> deleteAccount(@RequestParam String fintech_use_num, HttpServletRequest request) {
-//       try {
-//           System.out.println("계좌 해지하기");
-//
-//           // 세션에서 사용자 정보 가져오기
-//           HttpSession session = request.getSession();
-//           UserDto ldto = (UserDto) session.getAttribute("ldto");
-//           String userAccessToken = ldto.getUseraccesstoken();
-//
-//           // Open Banking API 호출을 통한 계좌 해지 로직 수행
-//           URL url = new URL("https://testapi.openbanking.or.kr/v2.0/account/cancel"
-////                   + "fintech_use_num=" + fintech_use_num
-//        		   + "bank_tran_id=M202201886U"+createNum());
-////                   + "&tran_dtime=" + getDateTime());
-//
-//           HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//           conn.setRequestMethod("POST");
-//           conn.setRequestProperty("Content-Type", "application/json");
-//           conn.setRequestProperty("Authorization", "Bearer " + userAccessToken);
-//           conn.setDoOutput(true);
-//
-//           int responseCode = conn.getResponseCode();
-//           if (responseCode == 200) {
-//               // 성공적으로 계좌가 해지되었을 때
-//               return new ResponseEntity<>("계좌가 성공적으로 해지되었습니다.", HttpStatus.OK);
-//           } else {
-//               //계좌 해지에 실패한 경우
-//               return new ResponseEntity<>("계좌 해지 중 오류 발생 (HTTP 코드: " + responseCode + ")", HttpStatus.INTERNAL_SERVER_ERROR);
-//           }
-//
-//       } catch (Exception e) {
-//           // 예외 처리, 에러 로깅을 수행하고 오류 응답을 반환합니다.
-//           return new ResponseEntity<>("계좌 해지 중 오류 발생: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-//       }
-//       
-//   
-//   }
-
-   
    //이용기관 부여번호 9자리를 생성하는 메서드
    public String createNum() {
       String createNum="";
@@ -336,6 +269,7 @@ public class BankingController {
       System.out.println("이용기관부여번호9자리생성:"+createNum);
       return createNum;
    } 
+   
    //현재시간 구하는 메서드
    public String getDateTime() {
       LocalDateTime now=LocalDateTime.now(); //현재시간 구하기
