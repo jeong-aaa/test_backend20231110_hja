@@ -14,6 +14,14 @@
 		FROM FINTECH_CASH
 		WHERE USEREMAIL = #{useremail}
 	</select>
+	
+<!-- 	답니 -->
+<!--     해당 날짜의 거래내역 조회 -->
+<!--     <select id="getTransactionDataByDate" resultType="com.hk.fintech.dtos.CashDto"> -->
+<!--         SELECT * FROM FINTECH_CASH -->
+<!--         WHERE USEREMAIL = #{useremail} -->
+<!--         AND MDATE LIKE CONCAT(#{date}, '%') -->
+<!--     </select> -->
 
 	
 <!-- 	<update id="delUser" parameterType="String"> -->

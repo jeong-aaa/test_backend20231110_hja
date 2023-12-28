@@ -66,40 +66,39 @@ public class CalController {
    }
    
 //   @GetMapping(value = "/addCalBoardForm")
-//	public String addCalBoardForm(Model model, InsertCalCommand insertCalCommand) {
-//		logger.info("일정추가폼이동");
-//		System.out.println(insertCalCommand);
-//		
-////		HttpSession session=request.getSession();
-////	    UserDto ldto=(UserDto)session.getAttribute("ldto");
-////		model.addAttribute("ldto", new UserDto());
-//		
-//		model.addAttribute("insertCalCommand", insertCalCommand);
-//		return "thymeleaf/calboard/addCalBoardForm";
-//	}
+//   public String addCalBoardForm(Model model, InsertCalCommand insertCalCommand) {
+//      logger.info("일정추가폼이동");
+//      System.out.println(insertCalCommand);
+//      
+////      HttpSession session=request.getSession();
+////       UserDto ldto=(UserDto)session.getAttribute("ldto");
+////      model.addAttribute("ldto", new UserDto());
+//      
+//      model.addAttribute("insertCalCommand", insertCalCommand);
+//      return "thymeleaf/calboard/addCalBoardForm";
+//   }
 // 
   
   @PostMapping(value = "/addCalBoard")
-	public String addCalBoard(@Validated InsertCalCommand insertCalCommand,
-							  BindingResult result, Model model) throws Exception {
-		logger.info("일정추가하기");
-	      
-	      
-		System.out.println(insertCalCommand);
-		if(result.hasErrors()) {
-			System.out.println("글을 모두 입력해야 함");
-			return "thymeleaf/calboard/calendar";
-		}
-		
-		calService.insertCalBoard(insertCalCommand);
-		
-		return "redirect:/schedule/calendar?year="+insertCalCommand.getYear()
-										+"&month="+insertCalCommand.getMonth();
-	}
+   public String addCalBoard(@Validated InsertCalCommand insertCalCommand,
+                       BindingResult result, Model model) throws Exception {
+      logger.info("일정추가하기");
+         
+         
+      System.out.println(insertCalCommand);
+      if(result.hasErrors()) {
+         System.out.println("글을 모두 입력해야 함");
+         return "thymeleaf/calboard/calendar";
+      }
+      
+      calService.insertCalBoard(insertCalCommand);
+      
+      return "redirect:/schedule/calendar?year="+insertCalCommand.getYear()
+                              +"&month="+insertCalCommand.getMonth();
+   }
   
 
 }
-
 
 
 
