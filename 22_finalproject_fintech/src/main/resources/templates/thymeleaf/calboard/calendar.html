@@ -27,6 +27,9 @@
    width:1020px;
    margin: 0 auto;
    text-align: center;
+   font-size: 35px;
+   font-weight:bold;
+   color: #3C4048;
    }
    .cal{
    width: 1200px;
@@ -76,8 +79,9 @@
        font-weight: bold;
     }
     #ctitle{
-    font-size: 15px;
+    font-size: 20px;
     text-align:center;
+    font-weight: bold;
     }
     
     /* Style The Dropdown Button */
@@ -187,7 +191,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 850px; ">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
                 <li class="nav-item"><a class="nav-link active" th:href="@{/banking/main}" style="color: #3C4048; white-space: nowrap;" th:text="${session.ldto.username}+'님'"></a></li>
-            	<li class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;;">Calender</a></li>
+            	<li class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;">Calender</a></li>
                <li class="nav-item"><a class="nav-link" href="#!" style="color: #3C4048;" th:onclick="myInfo()">MyPage</a></li>
                <li class="nav-item"><a class="nav-link" th:href="@{/user/logout}" style="color: #3C4048;">Logout</a></li>
       </div>
@@ -200,19 +204,20 @@
 <div class="content">
 <section class="py-5">
 <div id="list">
+<!--	총 합		-->
    <div class="money">
-      <span>수입</span>
-      <a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}">원</a>
-      <span>지출</span>
-      <a th:href="@{/schedule/calendar(year=${calMap.year},month=${calMap.month-1})}">원</a>
-      <span>총 합</span>
-      <span class="y" th:text="${calMap.year}">원</span>
-   </div>
+      <span style="color: #4169e1;">수입</span>
+      <a th:text="${calMap.year}+원"></a>
+      <span style="color: #dc143c;">지출</span>
+      <a th:text="${calMap.year}+원"></a>
+	  <span>합계</span>
+      <span class="y" th:text="${calMap.year}+원"></span>
+   </div>    
 
-<!--      <h1>예약하기</h1>-->
+<!--	캘린더	-->
       <div class="cal">
          <div id="ctitle">
-            <a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}">◁</a>
+            <a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}"><br/>◁</a>
             <a th:href="@{/schedule/calendar(year=${calMap.year},month=${calMap.month-1})}">◀</a>
             <span class="y" th:text="${calMap.year}"></span>
             <span>년</span>
