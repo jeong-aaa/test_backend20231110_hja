@@ -9,11 +9,23 @@
 	</insert>
 	
 	
-	<select id ="Cash" parameterType = "CashDto" resultType="CashDto">
-		SELECT MDATE, CONTENT, MIO, MONEY
-		FROM FINTECH_CASH
-		WHERE USEREMAIL = #{useremail}
+	<select id ="Cash" parameterType = "Map" resultType="CashDto">
+		SELECT RN, SEQ, USEREMAIL, MDATE, CONTENT, MIO, MONEY
+		FROM (SELECT ROW_NUMBER() OVER(PARTITION BY mdate ORDER BY mdate) RN, SEQ,USEREMAIL, MDATE, CONTENT, MIO, MONEY
+			FROM FINTECH_CASH
+			WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(mdate, '%Y%m') =#{yyyyMM}) cal
+		WHERE RN BETWEEN 1 AND 2
 	</select>
+
+<!-- 	<select id="calViewList" parameterType="Map" resultType="CalDto"> -->
+<!-- 		SELECT rn, seq, USEREMAIL, MDATE, CONTENT, MIO, MONEY -->
+<!-- 		FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, seq,USEREMAIL, MDATE, CONTENT, MIO, MONEY -->
+<!-- 			FROM fintech_cash -->
+<!-- 			WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(mdate, '%Y%m') =#{yyyyMM}) cal -->
+<!-- 		WHERE rn BETWEEN 1 AND 3 -->
+<!-- 	</select> -->
+	
+	
 
 	
 <!-- 	<update id="delUser" parameterType="String"> -->
