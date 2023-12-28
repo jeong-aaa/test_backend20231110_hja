@@ -14,5 +14,11 @@
     <insert id="insertTransactionData" parameterType="AccountDto">
         INSERT INTO FINTECH_ACCOUNT VALUES (#{useremail},#{tran_date},#{inout_type},#{tran_amt},#{print_content})
     </insert>
+    
+    <select id ="TransactionDataList" parameterType = "AccountDto" resultType="AccountDto">
+		SELECT USEREMAIL, TRAN_DATE, INOUT_TYPE, TRAN_AMT, PRINT_CONTENT
+		FROM FINTECH_ACCOUNT
+		WHERE USEREMAIL = #{useremail}
+	</select>
 
 </mapper>
