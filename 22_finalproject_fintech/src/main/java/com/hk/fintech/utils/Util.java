@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-
+import com.hk.fintech.dtos.AccountDto;
 import com.hk.fintech.dtos.CashDto;
 
 
@@ -60,6 +60,23 @@ public class Util {
 						+(+clist.get(j).getMio().length()>7?
 						clist.get(j).getMio().substring(0,7)+"..":
 						clist.get(j).getMio()+" : "+clist.get(j).getMoney())
+
+						+"</p>";
+			}
+		}
+		return calList;
+	}
+	
+	public static String Account(int i, List<AccountDto> alist) {
+		String d=isTwo(i+""); //1 --> "01" 2자리로 변환
+		String calList=""; //"<p>title</p><p>title</p><p>title</p>"
+		for (int j = 0; j < alist.size(); j++) {
+			//한달 일정 목록중에 해당일(i)값과 일치하는지 여부 판단
+			if(alist.get(j).getTran_date().substring(8).equals(d)) {
+				calList+="<p>"
+						+(+alist.get(j).getInout_type().length()>7?
+						alist.get(j).getInout_type().substring(0,7)+"..":
+						alist.get(j).getInout_type()+" : "+alist.get(j).getTran_amt())
 
 						+"</p>";
 			}

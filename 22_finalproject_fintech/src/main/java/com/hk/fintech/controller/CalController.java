@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.fintech.command.InsertCalCommand;
+import com.hk.fintech.dtos.AccountDto;
 import com.hk.fintech.dtos.CashDto;
 import com.hk.fintech.dtos.UserDto;
 import com.hk.fintech.service.ICashService;
@@ -37,6 +38,7 @@ public class CalController {
    
    @Autowired
    private ICashService calService;
+   
    
    @GetMapping(value="/calendar")
    public String calendar(Model model, HttpServletRequest request) {
@@ -65,7 +67,12 @@ public class CalController {
        String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
        List<CashDto>clist=calService.Cash(email, yyyyMM);
        model.addAttribute("clist", clist);
+       
+       List<AccountDto>alist=calService.Account(email, yyyyMM);
+       model.addAttribute("alist", alist);
       
+//       System.out.println(alist.get(0));
+       
       //달력만들기위한 값 구하기
       Map<String, Integer>map=calService.makeCalendar(request);
       model.addAttribute("calMap", map);

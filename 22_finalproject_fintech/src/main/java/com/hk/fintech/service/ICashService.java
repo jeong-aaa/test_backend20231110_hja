@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.hk.fintech.command.InsertCalCommand;
+import com.hk.fintech.dtos.AccountDto;
 import com.hk.fintech.dtos.CashDto;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,6 +40,8 @@ public interface ICashService {
 //	public List<CalDto> getAllList(String yyyyMMdd);
 
 	public List<CashDto> Cash(String email, String yyyyMM);
+	
+	public List<AccountDto> Account(String email, String yyyyMM);
 
 }
 

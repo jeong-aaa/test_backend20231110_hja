@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 
 import com.hk.fintech.command.InsertCalCommand;
+import com.hk.fintech.dtos.AccountDto;
 import com.hk.fintech.dtos.CashDto;
+import com.hk.fintech.mapper.AccountMapper;
 import com.hk.fintech.mapper.CashMapper;
 import com.hk.fintech.utils.Util;
 
@@ -21,6 +23,9 @@ public class CashServiceImp implements ICashService{
 
    @Autowired
    private CashMapper cashMapper;
+   
+   @Autowired
+   private AccountMapper accountMapper;
    
    public Map<String, Integer> makeCalendar(HttpServletRequest request){
       Map<String ,Integer> map=new HashMap<>();
@@ -131,6 +136,18 @@ public class CashServiceImp implements ICashService{
 	  
 	      
       return cashMapper.Cash(map);
+   }
+   
+   @Override
+   public List<AccountDto> Account(String email, String yyyyMM) {
+	   
+	   Map<String ,String> map=new HashMap<>();
+	   
+	   map.put("useremail",email);
+	   map.put("yyyyMM",yyyyMM);
+	  
+	      
+      return accountMapper.Account(map);
    }
 //
 //   @Override
