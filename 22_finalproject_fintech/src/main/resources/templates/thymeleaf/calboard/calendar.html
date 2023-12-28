@@ -250,6 +250,17 @@
       }
    }
    
+   //
+   $(function(){
+	   $(".d").click(function(){
+		   //각 day뜨도록
+		   var i=$(this).text();
+		   $(".day").text(i);
+		   
+		   //
+	   });
+   });
+   
 </script>
 </head>
 <body>
@@ -330,16 +341,63 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">
+			<span class="y" th:text="${calMap.year}"></span>
+            <span>년</span>
+            <span class="m" th:text="${calMap.month}"></span>
+            <span>월</span>
+            <span class="day"></span>
+            <span>일</span>
+		</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+      
+      
+		<div id="container">
+			<h1>일정목록보기</h1>
+			<form action="@{/schedule/calMulDel}" method="post">
+				<table class="DataList">
+					<col width="200px"/>
+		            <col width="300px"/>
+		            <col width="200px"/>
+		            <tr>
+		               <th>거래구분</th>
+		               <th>금액</th>
+		               <th>내용</th>
+		            </tr>
+		            <th:block th:if="${#lists.isEmpty(list)}">
+		               <tr>
+		                  <td colspan="4" style="text-align: center">작성된 일정이 없습니다.</td>
+		               </tr>            
+		            </th:block>
+		            <th:block th:unless="${#lists.isEmpty(list)}">
+<!-- 						<tr th:each="dto:${list}"> -->
+<!-- 							<td th:text="${@util.toDates(dto.mdate)}"></td> -->
+<!-- 						<td> -->
+<!-- 							<a th:href="@{/schedule/calBoardDetail(seq=${dto.seq})}" th:text="${dto.deptDto.deptname}"></a>	 -->
+<!-- 						</td> -->
+<!-- 		                  	<td th:text="${#dates.format(dto.regdate, 'yyyy-MM-dd')}"></td> -->
+<!-- 		               	</tr> -->
+					</th:block>
+					<tr>
+<!-- 						<td colspan="4"> -->
+<!-- 							<button type="button" title="달력보기" class="btn btn-default" -->
+<!-- 			                        th:onclick="|location.href='@{/schedule/calendar(year=${session.ymdMap.year},month=${session.ymdMap.month})}'|" > -->
+<!-- 			                    <span class="glyphicon glyphicon-calendar" ></span> -->
+<!-- 			               </button> -->
+<!-- 						</td> -->
+					</tr>
+				</table>
+			</form>
+		</div>
+      
+        
 <!--         날짜 누르기 -> ajax에서 받아온 수입지출 data 받아서 여기에 뿌리기 -->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>
   </div>
