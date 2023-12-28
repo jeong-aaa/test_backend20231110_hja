@@ -44,15 +44,15 @@ public class CalController {
       
       //달력에서 일일별 일정목록 구하기
 //      String id = "kbj"; // 나중에 세션에서 가져온 아이디 사용  
-       String email = "112@123";
+//       String email = "112@123";
        String year = request.getParameter("year");
        String month = request.getParameter("month"); 
       
-//       HttpSession session=request.getSession();
-//	   UserDto ldto=(UserDto)session.getAttribute("ldto");
-//	   model.addAttribute("ldto", new UserDto());
+       HttpSession session=request.getSession();
+	   UserDto ldto=(UserDto)session.getAttribute("ldto");
+	   model.addAttribute("ldto", new UserDto());
        
-//	   String email = ldto.getUseremail();
+	   String email = ldto.getUseremail();
 	   
          
        if(year==null||month==null) {
