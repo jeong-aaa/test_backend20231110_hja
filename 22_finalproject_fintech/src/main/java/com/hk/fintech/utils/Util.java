@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
 
+import com.hk.fintech.dtos.CashDto;
+
+
 
 @Component
 public class Util {
@@ -47,22 +50,24 @@ public class Util {
 	return str;
 	}
 //	//일일별 일정 목록 구하는 기능
-//	public static String getCalViewList(int i, List<CalDto> clist) {
-//		String d=isTwo(i+""); //1 --> "01" 2자리로 변환
-//		String calList=""; //"<p>title</p><p>title</p><p>title</p>"
-//		for (int j = 0; j < clist.size(); j++) {
-//			//한달 일정 목록중에 해당일(i)값과 일치하는지 여부 판단
-//			if(clist.get(j).getMdate().substring(6,8).equals(d)) {
-//				calList+="<p>"
-//						+(+clist.get(j).getDeptDto().getDeptname().length()>7?
-//						clist.get(j).getDeptDto().getDeptname().substring(0,7)+"..":
-//						clist.get(j).getDeptDto().getDeptname())
-////						+(clist.get(j).getDeptno())
-//						+"</p>";
-//			}
-//		}
-//		return calList;
-//	}
+	public static String Cash(int i, List<CashDto> clist) {
+		String d=isTwo(i+""); //1 --> "01" 2자리로 변환
+		String calList=""; //"<p>title</p><p>title</p><p>title</p>"
+		for (int j = 0; j < clist.size(); j++) {
+			//한달 일정 목록중에 해당일(i)값과 일치하는지 여부 판단
+			if(clist.get(j).getMdate().substring(8).equals(d)) {
+				calList+="<p>"
+						+(+clist.get(j).getMio().length()>7?
+						clist.get(j).getMio().substring(0,7)+"..":
+						clist.get(j).getMio()+" : "+clist.get(j).getMoney())
+
+						+"</p>";
+			}
+		}
+		return calList;
+	}
+	
+	
 
 }
 

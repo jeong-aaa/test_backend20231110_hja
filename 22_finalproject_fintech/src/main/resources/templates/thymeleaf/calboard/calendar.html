@@ -325,13 +325,14 @@
                   <a data-bs-toggle="modal" data-bs-target="#exampleModal2" th:attr="data-target=${'#exampleModal2'}">
                      <img class="pen" th:src="@{/img/pen.png}" />
                   </a>
+                  [(${@util.Cash(i,clist)})]
               
                </div>
             </th:block>
          </div>
       </div>
    </div>
-   </section>
+ 
    </div>  
    
 <!--    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> -->

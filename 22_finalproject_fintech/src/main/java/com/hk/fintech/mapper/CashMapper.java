@@ -31,6 +31,8 @@ public interface CashMapper {
 //	
 //	public List<CalDto> getAllList(String yyyyMM);
 //	
+
+	public List<CashDto> Cash(Map<String, String>map);
 	
 
 }
