@@ -356,7 +356,7 @@
       
       
 		<div id="container">
-			<h1>일정목록보기</h1>
+			<h3>일정목록보기</h3>
 			<form action="@{/schedule/calMulDel}" method="post">
 				<table class="DataList">
 					<col width="200px"/>
@@ -374,21 +374,13 @@
 		            </th:block>
 		            <th:block th:unless="${#lists.isEmpty(list)}">
 <!-- 						<tr th:each="dto:${list}"> -->
-<!-- 							<td th:text="${@util.toDates(dto.mdate)}"></td> -->
+<!-- 							<td class=""></td> -->
 <!-- 						<td> -->
 <!-- 							<a th:href="@{/schedule/calBoardDetail(seq=${dto.seq})}" th:text="${dto.deptDto.deptname}"></a>	 -->
 <!-- 						</td> -->
 <!-- 		                  	<td th:text="${#dates.format(dto.regdate, 'yyyy-MM-dd')}"></td> -->
 <!-- 		               	</tr> -->
 					</th:block>
-					<tr>
-<!-- 						<td colspan="4"> -->
-<!-- 							<button type="button" title="달력보기" class="btn btn-default" -->
-<!-- 			                        th:onclick="|location.href='@{/schedule/calendar(year=${session.ymdMap.year},month=${session.ymdMap.month})}'|" > -->
-<!-- 			                    <span class="glyphicon glyphicon-calendar" ></span> -->
-<!-- 			               </button> -->
-<!-- 						</td> -->
-					</tr>
 				</table>
 			</form>
 		</div>

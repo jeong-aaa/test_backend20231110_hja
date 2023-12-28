@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.fintech.command.InsertCalCommand;
+import com.hk.fintech.dtos.AccountDto;
 import com.hk.fintech.dtos.CashDto;
 import com.hk.fintech.dtos.UserDto;
 import com.hk.fintech.service.ICashService;
@@ -106,7 +107,39 @@ public class CalController {
 										+"&month="+insertCalCommand.getMonth();
 	}
   
-
+  
+  	@GetMapping(value = "/TransactionDataList")
+	public String TransactionDataList(@RequestParam Map<String, String>map
+							, HttpServletRequest request
+							, Model model) {
+		logger.info("일정목록보기");
+//		HttpSession session=request.getSession();
+//		String id=session.getAttribute("id");
+//		String id="kbj";//임시로 id 저장
+		
+		//command 유효값 처리를 위해 기본 생성해서 보내줌
+//		model.addAttribute("deleteCalCommand", new DeleteCalCommand());
+		
+		//일정목록을 조회할때마다 year, month, date를 세션에 저장
+		HttpSession session=request.getSession();
+		
+		if(map.get("year")==null) {
+			//조회한 상태이기때문에 ymd가 저장되어 있어서 값을 가져옴
+			map=(Map<String, String>)session.getAttribute("ymdMap");
+		}else {
+			//일정을 처음 조회했을때 ymd를 저장함
+			session.setAttribute("ymdMap", map);
+		}
+		
+		//달력에서 전달받은 파라미터 year, month, date를 8자리로 만든다.
+		String yyyyMMdd=map.get("year")
+				       +Util.isTwo(map.get("month"))
+				       +Util.isTwo(map.get("date"));
+		List<AccountDto> list= calService.TransactionDataList(email, yyyyMMdd);
+		model.addAttribute("list", list);
+		
+		return "thymeleaf/calboard/calBoardList";
+	}
 }
 
 
