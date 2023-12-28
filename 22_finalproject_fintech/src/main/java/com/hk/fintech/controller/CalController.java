@@ -44,15 +44,15 @@ public class CalController {
       
       //달력에서 일일별 일정목록 구하기
 //      String id = "kbj"; // 나중에 세션에서 가져온 아이디 사용  
-       String email = "112@123";
+//       String email = "112@123";
        String year = request.getParameter("year");
        String month = request.getParameter("month"); 
       
-//       HttpSession session=request.getSession();
-//	   UserDto ldto=(UserDto)session.getAttribute("ldto");
-//	   model.addAttribute("ldto", new UserDto());
+       HttpSession session=request.getSession();
+	   UserDto ldto=(UserDto)session.getAttribute("ldto");
+	   model.addAttribute("ldto", new UserDto());
        
-//	   String email = ldto.getUseremail();
+	   String email = ldto.getUseremail();
 	   
          
        if(year==null||month==null) {
@@ -65,6 +65,17 @@ public class CalController {
        String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
        List<CashDto>clist=calService.Cash(email, yyyyMM);
        model.addAttribute("clist", clist);
+       int insum = 0;
+       int outsum=0;
+       for (CashDto cashDto : clist) {
+    	   if (cashDto.getMio().equals("수입"))
+    		   insum+=cashDto.getMoney();
+    	   else {
+    		   outsum+=cashDto.getMoney();
+    	   }
+	}
+       model.addAttribute("insum", insum+"");
+       model.addAttribute("outsum", outsum+"");
       
       //달력만들기위한 값 구하기
       Map<String, Integer>map=calService.makeCalendar(request);
