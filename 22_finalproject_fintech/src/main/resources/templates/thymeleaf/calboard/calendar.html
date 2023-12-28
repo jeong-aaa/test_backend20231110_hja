@@ -13,8 +13,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/resources/css/styles.css" rel="stylesheet" />
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<title></title>
-<style type="text/css">
+	<title></title>
+	<style type="text/css">
    .box{border-bottom: 1px solid gray; margin-bottom: 10px;}
    .box > .sub_menu{text-align: right;}
    .addAccount{text-align: right;}
@@ -25,11 +25,13 @@
    }
    .money{
    width:1020px;
+   height: 30px;
    margin: 0 auto;
    text-align: center;
-   font-size: 35px;
+   font-size: 25px;
    font-weight:bold;
    color: #3C4048;
+
    }
    .cal{
    width: 1200px;
@@ -179,6 +181,75 @@
          } //success
       });
    }
+   
+  //잔액조회하기
+   function balance(fintech_use_num,btnEle){
+      $.ajax({
+         url:"/banking/balance",
+         method:"get",
+         data:{"fintech_use_num":fintech_use_num},
+         dataType:"json",
+         success:function(data){
+            console.log(data);
+            var box=$(btnEle).parents(".box").eq(0);
+            box.find(".balance_amt").html(
+                               "<p>잔액:"+data.balance_amt+"</p>"
+                              +"<p><button type='button' class='btn btn-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
+                              +"<div class='transaction_list'></div>"  //거래내역이 출력될 div 
+                              );          
+         },
+         error:function(){
+            alert("통신실패");
+         }
+      });
+   }
+   
+   //거래내역조회
+   function transactionList(fintech_use_num,btnEle){
+      $.ajax({
+         url:"/banking/transactionList",
+         method:"get",
+         data:{"fintech_use_num":fintech_use_num},
+         dataType:"json",
+         success:function(data){ //data: 응답결과을 받을 변수
+            console.log(data.res_list);
+            var list="<ul>";
+            // data.res_list  -->  배열
+            for (var i = 0; i < data.res_list.length; i++) {
+               var res=data.res_list[i];// json객체를 가져온다 {key:value,...}
+               list+="<li>"+res.tran_date+" "
+                           +res.inout_type+" "
+                           +res.print_content+":"
+                           +res.tran_amt+"원"+"</li>"
+            }
+            list+="</ul>";// <ul><li>거래내역1</li><li>거래내역2</li>..</ul>
+            //button .   p    . <div> 
+            $(btnEle).parent().next(".transaction_list").html(list);
+         }
+      });
+   }
+   
+   //계좌등록하기(센터인증 이용기관용: 사용자 인증후에 계좌 등록 가능)
+   function addAccount(){
+      var url="https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
+            +"response_type=code&" //고정값 code: 인증요청시 반환되는 값의 형식의미
+            +"client_id=4987e938-f84b-4e23-b0a2-3b15b00f4ffd&" //이용기관의 ID
+            +"redirect_uri=http://localhost:8087/banking/addaccount&"//응답URL
+            +"scope=login inquiry transfer&" //토큰의 권한
+            +"state=12345678123456781234567812345678&" //32자리 난수 설정
+            +"auth_type=0"; //0:최초 한번 인증, 2:인증생략
+            
+      window.open(url,"인증하기","width=400px,height=600px");      
+   }
+   
+   //회원 탈퇴하기
+   function delUserEX(){
+      if(confirm("정말로 탈퇴하시겠습니까??")){
+         location.href = "/user/delUser";
+         alert("회원탈퇴되었습니다.");
+      }
+   }
+   
 </script>
 </head>
 <body>
@@ -202,7 +273,7 @@
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
 
 <div class="content">
-<section class="py-5">
+<section class="py-4">
 <div id="list">
 <!--	총 합		-->
    <div class="money">
