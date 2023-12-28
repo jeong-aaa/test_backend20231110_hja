@@ -206,6 +206,7 @@ public class BankingController {
 
 	        // 거래내역을 저장하는 서비스 메서드 호출
 	        accountService.saveTransactionData(accountDto);
+	        
 
 	        // 입금인 경우 합산
 	        if ("입금".equals(accountDto.getInout_type())) {
