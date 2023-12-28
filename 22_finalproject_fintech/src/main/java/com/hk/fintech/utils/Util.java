@@ -99,7 +99,7 @@ public class Util {
 				calList+="<p>"
 						+(+alist.get(j).getInout_type().length()>7?
 						alist.get(j).getInout_type().substring(0,7)+"..":
-						alist.get(j).getInout_type()+" : "+alist.get(j).getTran_amt())
+						alist.get(j).getInout_type()+" : "+alist.get(j).getTran_amt()+"원")
 
 						+"</p>";
 			}
