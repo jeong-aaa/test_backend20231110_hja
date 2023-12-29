@@ -69,7 +69,7 @@
     
     #tbody > div > p{
     background-color: #E0EBFF;
-    width: 130px;
+    width: 160px;
     text-align: center;
 	margin: 0px 0px 10px;
     }
@@ -300,12 +300,11 @@
 <!--   총 합      -->
    <div class="money">
       <span style="color: #1E90FF;">수입</span>
-      <a th:text="${insum}+원"></a>
+      <a th:text="${totalinSum}+원"></a>
       <span style="color: #FF4646;">지출</span>
-      <a th:text="${outsum}+원"></a>
+      <a th:text="${totaloutSum}+원"></a>
 	  <span>합계</span>
-
-      <span class="y" th:text="${calMap.year}+원"></span>
+	  <a th:text="${total}+원"></a>
    </div>    
 
 <!--   캘린더   -->
