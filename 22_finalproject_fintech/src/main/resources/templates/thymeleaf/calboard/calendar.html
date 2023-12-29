@@ -305,6 +305,9 @@
       <a th:text="${totaloutSum}+원"></a>
      <span>합계</span>
      <a th:text="${total}+원"></a>
+     
+     <button type="button" class="btn btn-primary" th:onclick="|location.href='@{/banking/chart(total=${total})}'|" >소비확인</button>
+  
    </div>    
 
 <!--   캘린더   -->

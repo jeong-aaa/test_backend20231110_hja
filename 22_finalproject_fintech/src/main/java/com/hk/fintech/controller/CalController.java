@@ -55,7 +55,7 @@ public class CalController {
        String month = request.getParameter("month"); 
        
       
-       HttpSession session=request.getSession();
+      HttpSession session=request.getSession();
       UserDto ldto=(UserDto)session.getAttribute("ldto");
       model.addAttribute("ldto", new UserDto());
        
@@ -114,6 +114,7 @@ public class CalController {
        int total = totalinSum - totaloutSum;
        model.addAttribute("total", total + "");
        
+     
 //       System.out.println(clist.get(0));
        
       //달력만들기위한 값 구하기
@@ -124,6 +125,65 @@ public class CalController {
       return "thymeleaf/calboard/calendar";
    }
    
+   
+   
+//   @GetMapping(value="/chart")
+//   public String chart(Model model, HttpServletRequest request) {
+//	   
+//	   String year = request.getParameter("year");
+//       String month = request.getParameter("month");
+//       HttpSession session=request.getSession();
+//       UserDto ldto=(UserDto)session.getAttribute("ldto");
+//       model.addAttribute("ldto", new UserDto());
+//        
+//       String email = ldto.getUseremail();
+//       
+//	   String yyyyMM=year+Util.isTwo(month);
+//       List<CashDto>clist=calService.Cash(email, yyyyMM);
+//       model.addAttribute("clist", clist);
+//       List<AccountDto>alist=calService.Account(email, yyyyMM);
+//       model.addAttribute("alist", alist);
+//       
+//	   int insum = 0;
+//       int outsum = 0;
+//       for (CashDto cashDto : clist) {
+//          if (cashDto.getMio().equals("수입"))
+//             insum+=cashDto.getMoney();
+//          else {
+//             outsum+=cashDto.getMoney();
+//          }
+//       }
+//
+//       model.addAttribute("insum", insum+"");
+//       model.addAttribute("outsum", outsum+"");
+//       
+//       
+////       입금출금 컬러로
+//       int incomesum = 0;
+//       int outcomesum = 0;
+//       for (AccountDto accountDto : alist) {
+//          int amount = accountDto.getTran_amt();
+//           if (accountDto.getInout_type().equals("입금")) {
+//               incomesum += amount;
+//           } else {
+//               outcomesum += amount;
+//           }
+//       }
+//       model.addAttribute("incomesum", incomesum+"");
+//       model.addAttribute("outcomesum", outcomesum+"");
+//      
+//       int totalinSum = insum + incomesum;
+//       model.addAttribute("totalinSum", totalinSum + "");
+//       int totaloutSum = outsum + outcomesum;
+//       model.addAttribute("totaloutSum", totaloutSum + "");
+//       
+////       총합계산
+//       int total = totalinSum - totaloutSum;
+//       model.addAttribute("total", total + "");
+//       
+//       return "banking/chart";
+//   }
+//   
 //   @GetMapping(value = "/addCalBoardForm")
 //   public String addCalBoardForm(Model model, InsertCalCommand insertCalCommand) {
 //      logger.info("일정추가폼이동");
@@ -155,6 +215,8 @@ public class CalController {
       return "redirect:/schedule/calendar?year="+insertCalCommand.getYear()
                               +"&month="+insertCalCommand.getMonth();
    }
+  
+  
   
 
 }

@@ -277,6 +277,14 @@ public class BankingController {
       String formatNow=now.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
       return formatNow;
    }
+   
+   
+   @GetMapping("/chart")
+   public String chart() {
+	   
+	   
+      return "chart";
+   }
 
 }
 
