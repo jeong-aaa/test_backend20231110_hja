@@ -95,7 +95,7 @@ public class CalController {
        int incomesum = 0;
        int outcomesum = 0;
        for (AccountDto accountDto : alist) {
-          int amount = Integer.parseInt(accountDto.getTran_amt().replaceAll("[^0-9]", ""));
+          int amount = accountDto.getTran_amt();
            if (accountDto.getInout_type().equals("입금")) {
                incomesum += amount;
            } else {

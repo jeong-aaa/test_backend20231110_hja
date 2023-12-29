@@ -201,7 +201,7 @@ public class BankingController {
 	        accountDto.setTran_date((String) res.get("tran_date"));
 	        accountDto.setInout_type((String) res.get("inout_type"));
 	        accountDto.setPrint_content((String) res.get("print_content"));
-	        accountDto.setTran_amt((String) res.get("tran_amt"));
+	        accountDto.setTran_amt((int) res.get("tran_amt"));
 	        System.out.println(accountDto);
 
 	        // 거래내역을 저장하는 서비스 메서드 호출
@@ -210,12 +210,12 @@ public class BankingController {
 
 	        // 입금인 경우 합산
 	        if ("입금".equals(accountDto.getInout_type())) {
-	            int amount = Integer.parseInt(accountDto.getTran_amt().replaceAll("[^0-9]", ""));
+	            int amount = accountDto.getTran_amt();
 	            incomeSum += amount;
 	        }
 	        // 출금인 경우 합산
 	        else if ("출금".equals(accountDto.getInout_type())) {
-	            int amount = Integer.parseInt(accountDto.getTran_amt().replaceAll("[^0-9]", ""));
+	            int amount =accountDto.getTran_amt();
 	            expenseSum += amount;
 	        }
 	    }
