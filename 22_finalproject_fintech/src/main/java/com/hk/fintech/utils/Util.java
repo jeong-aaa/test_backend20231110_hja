@@ -109,7 +109,7 @@ public class Util {
                   +"'>"
                   +(+alist.get(j).getInout_type().length()>7?
                   alist.get(j).getInout_type().substring(0,7)+"..":
-                  alist.get(j).getInout_type()+" : "+won+"원")
+                  alist.get(j).getInout_type()+" : "+ won +"원")
 
                   +"</p>";
          }
