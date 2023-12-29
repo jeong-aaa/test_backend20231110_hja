@@ -70,12 +70,12 @@ public class CalController {
        int insum = 0;
        int outsum=0;
        for (CashDto cashDto : clist) {
-    	   if (cashDto.getMio().equals("수입"))
-    		   insum+=cashDto.getMoney();
-    	   else {
-    		   outsum+=cashDto.getMoney();
-    	   }
-	}
+          if (cashDto.getMio().equals("수입"))
+             insum+=cashDto.getMoney();
+          else {
+             outsum+=cashDto.getMoney();
+          }
+   }
        model.addAttribute("insum", insum+"");
        model.addAttribute("outsum", outsum+"");
        
@@ -126,6 +126,5 @@ public class CalController {
   
 
 }
-
 
 
