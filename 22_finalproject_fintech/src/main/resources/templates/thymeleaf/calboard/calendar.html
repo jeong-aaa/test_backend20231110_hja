@@ -159,12 +159,12 @@
 }
 
 .btn-1 {
-  background: #8CBDED;
-  background: #8CBDED;
+  background: #96C7ED;
+  background: #96C7ED;
   border: none;
 }
 .btn-1:hover {
-   background: #8CBDED;
+   background: #96C7ED;
 background: #6495ED;
 }
     
@@ -415,8 +415,8 @@ background: #6495ED;
       <a th:text="${totaloutsum}+원"></a>
      <span>합계</span>
      <a th:text="${totalsum}+원"></a>     
-     <button type="button" class="btn btn-primary" th:onclick="|location.href='@{/banking/chart(total=${total})}'|" >소비확인</button>
 
+     <button type="button" class="custom-btn btn-1" th:onclick="|location.href='@{/banking/chart(total=${total})}'|" >소비확인</button>
    </div>    
 
 <!--   캘린더   -->
