@@ -61,8 +61,8 @@ public class Util {
 						(("수입".equals(clist.get(j).getMio()))?"blue":"red")
 						+"'>"
 		                  +(+clist.get(j).getMio().length()>7?
-		                  clist.get(j).getMio().substring(0,7)+"..":
-		                  clist.get(j).getMio()+" : "+clist.get(j).getMoney())
+		                		  clist.get(j).getMio().substring(0,7)+"..":
+		                			  clist.get(j).getMio()+" : "+clist.get(j).getMoney()+"원")
 		                  +"</p>";
 
 			}

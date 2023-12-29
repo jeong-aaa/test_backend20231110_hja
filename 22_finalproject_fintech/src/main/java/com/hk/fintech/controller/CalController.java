@@ -69,7 +69,7 @@ public class CalController {
           
          }
       
-       String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
+       String yyyyMM=year+Util.isTwo(month);
        List<CashDto>clist=calService.Cash(email, yyyyMM);
        
        // 선택한 날짜 가져오기
@@ -90,6 +90,7 @@ public class CalController {
 
        model.addAttribute("insum", insum+"");
        model.addAttribute("outsum", outsum+"");
+       
        
        List<AccountDto>alist=calService.Account(email, yyyyMM);
 //       model.addAttribute("alist", alist);
@@ -127,10 +128,11 @@ public class CalController {
        int totaloutSum = outsum + outcomesum;
        model.addAttribute("totaloutSum", totaloutSum + "");
        
+//       총합계산
        int total = totalinSum - totaloutSum;
        model.addAttribute("total", total + "");
        
-//       System.out.println(alist.get(0));
+//       System.out.println(clist.get(0));
        
       //달력만들기위한 값 구하기
       Map<String, Integer>map=calService.makeCalendar(request);
