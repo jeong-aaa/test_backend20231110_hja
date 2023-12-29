@@ -70,6 +70,8 @@ public class CalController {
           
          }
       
+       DecimalFormat df = new DecimalFormat("###,###");
+       
        String yyyyMM=year+Util.isTwo(month);
        List<CashDto>clist=calService.Cash(email, yyyyMM);
        model.addAttribute("clist", clist);
@@ -98,18 +100,14 @@ public class CalController {
        for (AccountDto accountDto : alist) {
           int amount = accountDto.getTran_amt();
            if (accountDto.getInout_type().equals("입금")) {
-               incomesum += amount;
+        	   incomesum += amount;
            } else {
-               outcomesum += amount;
+        	   outcomesum += amount;
            }
        }
        model.addAttribute("incomesum", incomesum+"");
        model.addAttribute("outcomesum", outcomesum+"");
       
-       
-       DecimalFormat df = new DecimalFormat("###,###");
-
-       
        int totalinSum = insum + incomesum;
        String totalinsum = df.format(totalinSum);
        model.addAttribute("totalinsum", totalinsum + "");
