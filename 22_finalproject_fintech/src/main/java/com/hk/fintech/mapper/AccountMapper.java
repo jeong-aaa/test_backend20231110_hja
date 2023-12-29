@@ -15,4 +15,9 @@ public interface AccountMapper {
 	public List<AccountDto> TransactionDataList(Map<String, String> map);
 	
 	List<AccountDto> Account(Map<String, String> map);
+
+	//
+	void deleteTransactionData(String fintech_use_num);
+
+	void deleteAccount(String fintech_use_num);
 }

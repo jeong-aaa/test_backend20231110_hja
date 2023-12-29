@@ -227,25 +227,6 @@ public class BankingController {
        // 총 지출 - 총 수입을 출력
 //       System.out.println("총 지출 + 총 수입: " + (expenseSum + incomeSum));
    }
-
-
-//   private void saveTransaction(String useremail, JSONObject result) {
-//      JSONArray resList = (JSONArray) result.get("res_list");
-//      System.out.println("resList.size():"+resList.size());
-//      for (Object obj : resList) {
-//         JSONObject res = (JSONObject) obj;
-//         AccountDto accountDto = new AccountDto();
-//         accountDto.setUseremail(useremail);
-//         accountDto.setTran_date((String) res.get("tran_date"));
-//         accountDto.setInout_type((String) res.get("inout_type"));
-//         accountDto.setPrint_content((String) res.get("print_content"));
-//         accountDto.setTran_amt((String) res.get("tran_amt"));
-//         System.out.println(accountDto);
-//         // 거래내역을 저장하는 서비스 메서드 호출
-//         accountService.saveTransactionData(accountDto);
-//      }
-//   }
-
    
 //   
    //계좌등록
@@ -278,12 +259,27 @@ public class BankingController {
       return formatNow;
    }
    
+
+   // 계좌 삭제
+   @ResponseBody
+   @DeleteMapping("/deleteAccount")
+   public ResponseEntity<String> deleteAccount(@RequestParam String fintech_use_num) {
+       try {
+           // 여기에서 계좌 삭제 로직을 호출
+           accountService.deleteAccount(fintech_use_num);
+           return new ResponseEntity<>("success", HttpStatus.OK);
+       } catch (Exception e) {
+           e.printStackTrace();
+           return new ResponseEntity<>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
+       }
+   }
    
    @GetMapping("/chart")
    public String chart() {
 	   
 	   
       return "chart";
+
    }
 
 }
