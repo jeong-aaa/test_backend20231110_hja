@@ -22,6 +22,19 @@ public class AccountService {
 	public void saveTransactionData(AccountDto adto) {
 		accountMapper.insertTransactionData(adto);
 	}
+
+	//
+	@Transactional
+    public void deleteAccount(String fintech_use_num) {
+
+        // 계좌 관련 데이터 삭제 예시
+        accountMapper.deleteTransactionData(fintech_use_num);
+
+        // 계좌 삭제 예시
+        accountMapper.deleteAccount(fintech_use_num);
+    }
+
+
 	
 	public List<AccountDto> TransactionDataList(String email,String yyyyMMdd){
 		Map<String, String>map=new HashMap<String, String>();
@@ -29,6 +42,7 @@ public class AccountService {
 		map.put("tran_date", yyyyMMdd);
 		return accountMapper.TransactionDataList(map);
 	}
+
 }
 
 
