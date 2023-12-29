@@ -1,6 +1,7 @@
 package com.hk.fintech.controller;
 
 import java.net.HttpURLConnection;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -105,14 +106,25 @@ public class CalController {
        model.addAttribute("incomesum", incomesum+"");
        model.addAttribute("outcomesum", outcomesum+"");
       
+       
+       DecimalFormat df = new DecimalFormat("###,###");
+
+       
        int totalinSum = insum + incomesum;
-       model.addAttribute("totalinSum", totalinSum + "");
+       String totalinsum = df.format(totalinSum);
+       model.addAttribute("totalinsum", totalinsum + "");
+       System.out.println("총 수입: "+totalinsum);
+       
        int totaloutSum = outsum + outcomesum;
-       model.addAttribute("totaloutSum", totaloutSum + "");
+       String totaloutsum = df.format(totaloutSum);
+       model.addAttribute("totaloutsum", totaloutsum + "");
+       System.out.println("총 지출: "+totaloutSum);
        
 //       총합계산
        int total = totalinSum - totaloutSum;
-       model.addAttribute("total", total + "");
+       String totalsum = df.format(total);
+       model.addAttribute("totalsum", totalsum + "");
+       System.out.println("총 합: "+totalsum);
        
 //       System.out.println(clist.get(0));
        

@@ -63,6 +63,30 @@
       });
    }
    
+   //계좌해지...해보는중
+   function deleteAccount(fintechUseNum, btnEle) {
+    if (confirm("정말로 계좌를 삭제하시겠습니까?")) {
+        $.ajax({
+            url: "/banking/deleteAccount",
+            method: "get",
+            data: {"fintech_use_num": fintechUseNum},
+            dataType: "json",
+            success: function (data) {
+                if (data.result === "success") {
+                    // 삭제 성공 시 해당 계좌의 UI를 제거
+                    $(btnEle).parents(".box").eq(0).remove();
+                    alert("계좌가 성공적으로 삭제되었습니다.");
+                } else {
+                    alert("계좌 삭제에 실패했습니다. 에러: " + data.error);
+                }
+            },
+            error: function () {
+                alert("통신 실패");
+            }
+        });
+    }
+}
+   
    //잔액조회하기
 	function balance(fintech_use_num,btnEle){
 		$.ajax({
