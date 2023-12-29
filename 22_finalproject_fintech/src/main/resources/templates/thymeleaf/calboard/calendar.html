@@ -295,90 +295,90 @@ background: #6495ED;
    
  //거래내역상세리스트
    $(function (){
-	   $(".d").click(function(){
-		   //각 day뜨도록
-		   var i=$(this).text();
-		   $(".day").text(i);
-// 		   ymd값 컨트롤러로 보내기
-// 		   ym만 돔탐색
-// 		   d는 위에 click값
-		   var detailList="";
-		   
-		   
-		   $.ajax({
-			   url: "/schedule/TransactionDataList",
-			   method:"get",
-		       dataType:"json",
-		   	   data:{"year":$(".y").text(),"month":$(".m").text(),"date":i},
-		   	   async:false,
-		   	   success: function(data){
-		   		   //list받음
-// 		   		   data.list-->  [{a:v,b:v...},{a:v,b:v...}..]
-					console.log(data.list.length);
-					var list=data.list;
-					if(list == 0){
-						detailList += '<tr>'
-						            + '<td colspan="4" style="text-align: center; color:gray;">계좌 거래내역이 없습니다.</td>'
-						            + '</tr>'
-					}
-					else{
-						for (var i = 0; i < list.length; i++) {
-							detailList += '<tr>'
-							   			+ '<td class="how">계좌</td>'
-							   			+ '<td class="inout">'+list[i].inout_type+'</td>'
-							   			+ '<td class="ListContent">'+list[i].print_content+'</td>'
-							   			+ '<td class="mon">'+(list[i].tran_amt).toLocaleString()+'</td>'
-							   			+ '</tr>';
-							
-						}
-					}
-					
-					$('.dList').html(detailList);
-		   	   },
-		   	   error: function(){
-		   		   alert("error");
-		   	   }
-		   	   
-		   	
-		   });
-		   
-		   $.ajax({
-			   url: "/schedule/cashDetailList",
-			   method:"get",
-		       dataType:"json",
-		   	   data:{"year":$(".y").text(),"month":$(".m").text(),"date":i},
-		   	   async:false,
-		   	   success: function(data){
-		   		   //list받음
-// 		   		   data.list-->  [{a:v,b:v...},{a:v,b:v...}..]
-					console.log(data.list.length);
-					var list=data.list;
-					if(list == 0){
-						detailList += '<tr>'
-						            + '<td colspan="4" style="text-align: center; color:gray;">현금 거래내역이 없습니다.</td>'
-						            + '</tr>'
-					}
-					else{
-						for (var i = 0; i < list.length; i++) {
-							detailList += '<tr>'
-							   			+ '<td class="Chow">현금</td>'
-							   			+ '<td class="Cinout">'+list[i].mio+'</td>'
-							   			+ '<td class="CListContent">'+list[i].content+'</td>'
-							   			+ '<td class="Cmon">'+(list[i].money).toLocaleString()+'</td>'
-							   			+ '</tr>';
-							
-						}
-					}
-					
-					$('.dList').html(detailList);
-		   	   },
-		   	   error: function(){
-		   		   alert("error");
-		   	   }
-		   	   
-		   	
-		   });
-	   });
+      $(".d").click(function(){
+         //각 day뜨도록
+         var i=$(this).text();
+         $(".day").text(i);
+//          ymd값 컨트롤러로 보내기
+//          ym만 돔탐색
+//          d는 위에 click값
+         var detailList="";
+         
+         
+         $.ajax({
+            url: "/schedule/TransactionDataList",
+            method:"get",
+             dataType:"json",
+               data:{"year":$(".y").text(),"month":$(".m").text(),"date":i},
+               async:false,
+               success: function(data){
+                  //list받음
+//                   data.list-->  [{a:v,b:v...},{a:v,b:v...}..]
+               console.log(data.list.length);
+               var list=data.list;
+               if(list == 0){
+                  detailList += '<tr>'
+                              + '<td colspan="4" style="text-align: center; color:gray;">계좌 거래내역이 없습니다.</td>'
+                              + '</tr>'
+               }
+               else{
+                  for (var i = 0; i < list.length; i++) {
+                     detailList += '<tr>'
+                                 + '<td class="how">계좌</td>'
+                                 + '<td class="inout">'+list[i].inout_type+'</td>'
+                                 + '<td class="ListContent">'+list[i].print_content+'</td>'
+                                 + '<td class="mon">'+(list[i].tran_amt).toLocaleString()+'</td>'
+                                 + '</tr>';
+                     
+                  }
+               }
+               
+               $('.dList').html(detailList);
+               },
+               error: function(){
+                  alert("error");
+               }
+               
+            
+         });
+         
+         $.ajax({
+            url: "/schedule/cashDetailList",
+            method:"get",
+             dataType:"json",
+               data:{"year":$(".y").text(),"month":$(".m").text(),"date":i},
+               async:false,
+               success: function(data){
+                  //list받음
+//                   data.list-->  [{a:v,b:v...},{a:v,b:v...}..]
+               console.log(data.list.length);
+               var list=data.list;
+               if(list == 0){
+                  detailList += '<tr>'
+                              + '<td colspan="4" style="text-align: center; color:gray;">현금 거래내역이 없습니다.</td>'
+                              + '</tr>'
+               }
+               else{
+                  for (var i = 0; i < list.length; i++) {
+                     detailList += '<tr>'
+                                 + '<td class="Chow">현금</td>'
+                                 + '<td class="Cinout">'+list[i].mio+'</td>'
+                                 + '<td class="CListContent">'+list[i].content+'</td>'
+                                 + '<td class="Cmon">'+(list[i].money).toLocaleString()+'</td>'
+                                 + '</tr>';
+                     
+                  }
+               }
+               
+               $('.dList').html(detailList);
+               },
+               error: function(){
+                  alert("error");
+               }
+               
+            
+         });
+      });
    });
  
 </script>
@@ -415,8 +415,8 @@ background: #6495ED;
       <a th:text="${totaloutsum}+원"></a>
      <span>합계</span>
      <a th:text="${totalsum}+원"></a>     
-     <button type="button" class="custom-btn btn-1" th:onclick="|location.href='@{/banking/chart(total=${total})}'|" >소비확인</button>
 
+     <button type="button" class="custom-btn btn-1" th:onclick="|location.href='@{/banking/chart(total=${total})}'|" >소비확인</button>
    </div>    
 
 <!--   캘린더   -->
@@ -467,37 +467,37 @@ background: #6495ED;
     <div class="modal-content">
       <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">
-			<span class="ym" th:text="${calMap.year}"></span>
+         <span class="ym" th:text="${calMap.year}"></span>
             <span>년</span>
             <span class="mm" th:text="${calMap.month}"></span>
             <span>월</span>
             <span class="day"></span>
             <span>일</span>
-		</h5>
+      </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
       
       
-		<div id="container" style="text-align: center;">
-			<h4>거래내역상세</h4>
-			<form action="@{/schedule/calMulDel}" method="post">
-				<table class="DataList">
-					<col width="200px"/>
-		            <col width="200px"/>
-		            <col width="700px"/>
-		            <col width="500px"/>
-		            <tr>
-		               <th>거래</th>
-		               <th>구분</th>
-		               <th>내용</th>
-		               <th>금액</th>
-		            </tr>
-					<tbody class="dList"></tbody>
-					
-				</table>
-			</form>
-		</div>
+      <div id="container" style="text-align: center;">
+         <h4>거래내역상세</h4>
+         <form action="@{/schedule/calMulDel}" method="post">
+            <table class="DataList">
+               <col width="200px"/>
+                  <col width="200px"/>
+                  <col width="700px"/>
+                  <col width="500px"/>
+                  <tr>
+                     <th>거래</th>
+                     <th>구분</th>
+                     <th>내용</th>
+                     <th>금액</th>
+                  </tr>
+               <tbody class="dList"></tbody>
+               
+            </table>
+         </form>
+      </div>
       
         
 <!--         날짜 누르기 -> ajax에서 받아온 수입지출 data 받아서 여기에 뿌리기 -->
@@ -614,5 +614,4 @@ background: #6495ED;
 
 </body>
 </html>
-
 
