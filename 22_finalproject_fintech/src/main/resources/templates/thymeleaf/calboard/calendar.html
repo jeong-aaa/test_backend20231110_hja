@@ -298,7 +298,7 @@
 							   			+ '<td class="how">계좌</td>'
 							   			+ '<td class="inout">'+list[i].inout_type+'</td>'
 							   			+ '<td class="ListContent">'+list[i].print_content+'</td>'
-							   			+ '<td class="mon">'+list[i].tran_amt+'</td>'
+							   			+ '<td class="mon">'+(list[i].tran_amt).toLocaleString()+'</td>'
 							   			+ '</tr>';
 							
 						}
@@ -335,7 +335,7 @@
 							   			+ '<td class="Chow">현금</td>'
 							   			+ '<td class="Cinout">'+list[i].mio+'</td>'
 							   			+ '<td class="CListContent">'+list[i].content+'</td>'
-							   			+ '<td class="Cmon">'+list[i].money+'</td>'
+							   			+ '<td class="Cmon">'+(list[i].money).toLocaleString()+'</td>'
 							   			+ '</tr>';
 							
 						}
@@ -351,7 +351,7 @@
 		   });
 	   });
    });
-   
+ 
 </script>
 </head>
 <body>
