@@ -53,6 +53,7 @@ public class CalController {
 //       String email = "112@123";
        String year = request.getParameter("year");
        String month = request.getParameter("month"); 
+       
       
        HttpSession session=request.getSession();
       UserDto ldto=(UserDto)session.getAttribute("ldto");
@@ -68,7 +69,7 @@ public class CalController {
           
          }
       
-       String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
+       String yyyyMM=year+Util.isTwo(month);
        List<CashDto>clist=calService.Cash(email, yyyyMM);
        model.addAttribute("clist", clist);
        
@@ -76,15 +77,16 @@ public class CalController {
        int insum = 0;
        int outsum = 0;
        for (CashDto cashDto : clist) {
-    	   if (cashDto.getMio().equals("수입"))
-    		   insum+=cashDto.getMoney();
-    	   else {
-    		   outsum+=cashDto.getMoney();
-    	   }
+          if (cashDto.getMio().equals("수입"))
+             insum+=cashDto.getMoney();
+          else {
+             outsum+=cashDto.getMoney();
+          }
        }
 
        model.addAttribute("insum", insum+"");
        model.addAttribute("outsum", outsum+"");
+       
        
        List<AccountDto>alist=calService.Account(email, yyyyMM);
        model.addAttribute("alist", alist);
@@ -93,7 +95,7 @@ public class CalController {
        int incomesum = 0;
        int outcomesum = 0;
        for (AccountDto accountDto : alist) {
-    	   int amount = Integer.parseInt(accountDto.getTran_amt().replaceAll("[^0-9]", ""));
+          int amount = Integer.parseInt(accountDto.getTran_amt().replaceAll("[^0-9]", ""));
            if (accountDto.getInout_type().equals("입금")) {
                incomesum += amount;
            } else {
@@ -112,7 +114,7 @@ public class CalController {
        int total = totalinSum - totaloutSum;
        model.addAttribute("total", total + "");
        
-//       System.out.println(alist.get(0));
+//       System.out.println(clist.get(0));
        
       //달력만들기위한 값 구하기
       Map<String, Integer>map=calService.makeCalendar(request);
@@ -156,6 +158,5 @@ public class CalController {
   
 
 }
-
 
 
