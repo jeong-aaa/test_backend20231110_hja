@@ -96,7 +96,9 @@ public class Util {
 		for (int j = 0; j < alist.size(); j++) {
 			//한달 일정 목록중에 해당일(i)값과 일치하는지 여부 판단
 			if(alist.get(j).getTran_date().substring(8).equals(d)) {
-				calList+="<p>"
+				calList+="<p style='color:"+
+						(("입금".equals(alist.get(j).getInout_type()))?"blue":"red")
+						+"'>"
 						+(+alist.get(j).getInout_type().length()>7?
 						alist.get(j).getInout_type().substring(0,7)+"..":
 						alist.get(j).getInout_type()+" : "+alist.get(j).getTran_amt()+"원")
