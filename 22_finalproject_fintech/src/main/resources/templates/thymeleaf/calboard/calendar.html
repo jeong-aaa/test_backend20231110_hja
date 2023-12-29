@@ -380,14 +380,12 @@
 <!--   총 합      -->
    <div class="money">
       <span style="color: #1E90FF;">수입</span>
-      <a th:text="${totalinSum}+원"></a>
+      <a th:text="${totalinsum}+원"></a>
       <span style="color: #FF4646;">지출</span>
-      <a th:text="${totaloutSum}+원"></a>
+      <a th:text="${totaloutsum}+원"></a>
      <span>합계</span>
-     <a th:text="${total}+원"></a>
-     
+     <a th:text="${totalsum}+원"></a>     
      <button type="button" class="btn btn-primary" th:onclick="|location.href='@{/banking/chart(total=${total})}'|" >소비확인</button>
-  
    </div>    
 
 <!--   캘린더   -->
