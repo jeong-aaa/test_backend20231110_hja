@@ -138,6 +138,35 @@
    .dropdown:hover .dropbtn {
      background-color: #EAECCC;
    }
+   /* 1 */
+   .custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+  float:right;
+}
+
+.btn-1 {
+  background: #8CBDED;
+  background: #8CBDED;
+  border: none;
+}
+.btn-1:hover {
+   background: #8CBDED;
+background: #6495ED;
+}
     
 </style>
 <script type="text/javascript">
@@ -385,7 +414,7 @@
      <span>합계</span>
      <a th:text="${total}+원"></a>
      
-     <button type="button" class="btn btn-primary" th:onclick="|location.href='@{/banking/chart(total=${total})}'|" >소비확인</button>
+     <button type="button" class="custom-btn btn-1" th:onclick="|location.href='@{/banking/chart(total=${total})}'|" >소비확인</button>
   
    </div>    
 
