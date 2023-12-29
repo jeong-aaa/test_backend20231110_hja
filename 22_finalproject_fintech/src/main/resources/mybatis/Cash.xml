@@ -15,6 +15,10 @@
          FROM FINTECH_CASH
          WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(mdate, '%Y%m') =#{yyyyMM}) cal
       WHERE RN BETWEEN 1 AND 1
+<!-- 		SELECT MDATE, MIO, sum(money) -->
+<!-- 		FROM fintech_cash -->
+<!-- 		WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(mdate, '%Y%m') = #{yyyyMM} -->
+<!-- 		GROUP BY MIO -->
    </select>
    
 <!--    답니 -->

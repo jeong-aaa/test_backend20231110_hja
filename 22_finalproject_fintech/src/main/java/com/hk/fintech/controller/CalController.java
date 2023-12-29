@@ -67,6 +67,7 @@ public class CalController {
        String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
        List<CashDto>clist=calService.Cash(email, yyyyMM);
        model.addAttribute("clist", clist);
+       
        int insum = 0;
        int outsum=0;
        for (CashDto cashDto : clist) {
