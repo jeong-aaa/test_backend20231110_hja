@@ -108,6 +108,7 @@ public class CalController {
        int totaloutSum = outsum + outcomesum;
        model.addAttribute("totaloutSum", totaloutSum + "");
        
+//       총합계산
        int total = totalinSum - totaloutSum;
        model.addAttribute("total", total + "");
        
