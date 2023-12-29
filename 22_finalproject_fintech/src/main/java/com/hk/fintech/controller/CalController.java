@@ -24,6 +24,7 @@ import com.hk.fintech.command.InsertCalCommand;
 import com.hk.fintech.dtos.AccountDto;
 import com.hk.fintech.dtos.CashDto;
 import com.hk.fintech.dtos.UserDto;
+import com.hk.fintech.service.AccountService;
 import com.hk.fintech.service.ICashService;
 import com.hk.fintech.utils.Util;
 
@@ -38,6 +39,9 @@ public class CalController {
    
    @Autowired
    private ICashService calService;
+   
+   @Autowired
+   private AccountService accountService;
    
    
    @GetMapping(value="/calendar")
@@ -67,21 +71,45 @@ public class CalController {
        String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
        List<CashDto>clist=calService.Cash(email, yyyyMM);
        model.addAttribute("clist", clist);
+       
+//       수입지출 컬러로
        int insum = 0;
-       int outsum=0;
+       int outsum = 0;
        for (CashDto cashDto : clist) {
           if (cashDto.getMio().equals("수입"))
              insum+=cashDto.getMoney();
           else {
              outsum+=cashDto.getMoney();
           }
-   }
+       }
+
        model.addAttribute("insum", insum+"");
        model.addAttribute("outsum", outsum+"");
        
        List<AccountDto>alist=calService.Account(email, yyyyMM);
        model.addAttribute("alist", alist);
+       
+//       입금출금 컬러로
+       int incomesum = 0;
+       int outcomesum = 0;
+       for (AccountDto accountDto : alist) {
+          int amount = Integer.parseInt(accountDto.getTran_amt().replaceAll("[^0-9]", ""));
+           if (accountDto.getInout_type().equals("입금")) {
+               incomesum += amount;
+           } else {
+               outcomesum += amount;
+           }
+       }
+       model.addAttribute("incomesum", incomesum+"");
+       model.addAttribute("outcomesum", outcomesum+"");
       
+       int totalinSum = insum + incomesum;
+       model.addAttribute("totalinSum", totalinSum + "");
+       int totaloutSum = outsum + outcomesum;
+       model.addAttribute("totaloutSum", totaloutSum + "");
+       
+        
+       
 //       System.out.println(alist.get(0));
        
       //달력만들기위한 값 구하기
