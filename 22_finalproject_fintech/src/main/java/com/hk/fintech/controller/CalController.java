@@ -53,8 +53,9 @@ public class CalController {
 //       String email = "112@123";
        String year = request.getParameter("year");
        String month = request.getParameter("month"); 
+       
       
-       HttpSession session=request.getSession();
+      HttpSession session=request.getSession();
       UserDto ldto=(UserDto)session.getAttribute("ldto");
       model.addAttribute("ldto", new UserDto());
        
@@ -70,6 +71,10 @@ public class CalController {
       
        String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
        List<CashDto>clist=calService.Cash(email, yyyyMM);
+       
+       // 선택한 날짜 가져오기
+       String selectedDate = request.getParameter("selectedDate");
+       
        model.addAttribute("clist", clist);
        
 //       수입지출 컬러로
@@ -87,7 +92,8 @@ public class CalController {
        model.addAttribute("outsum", outsum+"");
        
        List<AccountDto>alist=calService.Account(email, yyyyMM);
-       model.addAttribute("alist", alist);
+//       model.addAttribute("alist", alist);
+
        
 //       입금출금 컬러로
        int incomesum = 0;
@@ -102,6 +108,19 @@ public class CalController {
        }
        model.addAttribute("incomesum", incomesum+"");
        model.addAttribute("outcomesum", outcomesum+"");
+       
+       Util util = new Util();
+       
+       // 입금 내용
+//       model.addAttribute("alist", Util.Account(incomesum, alist, selectedDate, "입금"));
+       // 출금 내용
+//       model.addAttribute("alist", Util.Account(outcomesum, alist, selectedDate, "출금"));
+       
+       // 입금 내용
+       model.addAttribute("inlist", Util.Account(Integer.parseInt(month), alist, selectedDate, "입금"));
+       // 출금 내용
+       model.addAttribute("outlist", Util.Account(Integer.parseInt(month), alist, selectedDate, "출금"));
+
       
        int totalinSum = insum + incomesum;
        model.addAttribute("totalinSum", totalinSum + "");

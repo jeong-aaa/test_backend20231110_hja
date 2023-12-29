@@ -90,24 +90,46 @@ public class Util {
 //	return str;
 //	}
 
-	public static String Account(int i, List<AccountDto> alist) {
-		String d=isTwo(i+""); //1 --> "01" 2자리로 변환
-		String calList=""; //"<p>title</p><p>title</p><p>title</p>"
-		for (int j = 0; j < alist.size(); j++) {
-			//한달 일정 목록중에 해당일(i)값과 일치하는지 여부 판단
-			if(alist.get(j).getTran_date().substring(8).equals(d)) {
-				calList+="<p style='color:"+
-						(("입금".equals(alist.get(j).getInout_type()))?"blue":"red")
-						+"'>"
-						+(+alist.get(j).getInout_type().length()>7?
-						alist.get(j).getInout_type().substring(0,7)+"..":
-						alist.get(j).getInout_type()+" : "+alist.get(j).getTran_amt()+"원")
-
-						+"</p>";
-			}
-		}
-		return calList;
-	}
+	 // 일일별 거래 목록 구하는 기능
+    public static String Account(int i, List<AccountDto> alist, String selectedDate, String type) {
+        String d = isTwo(i + ""); // 1 --> "01" 2자리로 변환
+        String calList = ""; // "<p>title</p><p>title</p><p>title</p>"
+        for (int j = 0; j < alist.size(); j++) {
+            // 한달 일정 목록 중에 해당일(i)값과 일치하고, 거래된 날짜와 선택한 날짜가 일치하는 경우에만 계산
+            if (alist.get(j).getTran_date().substring(8).equals(d) && alist.get(j).getTran_amt().startsWith(selectedDate)) {
+                // 입금 또는 출금에 대한 구분
+                if (("입금".equals(alist.get(j).getInout_type()) && "입금".equals(type))
+                        || ("출금".equals(alist.get(j).getInout_type()) && "출금".equals(type))) {
+                    calList += "<p style='color:" +
+                            (("입금".equals(alist.get(j).getInout_type())) ? "blue" : "red")
+                            + "'>"
+                            + (+alist.get(j).getInout_type().length() > 7 ?
+                            alist.get(j).getInout_type().substring(0, 7) + ".." :
+                            alist.get(j).getInout_type()+" : "+alist.get(j).getTran_amt()+"원")
+                            + "</p>";
+                }
+            }
+        }
+        return calList;
+    }
+//	public static String Account(int i, List<AccountDto> alist) {
+//		String d=isTwo(i+""); //1 --> "01" 2자리로 변환
+//		String calList=""; //"<p>title</p><p>title</p><p>title</p>"
+//		for (int j = 0; j < alist.size(); j++) {
+//			//한달 일정 목록중에 해당일(i)값과 일치하는지 여부 판단
+//			if(alist.get(j).getTran_date().substring(8).equals(d)) {
+//				calList+="<p style='color:"+
+//						(("입금".equals(alist.get(j).getInout_type()))?"blue":"red")
+//						+"'>"
+//						+(+alist.get(j).getInout_type().length()>7?
+//						alist.get(j).getInout_type().substring(0,7)+"..":
+//						alist.get(j).getInout_type()+" : "+alist.get(j).getTran_amt()+"원")
+//
+//						+"</p>";
+//			}
+//		}
+//		return calList;
+//	}
 	
 	}
 
