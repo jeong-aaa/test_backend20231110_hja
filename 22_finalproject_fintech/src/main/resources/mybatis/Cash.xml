@@ -2,45 +2,60 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hk.fintech.mapper.CashMapper">
-	
-	<insert id ="addCash">
-		INSERT INTO FINTECH_CASH
-		VALUES(NULL,#{useremail},#{mdate},#{mio},#{content},#{money})
-	</insert>
-	
-	
-	<select id ="Cash" parameterType = "Map" resultType="CashDto">
-		SELECT RN, SEQ, USEREMAIL, MDATE, CONTENT, MIO, MONEY
-		FROM (SELECT ROW_NUMBER() OVER(PARTITION BY mdate ORDER BY mdate) RN, SEQ,USEREMAIL, MDATE, CONTENT, MIO, MONEY
-			FROM FINTECH_CASH
-			WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(mdate, '%Y%m') =#{yyyyMM}) cal
-		WHERE RN BETWEEN 1 AND 2
-	</select>
-	
-	<select id ="cashDetailList" parameterType="Map" resultType="CashDto">
+   
+   <insert id ="addCash">
+      INSERT INTO FINTECH_CASH
+      VALUES(NULL,#{useremail},#{mdate},#{mio},#{content},#{money})
+   </insert>
+   
+   
+   <select id ="Cash" parameterType = "Map" resultType="CashDto">
+<!--       SELECT RN, SEQ, USEREMAIL, MDATE, CONTENT, MIO, MONEY -->
+<!--       FROM (SELECT ROW_NUMBER() OVER(PARTITION BY mdate ORDER BY mdate) RN, SEQ,USEREMAIL, MDATE, CONTENT, MIO, MONEY -->
+<!--          FROM FINTECH_CASH -->
+<!--          WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(mdate, '%Y%m') =#{yyyyMM}) cal -->
+<!--       WHERE RN BETWEEN 1 AND 2 -->
+<!--       GROUP BY MIO -->
+      
+        SELECT  MIO, sum(money) as 'money', mdate
+		FROM fintech_cash
+		WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(mdate, '%Y%m') =#{yyyyMM}
+		GROUP BY MIO, mdate
+
+
+   </select>
+   
+    <select id ="cashDetailList" parameterType="Map" resultType="CashDto">
 		SELECT USEREMAIL, MDATE, MIO, MONEY, CONTENT
 		FROM FINTECH_CASH
 		WHERE USEREMAIL = #{useremail} AND MDATE = #{mdate}
 	</select>
+   
+<!--    답니 -->
+<!--     해당 날짜의 거래내역 조회 -->
+<!--     <select id="getTransactionDataByDate" resultType="com.hk.fintech.dtos.CashDto"> -->
+<!--         SELECT * FROM FINTECH_CASH -->
+<!--         WHERE USEREMAIL = #{useremail} -->
+<!--         AND MDATE LIKE CONCAT(#{date}, '%') -->
+<!--     </select> -->
 
-<!-- 	<select id="calViewList" parameterType="Map" resultType="CalDto"> -->
-<!-- 		SELECT rn, seq, USEREMAIL, MDATE, CONTENT, MIO, MONEY -->
-<!-- 		FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, seq,USEREMAIL, MDATE, CONTENT, MIO, MONEY -->
-<!-- 			FROM fintech_cash -->
-<!-- 			WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(mdate, '%Y%m') =#{yyyyMM}) cal -->
-<!-- 		WHERE rn BETWEEN 1 AND 3 -->
-<!-- 	</select> -->
-	
-	
+<!--    <select id="calViewList" parameterType="Map" resultType="CalDto"> -->
+<!--       SELECT rn, seq, USEREMAIL, MDATE, CONTENT, MIO, MONEY -->
+<!--       FROM (SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(mdate,1,8) ORDER BY mdate) rn, seq,USEREMAIL, MDATE, CONTENT, MIO, MONEY -->
+<!--          FROM fintech_cash -->
+<!--          WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(mdate, '%Y%m') =#{yyyyMM}) cal -->
+<!--       WHERE rn BETWEEN 1 AND 3 -->
+<!--    </select> -->
+   
+   
 
-	
-<!-- 	<update id="delUser" parameterType="String"> -->
-<!-- 	  UPDATE FINTECH_USER -->
-<!-- 	  SET USERDELFLAG='Y' -->
-<!-- 	  WHERE USEREMAIL =#{useremail} -->
-<!-- 	</update> -->
-	
+   
+<!--    <update id="delUser" parameterType="String"> -->
+<!--      UPDATE FINTECH_USER -->
+<!--      SET USERDELFLAG='Y' -->
+<!--      WHERE USEREMAIL =#{useremail} -->
+<!--    </update> -->
+   
 </mapper>
 
-
-
+	

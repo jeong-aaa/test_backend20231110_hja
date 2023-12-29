@@ -13,8 +13,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/resources/css/styles.css" rel="stylesheet" />
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<title></title>
-	<style type="text/css">
+   <title></title>
+   <style type="text/css">
    .box{border-bottom: 1px solid gray; margin-bottom: 10px;}
    .box > .sub_menu{text-align: right;}
    .addAccount{text-align: right;}
@@ -46,7 +46,7 @@
    
 /*     날짜표현 div */
     .cal #tbody > div{
-       height: 130px;
+       height: 160px;
        vertical-align: top;
        border-top:1px solid gray;
        display: inline-block;
@@ -64,10 +64,15 @@
     .d{
        font-weight: bold;
        text-align: center;
+       cursor:pointer; 
     }    
     
-    #tbody > div > p{background-color:#a9bcf5; border: 1px solid darkgray; color:darksgray;}
-    
+    #tbody > div > p{
+    background-color: #E0EBFF;
+    width: 160px;
+    text-align: center;
+   margin: 0px 0px 10px;
+    }
     .cp{
        position : absolute;
        left : 20px;
@@ -132,9 +137,6 @@
    /* Change the background color of the dropdown button when the dropdown content is shown */
    .dropdown:hover .dropbtn {
      background-color: #EAECCC;
-   }
-   .d{
-   cursor:pointer; 
    }
     
 </style>
@@ -249,7 +251,20 @@
          alert("회원탈퇴되었습니다.");
       }
    }
-   //거래내역상세 - 계좌
+   
+   //현금 작성 모달
+   $(function(){
+      $(".dd").click(function(){ 
+         var i=$(this).prev().text();  
+         $("select[name=date] option").each(function(){
+               if($(this).val()==i){
+                  $(this).attr("selected","selected");
+               }
+         });
+      });
+   });
+   
+ //거래내역상세
    $(function (){
 	   $(".d").click(function(){
 		   //각 day뜨도록
@@ -336,7 +351,6 @@
 	   });
    });
    
- 	
 </script>
 </head>
 <body>
@@ -349,7 +363,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 850px; ">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
                 <li class="nav-item"><a class="nav-link active" th:href="@{/banking/main}" style="color: #3C4048; white-space: nowrap;" th:text="${session.ldto.username}+'님'"></a></li>
-            	<li class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;">Calender</a></li>
+               <li class="nav-item"><a class="nav-link" th:href="@{/schedule/calendar}" style="color: #3C4048;">Calender</a></li>
                <li class="nav-item"><a class="nav-link" href="#!" style="color: #3C4048;" th:onclick="myInfo()">MyPage</a></li>
                <li class="nav-item"><a class="nav-link" th:href="@{/user/logout}" style="color: #3C4048;">Logout</a></li>
       </div>
@@ -362,17 +376,17 @@
 <div class="content">
 <section class="py-4">
 <div id="list">
-<!--	총 합		-->
+<!--   총 합      -->
    <div class="money">
-      <span style="color: #4169e1;">수입</span>
-      <a th:text="${calMap.year}+원"></a>
-      <span style="color: #dc143c;">지출</span>
-      <a th:text="${calMap.year}+원"></a>
-	  <span>합계</span>
-      <span class="yi" th:text="${calMap.year}+원"></span>
+      <span style="color: #1E90FF;">수입</span>
+      <a th:text="${totalinSum}+원"></a>
+      <span style="color: #FF4646;">지출</span>
+      <a th:text="${totaloutSum}+원"></a>
+     <span>합계</span>
+     <a th:text="${total}+원"></a>
    </div>    
 
-<!--	캘린더	-->
+<!--   캘린더   -->
       <div class="cal">
          <div id="ctitle">
             <a th:href="@{/schedule/calendar(year=${calMap.year-1},month=${calMap.month})}"><br/>◁</a>
@@ -398,9 +412,10 @@
                      th:attr="data-target=${'#exampleModal'}">
 <!--                      th:href="@{/schedule/calBoardList(year=${calMap.year},month=${calMap.month},date=${i})}"> -->
                   </a>
-                  <a data-bs-toggle="modal" data-bs-target="#exampleModal2" th:attr="data-target=${'#exampleModal2'}">
+                  <a data-bs-toggle="modal" class="dd" data-bs-target="#exampleModal2" th:attr="data-target=${'#exampleModal2'}">
                      <img class="pen" th:src="@{/img/pen.png}" />
                   </a>
+                  [(${@util.Account(i,alist)})]
                   [(${@util.Cash(i,clist)})]
               
                </div>
@@ -418,7 +433,7 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
+      <h5 class="modal-title" id="exampleModalLabel">
 			<span class="ym" th:text="${calMap.year}"></span>
             <span>년</span>
             <span class="mm" th:text="${calMap.month}"></span>
@@ -432,7 +447,7 @@
       
       
 		<div id="container" style="text-align: center;">
-			<h3>일정목록보기</h3>
+			<h4>거래내역상세</h4>
 			<form action="@{/schedule/calMulDel}" method="post">
 				<table class="DataList">
 					<col width="200px"/>
@@ -501,14 +516,27 @@
                </select>월
                <select name="date" >
                   <th:block th:each="i:${#numbers.sequence(1,calMap.lastDay)}">
-<!--                     <th:block th:if="${calMap.date == i}">-->
-                        <option th:value="${i}" th:text="${i}" selected="selected" ></option>
+<!--                     <th:block th:if="${day}">-->
+                        <option th:value="${i}" th:text="${i}" ></option>
 <!--                     </th:block>-->
 <!--                     <th:block th:unless="${calMap.date == i}">-->
 <!--                        <option th:value="${i}" th:text="${i}"></option>-->
-                     </th:block>
-                  </th:block>
+<!--                     </th:block>-->
+<!--                  </th:block>-->
                </select>일
+              
+              
+              
+<!--              <span class="y" th:text="${calMap.year}"></span>-->
+<!--            <span>년</span>-->
+<!--            <span class="m" th:text="${calMap.month}"></span>-->
+<!--            <span>월</span>-->
+<!--            <span class="day"></span>-->
+<!--            <span>일</span>-->
+              
+              
+              
+              
               
             </td>
          </tr>
@@ -553,8 +581,5 @@
 
 </body>
 </html>
-
-
-
 
 

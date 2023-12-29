@@ -20,5 +20,18 @@
 		FROM FINTECH_ACCOUNT
 		WHERE USEREMAIL = #{useremail} AND TRAN_DATE = #{tran_date}
 	</select>
+	
+	<select id="Account" parameterType="Map" resultType="AccountDto">
+<!-- 		SELECT RN, USEREMAIL, tran_date, inout_type, tran_amt, print_content -->
+<!-- 		FROM (SELECT ROW_NUMBER() OVER(PARTITION BY tran_date ORDER BY tran_date) RN, USEREMAIL, tran_date, inout_type, tran_amt, print_content -->
+<!-- 			FROM FINTECH_ACCOUNT -->
+<!-- 			WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(tran_date, '%Y%m') =#{yyyyMM}) cal -->
+<!-- 		WHERE RN BETWEEN 1 AND 2 -->
+
+		SELECT  inout_type, sum(tran_amt) as 'tran_amt', tran_date
+		FROM FINTECH_account
+		WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(tran_date, '%Y%m') =#{yyyyMM}
+		GROUP BY inout_type, tran_date
+	</select>
 
 </mapper>

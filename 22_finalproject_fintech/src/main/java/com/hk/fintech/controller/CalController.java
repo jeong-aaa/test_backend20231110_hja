@@ -42,6 +42,8 @@ public class CalController {
    @Autowired
    private AccountService accountService;
    
+   
+   
    @GetMapping(value="/calendar")
    public String calendar(Model model, HttpServletRequest request) {
       logger.info("달력보기"); 
@@ -51,13 +53,14 @@ public class CalController {
 //       String email = "112@123";
        String year = request.getParameter("year");
        String month = request.getParameter("month"); 
+       
       
        HttpSession session=request.getSession();
-	   UserDto ldto=(UserDto)session.getAttribute("ldto");
-	   model.addAttribute("ldto", new UserDto());
+      UserDto ldto=(UserDto)session.getAttribute("ldto");
+      model.addAttribute("ldto", new UserDto());
        
-	   String email = ldto.getUseremail();
-	   
+      String email = ldto.getUseremail();
+      
          
        if(year==null||month==null) {
           Calendar cal = Calendar.getInstance();
@@ -66,10 +69,53 @@ public class CalController {
           
          }
       
-       String yyyyMM=year+Util.isTwo(month);//202311 6자리변환
+       String yyyyMM=year+Util.isTwo(month);
        List<CashDto>clist=calService.Cash(email, yyyyMM);
        model.addAttribute("clist", clist);
+       
+//       수입지출 컬러로
+       int insum = 0;
+       int outsum = 0;
+       for (CashDto cashDto : clist) {
+          if (cashDto.getMio().equals("수입"))
+             insum+=cashDto.getMoney();
+          else {
+             outsum+=cashDto.getMoney();
+          }
+       }
+
+       model.addAttribute("insum", insum+"");
+       model.addAttribute("outsum", outsum+"");
+       
+       
+       List<AccountDto>alist=calService.Account(email, yyyyMM);
+       model.addAttribute("alist", alist);
+       
+//       입금출금 컬러로
+       int incomesum = 0;
+       int outcomesum = 0;
+       for (AccountDto accountDto : alist) {
+          int amount = accountDto.getTran_amt();
+           if (accountDto.getInout_type().equals("입금")) {
+               incomesum += amount;
+           } else {
+               outcomesum += amount;
+           }
+       }
+       model.addAttribute("incomesum", incomesum+"");
+       model.addAttribute("outcomesum", outcomesum+"");
       
+       int totalinSum = insum + incomesum;
+       model.addAttribute("totalinSum", totalinSum + "");
+       int totaloutSum = outsum + outcomesum;
+       model.addAttribute("totaloutSum", totaloutSum + "");
+       
+//       총합계산
+       int total = totalinSum - totaloutSum;
+       model.addAttribute("total", total + "");
+       
+//       System.out.println(clist.get(0));
+       
       //달력만들기위한 값 구하기
       Map<String, Integer>map=calService.makeCalendar(request);
       model.addAttribute("calMap", map);
@@ -79,36 +125,36 @@ public class CalController {
    }
    
 //   @GetMapping(value = "/addCalBoardForm")
-//	public String addCalBoardForm(Model model, InsertCalCommand insertCalCommand) {
-//		logger.info("일정추가폼이동");
-//		System.out.println(insertCalCommand);
-//		
-//		HttpSession session=request.getSession();
-//	    UserDto ldto=(UserDto)session.getAttribute("ldto");
-//		model.addAttribute("ldto", new UserDto());
-////		
-//		model.addAttribute("insertCalCommand", insertCalCommand);
-//		return "thymeleaf/calboard/addCalBoardForm";
-//	}
+//   public String addCalBoardForm(Model model, InsertCalCommand insertCalCommand) {
+//      logger.info("일정추가폼이동");
+//      System.out.println(insertCalCommand);
+//      
+//      HttpSession session=request.getSession();
+//       UserDto ldto=(UserDto)session.getAttribute("ldto");
+//      model.addAttribute("ldto", new UserDto());
+////      
+//      model.addAttribute("insertCalCommand", insertCalCommand);
+//      return "thymeleaf/calboard/addCalBoardForm";
+//   }
 // 
   
   @PostMapping(value = "/addCalBoard")
-	public String addCalBoard(@Validated InsertCalCommand insertCalCommand,
-							  BindingResult result, Model model) throws Exception {
-		logger.info("일정추가하기");
-	      
-	      
-		System.out.println(insertCalCommand);
-		if(result.hasErrors()) {
-			System.out.println("글을 모두 입력해야 함");
-			return "thymeleaf/calboard/calendar";
-		}
-		
-		calService.insertCalBoard(insertCalCommand);
-		
-		return "redirect:/schedule/calendar?year="+insertCalCommand.getYear()
-										+"&month="+insertCalCommand.getMonth();
-	}
+   public String addCalBoard(@Validated InsertCalCommand insertCalCommand,
+                       BindingResult result, Model model) throws Exception {
+      logger.info("일정추가하기");
+         
+         
+      System.out.println(insertCalCommand);
+      if(result.hasErrors()) {
+         System.out.println("글을 모두 입력해야 함");
+         return "thymeleaf/calboard/calendar";
+      }
+      
+      calService.insertCalBoard(insertCalCommand);
+      
+      return "redirect:/schedule/calendar?year="+insertCalCommand.getYear()
+                              +"&month="+insertCalCommand.getMonth();
+   }
   
   
 	  @GetMapping(value = "/TransactionDataList")
@@ -181,7 +227,4 @@ public class CalController {
 		return map2;
 	}
 }
-
-
-
 

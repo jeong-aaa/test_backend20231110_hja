@@ -64,26 +64,26 @@
    }
    
    //잔액조회하기
-   function balance(fintech_use_num,btnEle){
-      $.ajax({
-         url:"/banking/balance",
-         method:"get",
-         data:{"fintech_use_num":fintech_use_num},
-         dataType:"json",
-         success:function(data){
-            console.log(data);
-            var box=$(btnEle).parents(".box").eq(0);
-            box.find(".balance_amt").html(
-                               "<p>잔액:"+data.balance_amt+"</p>"
-                              +"<p><button type='button' class='btn btn-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
-                              +"<div class='transaction_list'></div>"  //거래내역이 출력될 div 
-                              );          
-         },
-         error:function(){
-            alert("통신실패");
-         }
-      });
-   }
+	function balance(fintech_use_num,btnEle){
+		$.ajax({
+			url:"/banking/balance",
+			method:"get",
+			data:{"fintech_use_num":fintech_use_num},
+			dataType:"json",
+			success:function(data){
+				console.log(data);
+				var box=$(btnEle).parents(".box").eq(0);
+				box.find(".balance_amt").html(
+										 "<p>잔액:"+data.balance_amt+"</p>"
+										 +"<p><button class='btn btn-outline-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
+										+"<div class='transaction_list'></div>"  //거래내역이 출력될 div 
+										);          
+			},
+			error:function(){
+				alert("통신실패");
+			}
+		});
+	}
    
    //거래내역조회
    function transactionList(fintech_use_num,btnEle){
@@ -209,10 +209,10 @@
     </nav>
     
 <div class="a" style="background: #277BC0; height: 10px; ">
-    <section class="py-5">
+    <section class="py-4">
       <div id="list">
          <div class="c" style="background: #00000; height: 250px; text-align : center;" >
-         	<img src="/resources/img/MAIN01.jpg" alt="" style="height: 220px; width: 900px;"/>
+         	<img src="/resources/img/MAIN01.jpg" alt="" style="height: 240px; width: 900px;"/>
          </div>
          
          <div class="d" style="background: #F0F0F0; height: 90px; ">

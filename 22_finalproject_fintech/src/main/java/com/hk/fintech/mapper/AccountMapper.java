@@ -13,4 +13,6 @@ public interface AccountMapper {
 	void insertTransactionData(AccountDto adto);
 
 	public List<AccountDto> TransactionDataList(Map<String, String> map);
+	
+	List<AccountDto> Account(Map<String, String> map);
 }
