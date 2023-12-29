@@ -3,6 +3,7 @@ package com.hk.fintech.utils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -19,6 +20,9 @@ import com.hk.fintech.dtos.CashDto;
 
 @Component
 public class Util {
+	
+	static DecimalFormat Comma = new DecimalFormat("###,###.##");
+	
    //한자리를 두자리로 변환
    public static String isTwo(String str) {
       return str.length()<2?"0"+str:str;   //5 --> "05"  10 --> "10"
@@ -57,12 +61,14 @@ public class Util {
       for (int j = 0; j < clist.size(); j++) {
          //한달 일정 목록중에 해당일(i)값과 일치하는지 여부 판단
          if(clist.get(j).getMdate().substring(8).equals(d)) {
+        	 int monn = clist.get(j).getMoney();
+        	 String won = Comma.format(monn);
             calList+="<p style='color:"+
                   (("수입".equals(clist.get(j).getMio()))?"blue":"red")
                   +"'>"
                         +(+clist.get(j).getMio().length()>7?
                               clist.get(j).getMio().substring(0,7)+"..":
-                                 clist.get(j).getMio()+" : "+clist.get(j).getMoney()+"원")
+                                 clist.get(j).getMio()+" : "+won+"원")
                         +"</p>";
 
          }
@@ -96,12 +102,14 @@ public class Util {
       for (int j = 0; j < alist.size(); j++) {
          //한달 일정 목록중에 해당일(i)값과 일치하는지 여부 판단
          if(alist.get(j).getTran_date().substring(8).equals(d)) {
+        	 int monn = alist.get(j).getTran_amt();
+        	 String won = Comma.format(monn);
             calList+="<p style='color:"+
                   (("입금".equals(alist.get(j).getInout_type()))?"blue":"red")
                   +"'>"
                   +(+alist.get(j).getInout_type().length()>7?
                   alist.get(j).getInout_type().substring(0,7)+"..":
-                  alist.get(j).getInout_type()+" : "+alist.get(j).getTran_amt()+"원")
+                  alist.get(j).getInout_type()+" : "+ won +"원")
 
                   +"</p>";
          }
