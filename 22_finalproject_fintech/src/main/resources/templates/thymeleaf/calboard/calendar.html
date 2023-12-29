@@ -275,6 +275,7 @@
 // 		   d는 위에 click값
 		   var detailList="";
 		   
+		   
 		   $.ajax({
 			   url: "/schedule/TransactionDataList",
 			   method:"get",
@@ -296,8 +297,8 @@
 							detailList += '<tr>'
 							   			+ '<td class="how">계좌</td>'
 							   			+ '<td class="inout">'+list[i].inout_type+'</td>'
-							   			+ '<td class="mon">'+list[i].tran_amt+'</td>'
 							   			+ '<td class="ListContent">'+list[i].print_content+'</td>'
+							   			+ '<td class="mon">'+list[i].tran_amt+'</td>'
 							   			+ '</tr>';
 							
 						}
@@ -333,8 +334,8 @@
 							detailList += '<tr>'
 							   			+ '<td class="Chow">현금</td>'
 							   			+ '<td class="Cinout">'+list[i].mio+'</td>'
-							   			+ '<td class="Cmon">'+list[i].money+'</td>'
 							   			+ '<td class="CListContent">'+list[i].content+'</td>'
+							   			+ '<td class="Cmon">'+list[i].money+'</td>'
 							   			+ '</tr>';
 							
 						}
@@ -452,13 +453,13 @@
 				<table class="DataList">
 					<col width="200px"/>
 		            <col width="200px"/>
-		            <col width="500px"/>
 		            <col width="700px"/>
+		            <col width="500px"/>
 		            <tr>
 		               <th>거래</th>
 		               <th>구분</th>
-		               <th>금액</th>
 		               <th>내용</th>
+		               <th>금액</th>
 		            </tr>
 					<tbody class="dList"></tbody>
 					
