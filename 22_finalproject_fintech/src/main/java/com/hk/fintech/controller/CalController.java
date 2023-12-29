@@ -39,9 +39,9 @@ public class CalController {
    
    @Autowired
    private ICashService calService;
-   
    @Autowired
    private AccountService accountService;
+   
    
    
    @GetMapping(value="/calendar")
@@ -55,7 +55,7 @@ public class CalController {
        String month = request.getParameter("month"); 
        
       
-      HttpSession session=request.getSession();
+       HttpSession session=request.getSession();
       UserDto ldto=(UserDto)session.getAttribute("ldto");
       model.addAttribute("ldto", new UserDto());
        
@@ -114,7 +114,6 @@ public class CalController {
        int total = totalinSum - totaloutSum;
        model.addAttribute("total", total + "");
        
-     
 //       System.out.println(clist.get(0));
        
       //달력만들기위한 값 구하기
@@ -125,65 +124,6 @@ public class CalController {
       return "thymeleaf/calboard/calendar";
    }
    
-   
-   
-//   @GetMapping(value="/chart")
-//   public String chart(Model model, HttpServletRequest request) {
-//	   
-//	   String year = request.getParameter("year");
-//       String month = request.getParameter("month");
-//       HttpSession session=request.getSession();
-//       UserDto ldto=(UserDto)session.getAttribute("ldto");
-//       model.addAttribute("ldto", new UserDto());
-//        
-//       String email = ldto.getUseremail();
-//       
-//	   String yyyyMM=year+Util.isTwo(month);
-//       List<CashDto>clist=calService.Cash(email, yyyyMM);
-//       model.addAttribute("clist", clist);
-//       List<AccountDto>alist=calService.Account(email, yyyyMM);
-//       model.addAttribute("alist", alist);
-//       
-//	   int insum = 0;
-//       int outsum = 0;
-//       for (CashDto cashDto : clist) {
-//          if (cashDto.getMio().equals("수입"))
-//             insum+=cashDto.getMoney();
-//          else {
-//             outsum+=cashDto.getMoney();
-//          }
-//       }
-//
-//       model.addAttribute("insum", insum+"");
-//       model.addAttribute("outsum", outsum+"");
-//       
-//       
-////       입금출금 컬러로
-//       int incomesum = 0;
-//       int outcomesum = 0;
-//       for (AccountDto accountDto : alist) {
-//          int amount = accountDto.getTran_amt();
-//           if (accountDto.getInout_type().equals("입금")) {
-//               incomesum += amount;
-//           } else {
-//               outcomesum += amount;
-//           }
-//       }
-//       model.addAttribute("incomesum", incomesum+"");
-//       model.addAttribute("outcomesum", outcomesum+"");
-//      
-//       int totalinSum = insum + incomesum;
-//       model.addAttribute("totalinSum", totalinSum + "");
-//       int totaloutSum = outsum + outcomesum;
-//       model.addAttribute("totaloutSum", totaloutSum + "");
-//       
-////       총합계산
-//       int total = totalinSum - totaloutSum;
-//       model.addAttribute("total", total + "");
-//       
-//       return "banking/chart";
-//   }
-//   
 //   @GetMapping(value = "/addCalBoardForm")
 //   public String addCalBoardForm(Model model, InsertCalCommand insertCalCommand) {
 //      logger.info("일정추가폼이동");
@@ -217,7 +157,73 @@ public class CalController {
    }
   
   
-  
-
+     @GetMapping(value = "/TransactionDataList")
+     @ResponseBody
+   public Map<String, List<AccountDto>> TransactionDataList(@RequestParam Map<String, String>map
+                     , HttpServletRequest request
+                     , Model model) {
+      logger.info("거래내역상세-계좌");
+//      HttpSession session=request.getSession();
+//      String id=session.getAttribute("id");
+//      String id="kbj";//임시로 id 저장
+      
+      //일정목록을 조회할때마다 year, month, date를 세션에 저장
+      HttpSession session=request.getSession();
+      UserDto ldto=(UserDto)session.getAttribute("ldto");
+      String email=ldto.getUseremail();
+      
+      if(map.get("year")==null) {
+         //조회한 상태이기때문에 ymd가 저장되어 있어서 값을 가져옴
+         map=(Map<String, String>)session.getAttribute("ymdMap");
+      }else {
+         //일정을 처음 조회했을때 ymd를 저장함
+         session.setAttribute("ymdMap", map);
+      }
+      
+      //달력에서 전달받은 파라미터 year, month, date를 8자리로 만든다.
+      String yyyyMMdd=map.get("year")
+                   +Util.isTwo(map.get("month"))
+                   +Util.isTwo(map.get("date"));
+      System.out.println("yyyyMMdd:"+yyyyMMdd);
+      Map<String, List<AccountDto>> map2 = new HashMap<>();
+      List<AccountDto> list= accountService.TransactionDataList(email, yyyyMMdd);
+      map2.put("list", list);
+      System.out.println("list.size:"+list.size());
+      return map2;
+   }
+     
+     @GetMapping(value = "/cashDetailList")
+     @ResponseBody
+     public Map<String, List<CashDto>> cashDetailList(@RequestParam Map<String, String>map
+                     , HttpServletRequest request
+                     , Model model) {
+      logger.info("거래내역상세-현금");
+//      HttpSession session=request.getSession();
+//      String id=session.getAttribute("id");
+//      String id="kbj";//임시로 id 저장
+      
+      //일정목록을 조회할때마다 year, month, date를 세션에 저장
+      HttpSession session=request.getSession();
+      UserDto ldto=(UserDto)session.getAttribute("ldto");
+      String email=ldto.getUseremail();
+      
+      if(map.get("year")==null) {
+         //조회한 상태이기때문에 ymd가 저장되어 있어서 값을 가져옴
+         map=(Map<String, String>)session.getAttribute("ymdMap");
+      }else {
+         //일정을 처음 조회했을때 ymd를 저장함
+         session.setAttribute("ymdMap", map);
+      }
+      
+      //달력에서 전달받은 파라미터 year, month, date를 8자리로 만든다.
+      String yyyyMMdd=map.get("year")
+                   +Util.isTwo(map.get("month"))
+                   +Util.isTwo(map.get("date"));
+      System.out.println("yyyyMMdd:"+yyyyMMdd);
+      Map<String, List<CashDto>> map2 = new HashMap<>();
+      List<CashDto> list= calService.cashDetailList(email, yyyyMMdd);
+      map2.put("list", list);
+      System.out.println("list.size:"+list.size());
+      return map2;
+   }
 }
-
