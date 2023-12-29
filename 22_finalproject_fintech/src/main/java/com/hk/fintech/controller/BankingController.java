@@ -259,6 +259,7 @@ public class BankingController {
       return formatNow;
    }
    
+
    // 계좌 삭제
    @ResponseBody
    @DeleteMapping("/deleteAccount")
@@ -272,9 +273,16 @@ public class BankingController {
            return new ResponseEntity<>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
        }
    }
+   
+   @GetMapping("/chart")
+   public String chart() {
+	   
+	   
+      return "chart";
+
+   }
 
 }
-
 
 
 

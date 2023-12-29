@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-
+import com.hk.fintech.dtos.AccountDto;
 import com.hk.fintech.dtos.CashDto;
 
 
@@ -38,7 +38,9 @@ public interface CashMapper {
 	public List<CashDto> Cash(Map<String, String>map);
 
 	
-
+	
+	public List<CashDto> cashDetailList(Map<String, String> map);
+	
 }
 
 

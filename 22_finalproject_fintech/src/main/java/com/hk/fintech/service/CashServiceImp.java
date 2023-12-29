@@ -164,4 +164,12 @@ public class CashServiceImp implements ICashService{
 //      
 //   }
 
+	@Override
+	public List<CashDto> cashDetailList(String email,String yyyyMMdd) {
+		Map<String, String>map=new HashMap<String, String>();
+		map.put("useremail", email);
+		map.put("mdate", yyyyMMdd);
+		return cashMapper.cashDetailList(map);
+	}
+
 }
