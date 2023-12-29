@@ -1,6 +1,8 @@
 package com.hk.fintech.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,10 @@ public class AccountService {
 	}
 	
 	public List<AccountDto> TransactionDataList(String email,String yyyyMMdd){
-		return accountMapper.TransactionDataList(email, yyyyMMdd);
+		Map<String, String>map=new HashMap<String, String>();
+		map.put("useremail", email);
+		map.put("tran_date", yyyyMMdd);
+		return accountMapper.TransactionDataList(map);
 	}
 }
 

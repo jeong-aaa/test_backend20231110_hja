@@ -35,6 +35,8 @@ public interface ICashService {
 
 	public List<CashDto> Cash(String email, String yyyyMM);
 
+	public List<CashDto> cashDetailList(String email,String yyyyMMdd);
+
 }
 
 

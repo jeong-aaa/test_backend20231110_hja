@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.hk.fintech.command.InsertCalCommand;
+import com.hk.fintech.dtos.AccountDto;
 import com.hk.fintech.dtos.CashDto;
 import com.hk.fintech.mapper.CashMapper;
 import com.hk.fintech.utils.Util;
@@ -146,5 +147,13 @@ public class CashServiceImp implements ICashService{
 //		return calMapper.getAllList(yyyyMMdd);
 //		
 //	}
+
+	@Override
+	public List<CashDto> cashDetailList(String email,String yyyyMMdd) {
+		Map<String, String>map=new HashMap<String, String>();
+		map.put("useremail", email);
+		map.put("mdate", yyyyMMdd);
+		return cashMapper.cashDetailList(map);
+	}
 
 }

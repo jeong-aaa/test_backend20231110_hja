@@ -18,7 +18,7 @@
     <select id ="TransactionDataList" parameterType="Map" resultType="AccountDto">
 		SELECT USEREMAIL, TRAN_DATE, INOUT_TYPE, TRAN_AMT, PRINT_CONTENT
 		FROM FINTECH_ACCOUNT
-		WHERE USEREMAIL = #{useremail}
+		WHERE USEREMAIL = #{useremail} AND TRAN_DATE = #{tran_date}
 	</select>
 
 </mapper>

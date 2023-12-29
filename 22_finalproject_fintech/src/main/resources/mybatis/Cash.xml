@@ -16,6 +16,12 @@
 			WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(mdate, '%Y%m') =#{yyyyMM}) cal
 		WHERE RN BETWEEN 1 AND 2
 	</select>
+	
+	<select id ="cashDetailList" parameterType="Map" resultType="CashDto">
+		SELECT USEREMAIL, MDATE, MIO, MONEY, CONTENT
+		FROM FINTECH_CASH
+		WHERE USEREMAIL = #{useremail} AND MDATE = #{mdate}
+	</select>
 
 <!-- 	<select id="calViewList" parameterType="Map" resultType="CalDto"> -->
 <!-- 		SELECT rn, seq, USEREMAIL, MDATE, CONTENT, MIO, MONEY -->
