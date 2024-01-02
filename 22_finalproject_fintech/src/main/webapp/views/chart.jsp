@@ -40,7 +40,6 @@
             //계좌등록 버튼
             $("#list").html("<div class='addAccount'>"
                         +"  <button type='button' class='btn btn-primary' onclick='addAccount()'>계좌등록</button>"
-                        +"  <button type='submit' class='btn btn-outline-secondary' onclick='delUserEX()' style='margin-right:110px'>회원탈퇴</button>"
                         +"</div>"
                           );
             
@@ -56,7 +55,6 @@
                        +'   </div>'
                        +'   <div class="sub_menu"> '
                        +'      <button onclick="balance(\''+res_list[i].fintech_use_num+'\',this)" type="button" class="btn btn-outline-primary">잔액조회</button>'
-                       +'      <button onclick="deleteAccount(\''+res_list[i].fintech_use_num+'\', this)" type="button" class="btn btn-outline-primary">계좌삭제</button>'
                        +'   </div>'
                        +'   <div class="balance_amt"></div>'
                        +'</div>   '
@@ -67,26 +65,26 @@
    }
    
    //잔액조회하기
-	function balance(fintech_use_num,btnEle){
-		$.ajax({
-			url:"/banking/balance",
-			method:"get",
-			data:{"fintech_use_num":fintech_use_num},
-			dataType:"json",
-			success:function(data){
-				console.log(data);
-				var box=$(btnEle).parents(".box").eq(0);
-				box.find(".balance_amt").html(
-										 "<p>잔액:"+data.balance_amt+"</p>"
-										 +"<p><button class='btn btn-outline-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
-										+"<div class='transaction_list'></div>"  //거래내역이 출력될 div 
-										);          
-			},
-			error:function(){
-				alert("통신실패");
-			}
-		});
-	}
+   function balance(fintech_use_num,btnEle){
+      $.ajax({
+         url:"/banking/balance",
+         method:"get",
+         data:{"fintech_use_num":fintech_use_num},
+         dataType:"json",
+         success:function(data){
+            console.log(data);
+            var box=$(btnEle).parents(".box").eq(0);
+            box.find(".balance_amt").html(
+                               "<p>잔액:"+data.balance_amt+"</p>"
+                               +"<p><button class='btn btn-outline-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
+                              +"<div class='transaction_list'></div>"  //거래내역이 출력될 div 
+                              );          
+         },
+         error:function(){
+            alert("통신실패");
+         }
+      });
+   }
    
    //거래내역조회
    function transactionList(fintech_use_num,btnEle){
@@ -165,7 +163,7 @@
 <div class="a" style="background: #277BC0; height: 10px; "></div>
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
   <div class="container">
-    <canvas id="myChart"></canvas>
+    	<canvas id="myChart"></canvas>
   </div>
 
   <!-- 부트스트랩 -->
