@@ -31,8 +31,6 @@
    font-size: 25px;
    font-weight:bold;
    color: #3C4048;
-   margin-right:200px;
-
    }
    .cal{
    width: 1200px;
@@ -86,6 +84,7 @@
        text-align: center;
        font-weight: bold;
     }
+    
     #ctitle{
     font-size: 20px;
     text-align:center;
@@ -164,15 +163,19 @@
   float:right;
 }
 
+
 .btn-1 {
-  background: #96C7ED;
-  background: #96C7ED;
+/*   background: #96C7ED; */
+/*   background: #96C7ED; */
   border: none;
+  background:none;
+  border-radius: 5px;
+/*   padding-left: 30px; */
 }
-.btn-1:hover {
-   background: #96C7ED;
-background: #6495ED;
-}
+
+/* .btn-1:hover { */
+/*    background: #F4F7FC; */
+/*    } */
     
 </style>
 <script type="text/javascript">
@@ -420,6 +423,12 @@ background: #6495ED;
      <span>합계</span>
      <a th:text="${totalsum}+원"></a>     
 
+     <button type="button" class="btn-outline-primary btn-1" th:onclick="|location.href='@{/banking/chart(total=${total})}'|" >
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+        <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z"/>
+      </svg>
+     </button>
+
      <button type="button" class="custom-btn btn-1" th:onclick="|location.href='@{/banking/chart(total=${total})}'|" >소비확인</button>
      
      <a data-bs-toggle="modal" class="dd" data-bs-target="#exampleModal2" th:attr="data-target=${'#exampleModal2'}">
@@ -620,4 +629,3 @@ background: #6495ED;
 
 </body>
 </html>
-
