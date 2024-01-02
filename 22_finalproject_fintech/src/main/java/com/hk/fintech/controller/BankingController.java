@@ -136,53 +136,53 @@ public class BankingController {
    
    
  //거래내역 조회
- 	@GetMapping("/transactionList")
- 	@ResponseBody
- 	public JSONObject transactionList(String fintech_use_num
- 			                         ,HttpServletRequest request) throws IOException, ParseException {
- 		System.out.println("거래내역 조회하기");
- 		HttpURLConnection conn=null;
- 		JSONObject result=null;
- 		
- 		HttpSession session=request.getSession();
- 		UserDto ldto=(UserDto)session.getAttribute("ldto");
- 		
- 		URL url=new URL("https://testapi.openbanking.or.kr/v2.0/account/transaction_list/fin_num?"
- 				      + "bank_tran_id=M202201886U"+createNum()
- 				      + "&fintech_use_num="+fintech_use_num
- 				      + "&inquiry_type=A"
- 				      + "&inquiry_base=D"
- 				      + "&from_date=20190101"
- 				      + "&to_date=20190131"
- 				      + "&sort_order=D"
- 				      + "&tran_dtime="+getDateTime());
- 		
- 		conn = (HttpURLConnection)url.openConnection();
- 		conn.setRequestMethod("GET");
- 		conn.setRequestProperty("Content-Type", "application/json");
- 		conn.setRequestProperty("Authorization", "Bearer "+ldto.getUseraccesstoken());
- 		conn.setDoOutput(true);
- 		
- 		// java에서 사용할 수 있도록 읽어들이는 코드
- 		BufferedReader br=new BufferedReader(
- 					new InputStreamReader(conn.getInputStream(),"utf-8")
- 				);
- 		StringBuilder response=new StringBuilder();
- 		String responseLine=null;
- 		
- 		while((responseLine=br.readLine())!=null) {
- 			response.append(responseLine.trim());
- 		}
- 		
- 		//읽은 값이 json 형태로 된 문자열 --> json객체로 변환하자
- 		result=(JSONObject)new JSONParser().parse(response.toString());
- 		System.out.println("거래내역:"+result.get("res_list"));
- 		
- 		// 거래내역을 저장하는 코드 추가
- 		saveTransaction(ldto.getUseremail(), result);
- 		
- 		return result;
- 	}
+    @GetMapping("/transactionList")
+    @ResponseBody
+    public JSONObject transactionList(String fintech_use_num
+                                   ,HttpServletRequest request) throws IOException, ParseException {
+       System.out.println("거래내역 조회하기");
+       HttpURLConnection conn=null;
+       JSONObject result=null;
+       
+       HttpSession session=request.getSession();
+       UserDto ldto=(UserDto)session.getAttribute("ldto");
+       
+       URL url=new URL("https://testapi.openbanking.or.kr/v2.0/account/transaction_list/fin_num?"
+                   + "bank_tran_id=M202201886U"+createNum()
+                   + "&fintech_use_num="+fintech_use_num
+                   + "&inquiry_type=A"
+                   + "&inquiry_base=D"
+                   + "&from_date=20190101"
+                   + "&to_date=20190131"
+                   + "&sort_order=D"
+                   + "&tran_dtime="+getDateTime());
+       
+       conn = (HttpURLConnection)url.openConnection();
+       conn.setRequestMethod("GET");
+       conn.setRequestProperty("Content-Type", "application/json");
+       conn.setRequestProperty("Authorization", "Bearer "+ldto.getUseraccesstoken());
+       conn.setDoOutput(true);
+       
+       // java에서 사용할 수 있도록 읽어들이는 코드
+       BufferedReader br=new BufferedReader(
+                new InputStreamReader(conn.getInputStream(),"utf-8")
+             );
+       StringBuilder response=new StringBuilder();
+       String responseLine=null;
+       
+       while((responseLine=br.readLine())!=null) {
+          response.append(responseLine.trim());
+       }
+       
+       //읽은 값이 json 형태로 된 문자열 --> json객체로 변환하자
+       result=(JSONObject)new JSONParser().parse(response.toString());
+       System.out.println("거래내역:"+result.get("res_list"));
+       
+       // 거래내역을 저장하는 코드 추가
+       saveTransaction(ldto.getUseremail(), result);
+       
+       return result;
+    }
 
    //거래내역 저장
    private void saveTransaction(String useremail, JSONObject result) {
@@ -278,14 +278,13 @@ public class BankingController {
    
    @GetMapping("/chart")
    public String chart() {
-	   
-	   
+      
+      
       return "chart";
 
    }
 
 }
-
 
 
 
