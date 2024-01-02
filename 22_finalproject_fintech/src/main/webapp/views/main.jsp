@@ -97,7 +97,7 @@
 				var box=$(btnEle).parents(".box").eq(0);
 				box.find(".balance_amt").html(
 										 "<p>잔액:"+data.balance_amt+"</p>"
-										 +"<p><button class='btn btn-outline-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
+										 +"<p><button type='button' class='btn btn-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
 										+"<div class='transaction_list'></div>"  //거래내역이 출력될 div 
 										);          
 			},
