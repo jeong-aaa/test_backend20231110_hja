@@ -75,8 +75,8 @@
             console.log(data);
             var box=$(btnEle).parents(".box").eq(0);
             box.find(".balance_amt").html(
-            				  "<p>잔액: "+data.balance_amt+"원"+"</p>"
-                              +"<p><button class='btn btn-outline-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
+                               "<p>잔액:"+data.balance_amt+"</p>"
+                               +"<p><button class='btn btn-outline-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
                               +"<div class='transaction_list'></div>"  //거래내역이 출력될 div 
                               );          
          },
@@ -143,16 +143,15 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder; width: auto; background:#00000;">
-        <div class="container" style="margin-left: 11px; width: auto;">           
+        <div class="container" style="margin-left: 30px; width: auto;">           
           <img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
           <a class="nav-link" href="/banking/main" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
           S.S.M
            </a>           
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 850px; ">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-<%--                    <li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap; color: #3C4048;" >${sessionScope.ldto.username}님</a></li> --%>
+                   <li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap; color: #3C4048;" >${sessionScope.ldto.username}님</a></li>
 <!--                     <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Main</a></li> -->
-                    <li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap; color: #3C4048;" >${sessionScope.ldto.username}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/schedule/calendar" style="color: #3C4048;">Calender</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!" style="color: #3C4048;" onclick="myInfo()">MyPage</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout" style="color: #3C4048;">Logout</a></li>
@@ -165,7 +164,7 @@
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
   
   <div class="container">
-    	<canvas id="myChart"></canvas>
+    	<canvas id="myChart" ></canvas>
   </div>
 
   <!-- 부트스트랩 -->
@@ -180,87 +179,50 @@
     crossorigin="anonymous"></script>
   <!-- 차트 -->
   <script>
-  const DATA_COUNT = 7;
-  const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
-
-  const labels = Utils.months({count: 7});
-  const data = {
-    labels: labels,
-    datasets: [
-      {
-        label: 'Dataset 1',
-        data: Utils.numbers(NUMBER_CFG),
-        borderColor: Utils.CHART_COLORS.red,
-        backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+  
+	
+  
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['12월'],
+        datasets: [{
+          label: '총합계',
+          data: [${param.total}],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
       },
-      {
-        label: 'Dataset 2',
-        data: Utils.numbers(NUMBER_CFG),
-        borderColor: Utils.CHART_COLORS.blue,
-        backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
       }
-    ]
-  };
-  
-  
-  const config = {
-		  type: 'line',
-		  data: data,
-		  options: {
-		    responsive: true,
-		    plugins: {
-		      legend: {
-		        position: 'top',
-		      },
-		      title: {
-		        display: true,
-		        text: 'Chart.js Line Chart'
-		      }
-		    }
-		  },
-		};
-  
-//     var ctx = document.getElementById('myChart');
-//     var myChart = new Chart(ctx, {
-//       type: 'bar',
-//       data: {
-//         labels: ['12월', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//         datasets: [{
-//           label: '총합계',
-//           data: [${param.total}, 19, 3, 5, 2, 3],
-//           backgroundColor: [
-//             'rgba(255, 99, 132, 0.2)',
-//             'rgba(54, 162, 235, 0.2)',
-//             'rgba(255, 206, 86, 0.2)',
-//             'rgba(75, 192, 192, 0.2)',
-//             'rgba(153, 102, 255, 0.2)',
-//             'rgba(255, 159, 64, 0.2)'
-//           ],
-//           borderColor: [
-//             'rgba(255, 99, 132, 1)',
-//             'rgba(54, 162, 235, 1)',
-//             'rgba(255, 206, 86, 1)',
-//             'rgba(75, 192, 192, 1)',
-//             'rgba(153, 102, 255, 1)',
-//             'rgba(255, 159, 64, 1)'
-//           ],
-//           borderWidth: 1
-//         }]
-//       },
-//       options: {
-//         scales: {
-//           yAxes: [{
-//             ticks: {
-//               beginAtZero: true
-//             }
-//           }]
-//         }
-//       }
-//     });
+    });
 
   </script>
   
-  <a> <%=request.getParameter("total")%>원</a>
+<%--   <a> <%=request.getParameter("total")%>원</a> --%>
 </body>
 
 </html>
