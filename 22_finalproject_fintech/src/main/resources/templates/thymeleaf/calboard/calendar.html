@@ -233,7 +233,7 @@
             console.log(data);
             var box=$(btnEle).parents(".box").eq(0);
             box.find(".balance_amt").html(
-                               "<p>잔액:"+data.balance_amt+"</p>"
+                              "<p>잔액: "+data.balance_amt+"원"+"</p>"
                               +"<p><button type='button' class='btn btn-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
                               +"<div class='transaction_list'></div>"  //거래내역이 출력될 div 
                               );          
@@ -431,6 +431,7 @@
       </svg><br/>소비패턴
      </button>
 
+
      <button style = "padding-right: 20px; float: right; font-size:10px; color:#323C73;" type="button" data-bs-toggle="modal" class="dd  btn-1" data-bs-target="#exampleModal2" th:attr="data-target=${'#exampleModal2'}">
 	     <svg xmlns="http://www.w3.org/2000/svg" width="42" height="35" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
 		  <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
@@ -440,9 +441,6 @@
 		</svg><br/>현금기입 
 	</button>
 
-     
-
-     
      
    </div>    
 
