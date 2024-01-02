@@ -162,6 +162,7 @@
     
 <div class="a" style="background: #277BC0; height: 10px; "></div>
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
+  
   <div class="container">
     	<canvas id="myChart"></canvas>
   </div>
@@ -178,97 +179,87 @@
     crossorigin="anonymous"></script>
   <!-- 차트 -->
   <script>
-  
-//   function calendar(total){
-//       $.ajax({
-//          url:"/schedule/calendar",
-//          method:"get",
-//          data:{"total":total},
-//          dataType:"json",
-//          success:function(data){ //data: 응답결과을 받을 변수
-//             console.log(data.total);
-          
-//          var ctx = document.getElementById('myChart');
-//             var myChart = new Chart(ctx, {
-//               type: 'bar',
-//               data: {
-//                 labels: ['12월', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//                 datasets: [{
-//                   label: '총합계',
-//                   data: [total, 19, 3, 5, 2, 3],
-//                   backgroundColor: [
-//                     'rgba(255, 99, 132, 0.2)',
-//                     'rgba(54, 162, 235, 0.2)',
-//                     'rgba(255, 206, 86, 0.2)',
-//                     'rgba(75, 192, 192, 0.2)',
-//                     'rgba(153, 102, 255, 0.2)',
-//                     'rgba(255, 159, 64, 0.2)'
-//                   ],
-//                   borderColor: [
-//                     'rgba(255, 99, 132, 1)',
-//                     'rgba(54, 162, 235, 1)',
-//                     'rgba(255, 206, 86, 1)',
-//                     'rgba(75, 192, 192, 1)',
-//                     'rgba(153, 102, 255, 1)',
-//                     'rgba(255, 159, 64, 1)'
-//                   ],
-//                   borderWidth: 1
-//                 }]
-//               },
-//               options: {
-//                 scales: {
-//                   yAxes: [{
-//                     ticks: {
-//                       beginAtZero: true
-//                     }
-//                   }]
-//                 }
-//               }
-//             });
-  
-  
-  
-    var ctx = document.getElementById('myChart');
-    var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['12월', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '총합계',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
+  const DATA_COUNT = 7;
+  const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
+
+  const labels = Utils.months({count: 7});
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: 'Dataset 1',
+        data: Utils.numbers(NUMBER_CFG),
+        borderColor: Utils.CHART_COLORS.red,
+        backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
       },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
+      {
+        label: 'Dataset 2',
+        data: Utils.numbers(NUMBER_CFG),
+        borderColor: Utils.CHART_COLORS.blue,
+        backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
       }
-    });
+    ]
+  };
+  
+  
+  const config = {
+		  type: 'line',
+		  data: data,
+		  options: {
+		    responsive: true,
+		    plugins: {
+		      legend: {
+		        position: 'top',
+		      },
+		      title: {
+		        display: true,
+		        text: 'Chart.js Line Chart'
+		      }
+		    }
+		  },
+		};
+  
+//     var ctx = document.getElementById('myChart');
+//     var myChart = new Chart(ctx, {
+//       type: 'bar',
+//       data: {
+//         labels: ['12월', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//         datasets: [{
+//           label: '총합계',
+//           data: [${param.total}, 19, 3, 5, 2, 3],
+//           backgroundColor: [
+//             'rgba(255, 99, 132, 0.2)',
+//             'rgba(54, 162, 235, 0.2)',
+//             'rgba(255, 206, 86, 0.2)',
+//             'rgba(75, 192, 192, 0.2)',
+//             'rgba(153, 102, 255, 0.2)',
+//             'rgba(255, 159, 64, 0.2)'
+//           ],
+//           borderColor: [
+//             'rgba(255, 99, 132, 1)',
+//             'rgba(54, 162, 235, 1)',
+//             'rgba(255, 206, 86, 1)',
+//             'rgba(75, 192, 192, 1)',
+//             'rgba(153, 102, 255, 1)',
+//             'rgba(255, 159, 64, 1)'
+//           ],
+//           borderWidth: 1
+//         }]
+//       },
+//       options: {
+//         scales: {
+//           yAxes: [{
+//             ticks: {
+//               beginAtZero: true
+//             }
+//           }]
+//         }
+//       }
+//     });
 
   </script>
   
-<%--   <a> <%=request.getParameter("total")%>원</a> --%>
+  <a> <%=request.getParameter("total")%>원</a>
 </body>
 
 </html>
