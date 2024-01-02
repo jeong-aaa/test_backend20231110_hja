@@ -86,72 +86,52 @@
 }
    
    //잔액조회하기
-	function balance(fintech_use_num,btnEle){
-		$.ajax({
-			url:"/banking/balance",
-			method:"get",
-			data:{"fintech_use_num":fintech_use_num},
-			dataType:"json",
-			success:function(data){
-				console.log(data);
-				var box=$(btnEle).parents(".box").eq(0);
-				box.find(".balance_amt").html(
-										 "<p>잔액:"+data.balance_amt+"</p>"
-										 +"<p><button type='button' class='btn btn-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
-										+"<div class='transaction_list'></div>"  //거래내역이 출력될 div 
-										);          
-			},
-			error:function(){
-				alert("통신실패");
-			}
-		});
-	}
-   
-	// 거래내역 저장
-// 	function saveTransaction(useremail, tran_date, inout_type, tran_amt, print_content) {
-// 	    $.ajax({
-// 	        url: "/banking/saveTransaction",
-// 	        method: "post",
-// 	            useremail: useremail,
-// 	            tran_date: tran_date,
-// 	            inout_type: inout_type,
-// 	            tran_amt: tran_amt,
-// 	            print_content: print_content
-// 	        },
-// 	        success: function (data) {
-// 	            console.log("거래내역이 성공적으로 저장되었습니다.");
-// 	        },
-// 	        error: function () {
-// 	            alert("거래내역 저장에 실패했습니다.");
-// 	        }
-// 	    });
-// 	}
+   function balance(fintech_use_num,btnEle){
+      $.ajax({
+         url:"/banking/balance",
+         method:"get",
+         data:{"fintech_use_num":fintech_use_num},
+         dataType:"json",
+         success:function(data){
+            console.log(data);
+            var box=$(btnEle).parents(".box").eq(0);
+            box.find(".balance_amt").html(
+                               "<p>잔액:"+data.balance_amt+"</p>"
+                               +"<p><button type='button' class='btn btn-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
+                              +"<div class='transaction_list'></div>"  //거래내역이 출력될 div 
+                              );          
+         },
+         error:function(){
+            alert("통신실패");
+         }
+      });
+   }
    
    //거래내역조회
-	function transactionList(fintech_use_num, btnEle) {
-	    $.ajax({
-	        url: "/banking/transactionList",
-	        method: "get",
-	        data: {"fintech_use_num": fintech_use_num},
-	        dataType: "json",
-	        success: function(data) {
-	            console.log(data.res_list);
-	            var list = "<ul>";
-	            for (var i = 0; i < data.res_list.length; i++) {
-	                var res = data.res_list[i];
-	                list += "<li>"+res.tran_date+" "
-	                            +res.inout_type+" "
-	                            +res.print_content+":"
-	                            +res.tran_amt+"원"+"</li>";
-	                // 거래내역 저장 호출
-	                saveTransaction(res.useremail, res.tran_date, res.inout_type, res.tran_amt, res.print_content);
-	            }
-	            list += "</ul>";
-	            //button .   p    . <div> 
-	            $(btnEle).parent().next(".transaction_list").html(list);
-	        }
-	    });
-	}
+   function transactionList(fintech_use_num,btnEle){
+      $.ajax({
+         url:"/banking/transactionList",
+         method:"get",
+         data:{"fintech_use_num":fintech_use_num},
+         dataType:"json",
+         success:function(data){ //data: 응답결과을 받을 변수
+            console.log(data.res_list);
+            var list="<ul>";
+            // data.res_list  -->  배열
+            for (var i = 0; i < data.res_list.length; i++) {
+               var res=data.res_list[i];// json객체를 가져온다 {key:value,...}
+               list+="<li>"+res.tran_date+" "
+                           +res.inout_type+" "
+                           +res.print_content+":"
+                           +res.tran_amt+"원"+"</li>"
+            }
+            list+="</ul>";// <ul><li>거래내역1</li><li>거래내역2</li>..</ul>
+            //button .   p    . <div> 
+            $(btnEle).parent().next(".transaction_list").html(list);
+         }
+      });
+   }
+   
    
    //계좌등록하기(센터인증 이용기관용: 사용자 인증후에 계좌 등록 가능)
    function addAccount(){
@@ -255,10 +235,10 @@
     <section class="py-4">
       <div id="list">
          <div class="c" style="background: #00000; height: 250px; text-align : center;" >
-         	<img src="/resources/img/MAIN01.jpg" alt="" style="height: 240px; width: 900px;"/>
+            <img src="/resources/img/MAIN01.jpg" alt="" style="height: 240px; width: 900px;"/>
          </div>
          
-         <div class="d" style="background: #F0F0F0; height: 90px; ">
+         <div class="d" style="background: #f4f7fc; height: 90px; ">
             <div class="main_service_menu">
                <h2 class="blind" style="margin-left:630px; font-size: 25px; clolr:#163020; ">주요 서비스 바로가기</h2>
                <div class="dropdown">
