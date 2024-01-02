@@ -56,11 +56,12 @@ public class CalController {
        String month = request.getParameter("month"); 
        
       
-       HttpSession session=request.getSession();
+      HttpSession session=request.getSession();
       UserDto ldto=(UserDto)session.getAttribute("ldto");
       model.addAttribute("ldto", new UserDto());
        
       String email = ldto.getUseremail();
+      
       
       if (year == null || month == null) {
     	    Calendar cal = Calendar.getInstance();
