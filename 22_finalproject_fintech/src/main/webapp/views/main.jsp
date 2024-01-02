@@ -132,6 +132,7 @@
       });
    }
    
+   
    //계좌등록하기(센터인증 이용기관용: 사용자 인증후에 계좌 등록 가능)
    function addAccount(){
       var url="https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
@@ -237,7 +238,7 @@
          	<img src="/resources/img/MAIN01.jpg" alt="" style="height: 240px; width: 900px;"/>
          </div>
          
-         <div class="d" style="background: #F0F0F0; height: 90px; ">
+         <div class="d" style="background: #f4f7fc; height: 90px; ">
             <div class="main_service_menu">
                <h2 class="blind" style="margin-left:630px; font-size: 25px; clolr:#163020; ">주요 서비스 바로가기</h2>
                <div class="dropdown">
