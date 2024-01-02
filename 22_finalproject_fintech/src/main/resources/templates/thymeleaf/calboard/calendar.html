@@ -421,6 +421,10 @@ background: #6495ED;
      <a th:text="${totalsum}+원"></a>     
 
      <button type="button" class="custom-btn btn-1" th:onclick="|location.href='@{/banking/chart(total=${total})}'|" >소비확인</button>
+     
+     <a data-bs-toggle="modal" class="dd" data-bs-target="#exampleModal2" th:attr="data-target=${'#exampleModal2'}">
+                     <img class="pen" th:src="@{/img/pen.png}" />
+                  </a>
    </div>    
 
 <!--   캘린더   -->
@@ -449,9 +453,7 @@ background: #6495ED;
                      th:attr="data-target=${'#exampleModal'}">
 <!--                      th:href="@{/schedule/calBoardList(year=${calMap.year},month=${calMap.month},date=${i})}"> -->
                   </a>
-                  <a data-bs-toggle="modal" class="dd" data-bs-target="#exampleModal2" th:attr="data-target=${'#exampleModal2'}">
-                     <img class="pen" th:src="@{/img/pen.png}" />
-                  </a>
+                  
                   [(${@util.Account(i,alist)})]
                   [(${@util.Cash(i,clist)})]
               
