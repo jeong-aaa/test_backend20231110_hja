@@ -62,13 +62,33 @@ public class CalController {
        
       String email = ldto.getUseremail();
       
+      if (year == null || month == null) {
+    	    Calendar cal = Calendar.getInstance();
+    	    year = String.valueOf(cal.get(Calendar.YEAR));
+    	    month = String.valueOf(cal.get(Calendar.MONTH) + 1);
+    	} else {
+    	    int intMonth = Integer.parseInt(month);
+    	    int intYear = Integer.parseInt(year);
+
+    	    if (intMonth < 1) {
+    	        intMonth = 12;
+    	        intYear--;
+    	    } else if (intMonth > 12) {
+    	        intMonth = 1;
+    	        intYear++;
+    	    }
+
+    	    year = String.valueOf(intYear);
+    	    month = String.valueOf(intMonth);
+    	}
+
          
-       if(year==null||month==null) {
-          Calendar cal = Calendar.getInstance();
-           year = cal.get(Calendar.YEAR)+"";
-           month = (cal.get(Calendar.MONTH)+1)+"";
-          
-         }
+//       if(year==null||month==null) {
+//          Calendar cal = Calendar.getInstance();
+//           year = cal.get(Calendar.YEAR)+"";
+//           month = (cal.get(Calendar.MONTH)+1)+"";
+//          
+//         }
       
        DecimalFormat df = new DecimalFormat("###,###");
        
