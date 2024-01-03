@@ -75,8 +75,8 @@
             console.log(data);
             var box=$(btnEle).parents(".box").eq(0);
             box.find(".balance_amt").html(
-            				  "<p>잔액: "+data.balance_amt+"원"+"</p>"
-                              +"<p><button class='btn btn-outline-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
+                               "<p>잔액:"+data.balance_amt+"</p>"
+                               +"<p><button class='btn btn-outline-primary' onclick='transactionList(\""+fintech_use_num+"\",this)'>거래내역조회</button></p>"
                               +"<div class='transaction_list'></div>"  //거래내역이 출력될 div 
                               );          
          },
@@ -143,16 +143,15 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder; width: auto; background:#00000;">
-        <div class="container" style="margin-left: 11px; width: auto;">           
+        <div class="container" style="margin-left: 30px; width: auto;">           
           <img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
           <a class="nav-link" href="/banking/main" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
           S.S.M
            </a>           
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 850px; ">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-<%--                    <li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap; color: #3C4048;" >${sessionScope.ldto.username}님</a></li> --%>
+                   <li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap; color: #3C4048;" >${sessionScope.ldto.username}님</a></li>
 <!--                     <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Main</a></li> -->
-                    <li class="nav-item"><a class="nav-link active"  href="/banking/main" style="white-space: nowrap; color: #3C4048;" >${sessionScope.ldto.username}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/schedule/calendar" style="color: #3C4048;">Calender</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!" style="color: #3C4048;" onclick="myInfo()">MyPage</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout" style="color: #3C4048;">Logout</a></li>
@@ -163,9 +162,25 @@
     
 <div class="a" style="background: #277BC0; height: 10px; "></div>
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
-  <div class="container">
-    	<canvas id="myChart"></canvas>
+  
+
+<div class="container">
+      <div class="row my-3">
+          <div class="col" style="text-align: center;">
+              <h4>월별수입지출</h4>
+          </div>
+      </div>
+      <div class="row my-2">
+          <div class="col">
+              <div class="card">
+                  <div class="card-body">
+                      <canvas id="myChart" height="100"></canvas>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
+
 
   <!-- 부트스트랩 -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -180,92 +195,38 @@
   <!-- 차트 -->
   <script>
   
-//   function calendar(total){
-//       $.ajax({
-//          url:"/schedule/calendar",
-//          method:"get",
-//          data:{"total":total},
-//          dataType:"json",
-//          success:function(data){ //data: 응답결과을 받을 변수
-//             console.log(data.total);
-          
-//          var ctx = document.getElementById('myChart');
-//             var myChart = new Chart(ctx, {
-//               type: 'bar',
-//               data: {
-//                 labels: ['12월', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//                 datasets: [{
-//                   label: '총합계',
-//                   data: [total, 19, 3, 5, 2, 3],
-//                   backgroundColor: [
-//                     'rgba(255, 99, 132, 0.2)',
-//                     'rgba(54, 162, 235, 0.2)',
-//                     'rgba(255, 206, 86, 0.2)',
-//                     'rgba(75, 192, 192, 0.2)',
-//                     'rgba(153, 102, 255, 0.2)',
-//                     'rgba(255, 159, 64, 0.2)'
-//                   ],
-//                   borderColor: [
-//                     'rgba(255, 99, 132, 1)',
-//                     'rgba(54, 162, 235, 1)',
-//                     'rgba(255, 206, 86, 1)',
-//                     'rgba(75, 192, 192, 1)',
-//                     'rgba(153, 102, 255, 1)',
-//                     'rgba(255, 159, 64, 1)'
-//                   ],
-//                   borderWidth: 1
-//                 }]
-//               },
-//               options: {
-//                 scales: {
-//                   yAxes: [{
-//                     ticks: {
-//                       beginAtZero: true
-//                     }
-//                   }]
-//                 }
-//               }
-//             });
+	
   
-  
-  
-    var ctx = document.getElementById('myChart');
-    var myChart = new Chart(ctx, {
-      type: 'bar',
+	
+	var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      // 챠트 종류를 선택
+      type: 'line',
+
+     
+      // 챠트를 그릴 데이타
       data: {
-        labels: ['12월', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Nobember', 'December','January'],
         datasets: [{
-          label: '총합계',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
+        	label: '지출',
+            data: [0, 10, 5],
+            borderColor: 'red',
+            backgroundColor: 'transparent',
+        },
+        {
+        	label: '수입',
+            data: [10, 10, 15],
+            borderColor: 'blue',
+            backgroundColor: 'transparent',
+       
         }
-      }
+        ]
+      },
+      // 옵션
+      options: {}
     });
+
+  
 
   </script>
   

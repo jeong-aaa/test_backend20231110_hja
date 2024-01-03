@@ -30,6 +30,15 @@
 		FROM FINTECH_CASH
 		WHERE USEREMAIL = #{useremail} AND MDATE = #{mdate}
 	</select>
+	
+	
+	<select id ="cashsum" parameterType="Map" resultType="CashDto">
+		SELECT  MIO, sum(money) AS money, mdate
+		FROM fintech_cash
+		WHERE USEREMAIL = #{useremail} 
+		GROUP BY DATE_FORMAT(mdate, '%Y%m'), mio
+	</select>
+	
    
 <!--    답니 -->
 <!--     해당 날짜의 거래내역 조회 -->
