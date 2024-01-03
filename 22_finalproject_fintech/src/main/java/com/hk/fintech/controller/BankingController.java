@@ -5,8 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -26,10 +30,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.fintech.apidto.UserMeDto;
 import com.hk.fintech.dtos.AccountDto;
+import com.hk.fintech.dtos.CashDto;
 import com.hk.fintech.dtos.UserDto;
 import com.hk.fintech.feignMapper.OpenBankingFeign;
 import com.hk.fintech.service.AccountService;
+import com.hk.fintech.service.ICashService;
 import com.hk.fintech.service.UserService;
+import com.hk.fintech.utils.Util;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -43,6 +50,9 @@ public class BankingController {
    
    @Autowired
    private AccountService accountService;
+   
+   @Autowired
+   private ICashService calService;
    
 //   @Autowired
 //   private OpenBankingFeign openBankingFeign;
@@ -276,12 +286,34 @@ public class BankingController {
        }
    }
    
-   @GetMapping("/chart")
-   public String chart() {
+//   @GetMapping("/chart")
+//   public String chart() {
+//      
+//      
+//      return "chart";
+//
+//   }
+   
+   @GetMapping(value="/chart")
+   public String chartdata(Model model, HttpServletRequest request) {
+     
+   
+      HttpSession session=request.getSession();
+      UserDto ldto=(UserDto)session.getAttribute("ldto");
+      model.addAttribute("ldto", new UserDto());
+       
+      String email = ldto.getUseremail();
       
-      
-      return "chart";
 
+       List<CashDto>blist=calService.cashsum(email);
+       model.addAttribute("blist", blist);
+       
+       String sum = "";
+   
+//       sum = "수입".equals(blist.getMio())?"data1":"data2";
+      
+     
+      return "chart";
    }
 
 }

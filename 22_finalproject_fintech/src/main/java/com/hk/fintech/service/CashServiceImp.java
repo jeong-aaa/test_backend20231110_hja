@@ -157,12 +157,12 @@ public class CashServiceImp implements ICashService{
 //   }
 //   
 //
-//   @Override
-//   public List<CalDto> getAllList(String yyyyMMdd) {
-//      // TODO Auto-generated method stub
-//      return calMapper.getAllList(yyyyMMdd);
-//      
-//   }
+   @Override
+   public List<CashDto> cashsum(String useremail) {
+	 
+      return cashMapper.cashsum(useremail);
+      
+   }
 
 	@Override
 	public List<CashDto> cashDetailList(String email,String yyyyMMdd) {

@@ -163,9 +163,24 @@
 <div class="a" style="background: #277BC0; height: 10px; "></div>
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
   
-  <div class="container">
-    	<canvas id="myChart" ></canvas>
+
+<div class="container">
+      <div class="row my-3">
+          <div class="col" style="text-align: center;">
+              <h4>월별수입지출</h4>
+          </div>
+      </div>
+      <div class="row my-2">
+          <div class="col">
+              <div class="card">
+                  <div class="card-body">
+                      <canvas id="myChart" height="100"></canvas>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
+
 
   <!-- 부트스트랩 -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -182,43 +197,36 @@
   
 	
   
-    var ctx = document.getElementById('myChart');
-    var myChart = new Chart(ctx, {
-      type: 'bar',
+	
+	var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      // 챠트 종류를 선택
+      type: 'line',
+
+     
+      // 챠트를 그릴 데이타
       data: {
-        labels: ['12월'],
+        labels: ['Nobember', 'December','January'],
         datasets: [{
-          label: '총합계',
-          data: [${param.total}],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
+        	label: '지출',
+            data: [0, 10, 5],
+            borderColor: 'red',
+            backgroundColor: 'transparent',
+        },
+        {
+        	label: '수입',
+            data: [10, 10, 15],
+            borderColor: 'blue',
+            backgroundColor: 'transparent',
+       
         }
-      }
+        ]
+      },
+      // 옵션
+      options: {}
     });
+
+  
 
   </script>
   
