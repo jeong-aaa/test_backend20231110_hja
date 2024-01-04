@@ -271,20 +271,6 @@ public class BankingController {
       return formatNow;
    }
    
-
-   // 계좌 삭제
-   @ResponseBody
-   @DeleteMapping("/deleteAccount")
-   public ResponseEntity<String> deleteAccount(@RequestParam String fintech_use_num) {
-       try {
-           // 여기에서 계좌 삭제 로직을 호출
-           accountService.deleteAccount(fintech_use_num);
-           return new ResponseEntity<>("success", HttpStatus.OK);
-       } catch (Exception e) {
-           e.printStackTrace();
-           return new ResponseEntity<>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
-       }
-   }
    
 //   @GetMapping("/chart")
 //   public String chart() {
