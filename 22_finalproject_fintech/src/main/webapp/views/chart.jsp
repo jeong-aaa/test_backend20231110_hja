@@ -23,7 +23,7 @@
    </style>
    <script type="text/javascript">
    
-   //나의 정보조회[계좌목록]
+ //나의 정보조회[계좌목록]
    function myInfo(){
       $.ajax({
 //            url:"https://testapi.openbanking.or.kr/v2.0/user/me",
@@ -39,7 +39,7 @@
             
             //계좌등록 버튼
             $("#list").html("<div class='addAccount'>"
-                        +"  <button type='button' class='btn btn-primary' onclick='addAccount()'>계좌등록</button>"
+                        +"  <button type='submit' class='btn btn-outline-secondary' onclick='delUserEX()' style='margin-right:200px; margin-top:2%;'>회원탈퇴</button>"
                         +"</div>"
                           );
             
@@ -164,8 +164,9 @@
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
   
 <div id="list">
+<section class="py-4">
 <div class="container">
-      <div class="row my-3">
+      <div class="py-4">
           <div class="col" style="text-align: center;">
 <!--               <h4>월별수입지출</h4> -->
           </div>
@@ -181,6 +182,7 @@
           </div>
       </div>
   </div>
+  </section>
 </div>
 
   <!-- 부트스트랩 -->
