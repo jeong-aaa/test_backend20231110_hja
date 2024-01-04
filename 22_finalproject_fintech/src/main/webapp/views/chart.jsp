@@ -196,10 +196,10 @@
   <!-- 차트 -->
 <!-- <!--   <script> --> 
   
-	
+   
   
-	
-<!-- // 	var ctx = document.getElementById('myChart').getContext('2d'); -->
+   
+<!-- //    var ctx = document.getElementById('myChart').getContext('2d'); -->
 <!-- //     var chart = new Chart(ctx, { -->
 <!-- //       // 챠트 종류를 선택 -->
 <!-- //       type: 'line', -->
@@ -209,13 +209,13 @@
 <!-- //       data: { -->
 <!-- //         labels: ['Nobember', 'December','January'], -->
 <!-- //         datasets: [{ -->
-<!-- //         	label: '지출', -->
+<!-- //            label: '지출', -->
 <!-- //             data: [0, 10, 5], -->
 <!-- //             borderColor: 'red', -->
 <!-- //             backgroundColor: 'transparent', -->
 <!-- //         }, -->
 <!-- //         { -->
-<!-- //         	label: '수입', -->
+<!-- //            label: '수입', -->
 <!-- //             data: [10, 10, 15], -->
 <!-- //             borderColor: 'blue', -->
 <!-- //             backgroundColor: 'transparent', -->
@@ -249,29 +249,49 @@
           fill: false
         }
       ]
+    },
+    options: {
+        title: {
+            display: true,
+            text: '월별수입지출',
+            fontSize: 18 // 전체 제목의 텍스트 크기 조절
+        },
+        scales: {
+            xAxes: [{
+                ticks: {
+                    fontSize: 14, // x축 레이블 텍스트 크기 조절
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    fontSize: 14, // y축 레이블 텍스트 크기 조절
+                }
+            }]
+        }
+
     }
 
   });
   
   new Chart(document.getElementById("line-chartT"), {
-	    type: 'line',
-	    data: {
-	      labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
-	      datasets: [{ 
-	          data: [86,114,106,106,107,111,133,221,783,2478],
-	          label: "수입",
-	          borderColor: "#3e95cd",
-	          fill: false
-	        }, { 
-	          data: [282,350,411,502,635,809,947,1402,3700,5267],
-	          label: "지출",
-	          borderColor: "#8e5ea2",
-	          fill: false
-	        }
-	      ]
-	    }
+       type: 'line',
+       data: {
+         labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
+         datasets: [{ 
+             data: [86,114,106,106,107,111,133,221,783,2478],
+             label: "수입",
+             borderColor: "#3e95cd",
+             fill: false
+           }, { 
+             data: [282,350,411,502,635,809,947,1402,3700,5267],
+             label: "지출",
+             borderColor: "#8e5ea2",
+             fill: false
+           }
+         ]
+       }
 
-	  });
+     });
 </script>
   
 <%--   <a> <%=request.getParameter("total")%>원</a> --%>
