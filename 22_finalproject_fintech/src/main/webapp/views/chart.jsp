@@ -174,7 +174,8 @@
           <div class="col">
               <div class="card">
                   <div class="card-body">
-                      <canvas id="line-chart" height="150"></canvas>
+                      <canvas id="line-chartO" height="100"></canvas>
+                      <canvas id="line-chartT" height="100"></canvas>
                   </div>
               </div>
           </div>
@@ -232,7 +233,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <!-- <canvas id="line-chart" width="150" height="200"></canvas> -->
 <script>
-  new Chart(document.getElementById("line-chart"), {
+  new Chart(document.getElementById("line-chartO"), {
     type: 'line',
     data: {
       labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
@@ -248,15 +249,29 @@
           fill: false
         }
       ]
-    },
-    options: {
-      title: {
-        display: true,
-        text: '월별수입지출',
-      
-      }
     }
+
   });
+  
+  new Chart(document.getElementById("line-chartT"), {
+	    type: 'line',
+	    data: {
+	      labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
+	      datasets: [{ 
+	          data: [86,114,106,106,107,111,133,221,783,2478],
+	          label: "수입",
+	          borderColor: "#3e95cd",
+	          fill: false
+	        }, { 
+	          data: [282,350,411,502,635,809,947,1402,3700,5267],
+	          label: "지출",
+	          borderColor: "#8e5ea2",
+	          fill: false
+	        }
+	      ]
+	    }
+
+	  });
 </script>
   
 <%--   <a> <%=request.getParameter("total")%>원</a> --%>
