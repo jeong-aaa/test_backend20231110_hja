@@ -163,27 +163,28 @@
 <div class="a" style="background: #277BC0; height: 10px; "></div>
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
   
-
+<div id="list">
 <div class="container">
       <div class="row my-3">
           <div class="col" style="text-align: center;">
-              <h4>월별수입지출</h4>
+<!--               <h4>월별수입지출</h4> -->
           </div>
       </div>
       <div class="row my-2">
           <div class="col">
               <div class="card">
                   <div class="card-body">
-                      <canvas id="myChart" height="100"></canvas>
+                      <canvas id="line-chartO" height="100"></canvas>
+                      <canvas id="line-chartT" height="100"></canvas>
                   </div>
               </div>
           </div>
       </div>
   </div>
-
+</div>
 
   <!-- 부트스트랩 -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -193,44 +194,71 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <!-- 차트 -->
-  <script>
-  
-	
-  
-	
-	var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {
-      // 챠트 종류를 선택
-      type: 'line',
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
-     
-      // 챠트를 그릴 데이타
-      data: {
-        labels: ['Nobember', 'December','January'],
-        datasets: [{
-        	label: '지출',
-            data: [0, 10, 5],
-            borderColor: 'red',
-            backgroundColor: 'transparent',
-        },
-        {
-        	label: '수입',
-            data: [10, 10, 15],
-            borderColor: 'blue',
-            backgroundColor: 'transparent',
-       
+<script>
+  new Chart(document.getElementById("line-chartO"), {
+    type: 'line',
+    data: {
+      labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
+      datasets: [{ 
+          data: [86,114,106,106,107,111,133,221,783,2478],
+          label: "입금",
+          borderColor: "#3e95cd",
+          fill: false
+        }, { 
+          data: [282,350,411,502,635,809,947,1402,3700,5267],
+          label: "출금",
+          borderColor: "#8e5ea2",
+          fill: false
         }
-        ]
-      },
-      // 옵션
-      options: {}
-    });
+      ]
+    },
+    options: {
+        title: {
+            display: true,
+            text: '월별수입지출',
+            fontSize: 18 // 전체 제목의 텍스트 크기 조절
+        },
+        scales: {
+            xAxes: [{
+                ticks: {
+                    fontSize: 14, // x축 레이블 텍스트 크기 조절
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    fontSize: 14, // y축 레이블 텍스트 크기 조절
+                }
+            }]
+        }
 
-  
+    }
 
-  </script>
+  });
   
-<%--   <a> <%=request.getParameter("total")%>원</a> --%>
+  new Chart(document.getElementById("line-chartT"), {
+       type: 'line',
+       data: {
+         labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
+         datasets: [{ 
+             data: [86,114,106,106,107,111,133,221,783,2478],
+             label: "현금 수입",
+             borderColor: "#3e95cd",
+             fill: false
+           }, { 
+             data: [282,350,411,502,635,809,947,1402,3700,5267],
+             label: "현금 지출",
+             borderColor: "#8e5ea2",
+             fill: false
+           }
+         ]
+       }
+
+     });
+</script>
+  
 </body>
 
 </html>
