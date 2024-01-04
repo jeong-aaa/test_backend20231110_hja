@@ -256,9 +256,31 @@
              fill: false
            }
          ]
+       },
+       options: {
+           title: {
+               display: true,
+              
+           },
+           scales: {
+               xAxes: [{
+                   ticks: {
+                       fontSize: 14, // x축 레이블 텍스트 크기 조절
+                   }
+               }],
+               yAxes: [{
+                   ticks: {
+                       fontSize: 14, // y축 레이블 텍스트 크기 조절
+                   }
+               }]
+           }
+
        }
 
      });
+  
+  
+  
 </script>
   
 </body>
