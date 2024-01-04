@@ -294,7 +294,8 @@ public class BankingController {
        List<CashDto>blist=calService.cashsum(email);
        model.addAttribute("blist", blist);
        
-       String sum = "";
+       System.out.println(blist);
+//       String sum = "";
    
 //       sum = "수입".equals(blist.getMio())?"data1":"data2";
       

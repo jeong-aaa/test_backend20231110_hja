@@ -45,7 +45,7 @@ public interface ICashService {
 
 	public List<CashDto> cashDetailList(String email,String yyyyMMdd);
 
-	public List<CashDto> cashsum(String useremail);
+	public List<CashDto> cashsum(String email);
 
 }
 

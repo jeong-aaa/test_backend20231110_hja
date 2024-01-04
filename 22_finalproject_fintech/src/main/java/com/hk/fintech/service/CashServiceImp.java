@@ -158,9 +158,9 @@ public class CashServiceImp implements ICashService{
 //   
 //
    @Override
-   public List<CashDto> cashsum(String useremail) {
+   public List<CashDto> cashsum(String email) {
 	 
-      return cashMapper.cashsum(useremail);
+      return cashMapper.cashsum(email);
       
    }
 
