@@ -163,8 +163,8 @@
 <div class="a" style="background: #277BC0; height: 10px; "></div>
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
   
-
-<div class="container">
+<div id="list">
+	<div class="container">
       <div class="row my-3">
           <div class="col" style="text-align: center;">
               <h4>월별수입지출</h4>
@@ -180,10 +180,10 @@
           </div>
       </div>
   </div>
-
+</div>
 
   <!-- 부트스트랩 -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -194,9 +194,6 @@
     crossorigin="anonymous"></script>
   <!-- 차트 -->
   <script>
-  
-	
-  
 	
 	var ctx = document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {

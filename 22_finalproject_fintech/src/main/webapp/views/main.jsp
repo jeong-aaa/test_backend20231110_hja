@@ -250,7 +250,6 @@
                <div class="dropdown">
                     <button class="dropbtn" style="margin-left:100px; ">계좌</button>
                     <div class="dropdown-content" style="margin-left:100px; ">
-                         <a href="#" onclick="addAccount()">계좌추가</a>
                          <a href="#" onclick="myInfo()">계좌조회</a>
                     </div>
                </div>
@@ -286,7 +285,7 @@
          <p>S.S.M은 신속한 기능과 직관적인 인터페이스를 통해 사용자가 금융을 더 효율적으로 관리할 수 있도록 도와줍니다. 걱정 없는 재무 거래를 위한 완벽한 도구로 여러분의 편의를 위해 설계되었습니다. 여러분의 재무 건강을 향상시키고 안정성을 높이는 데 도움을 드리겠습니다.</p></h5>
          <br/>
          </div> 
-            </div>
+         </div>
             <div id="feignList">
                <%
                   UserMeDto dto=(UserMeDto)request.getAttribute("userMeDto");
