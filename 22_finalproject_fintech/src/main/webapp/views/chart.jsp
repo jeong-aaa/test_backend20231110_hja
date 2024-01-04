@@ -194,44 +194,9 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <!-- 차트 -->
-<!-- <!--   <script> --> 
-  
-   
-  
-   
-<!-- //    var ctx = document.getElementById('myChart').getContext('2d'); -->
-<!-- //     var chart = new Chart(ctx, { -->
-<!-- //       // 챠트 종류를 선택 -->
-<!-- //       type: 'line', -->
-
-     
-<!-- //       // 챠트를 그릴 데이타 -->
-<!-- //       data: { -->
-<!-- //         labels: ['Nobember', 'December','January'], -->
-<!-- //         datasets: [{ -->
-<!-- //            label: '지출', -->
-<!-- //             data: [0, 10, 5], -->
-<!-- //             borderColor: 'red', -->
-<!-- //             backgroundColor: 'transparent', -->
-<!-- //         }, -->
-<!-- //         { -->
-<!-- //            label: '수입', -->
-<!-- //             data: [10, 10, 15], -->
-<!-- //             borderColor: 'blue', -->
-<!-- //             backgroundColor: 'transparent', -->
-       
-<!-- //         } -->
-<!-- //         ] -->
-<!-- //       }, -->
-<!-- //       // 옵션 -->
-<!-- //       options: {} -->
-<!-- //     }); -->
-
-
-
-<!-- <!--   </script> --> 
+ 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-<!-- <canvas id="line-chart" width="150" height="200"></canvas> -->
+
 <script>
   new Chart(document.getElementById("line-chartO"), {
     type: 'line',
@@ -239,12 +204,12 @@
       labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
       datasets: [{ 
           data: [86,114,106,106,107,111,133,221,783,2478],
-          label: "수입",
+          label: "입금",
           borderColor: "#3e95cd",
           fill: false
         }, { 
           data: [282,350,411,502,635,809,947,1402,3700,5267],
-          label: "지출",
+          label: "출금",
           borderColor: "#8e5ea2",
           fill: false
         }
@@ -279,12 +244,12 @@
          labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
          datasets: [{ 
              data: [86,114,106,106,107,111,133,221,783,2478],
-             label: "수입",
+             label: "현금 수입",
              borderColor: "#3e95cd",
              fill: false
            }, { 
              data: [282,350,411,502,635,809,947,1402,3700,5267],
-             label: "지출",
+             label: "현금 지출",
              borderColor: "#8e5ea2",
              fill: false
            }
@@ -294,7 +259,6 @@
      });
 </script>
   
-<%--   <a> <%=request.getParameter("total")%>원</a> --%>
 </body>
 
 </html>
