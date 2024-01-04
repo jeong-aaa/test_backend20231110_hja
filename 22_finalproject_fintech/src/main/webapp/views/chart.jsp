@@ -250,13 +250,25 @@
       ]
     },
     options: {
-      title: {
-        display: true,
-        text: '월별수입지출',
-      
-      }
+        title: {
+            display: true,
+            text: '월별수입지출',
+            fontSize: 18 // 전체 제목의 텍스트 크기 조절
+        },
+        scales: {
+            xAxes: [{
+                ticks: {
+                    fontSize: 14, // x축 레이블 텍스트 크기 조절
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    fontSize: 14, // y축 레이블 텍스트 크기 조절
+                }
+            }]
+        }
     }
-  });
+});
 </script>
   
 <%--   <a> <%=request.getParameter("total")%>원</a> --%>
