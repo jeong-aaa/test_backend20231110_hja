@@ -33,10 +33,12 @@
 	
 	
 	<select id ="cashsum" parameterType="Map" resultType="CashDto">
-		SELECT  MIO, sum(money) AS money, mdate
+		SELECT sum(money) AS MONEY, MIO, mdate
 		FROM fintech_cash
 		WHERE USEREMAIL = #{useremail} 
 		GROUP BY DATE_FORMAT(mdate, '%Y%m'), mio
+		ORDER BY DATE_FORMAT(mdate, '%Y%m') DESC
+		LIMIT 6
 	</select>
 	
    

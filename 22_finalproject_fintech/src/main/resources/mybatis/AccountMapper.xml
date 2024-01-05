@@ -33,5 +33,14 @@
 		WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(tran_date, '%Y%m') =#{yyyyMM}
 		GROUP BY inout_type, tran_date
 	</select>
+	
+	<select id ="Accountsum" parameterType="Map" resultType="AccountDto">
+		SELECT sum(tran_amt) AS tran_amt, inout_type, tran_date
+		FROM FINTECH_ACCOUNT
+		WHERE USEREMAIL = #{useremail} 
+		GROUP BY DATE_FORMAT(tran_date, '%Y%m'), inout_type
+		ORDER BY DATE_FORMAT(tran_date, '%Y%m') DESC
+		LIMIT 6
+	</select>
 
 </mapper>

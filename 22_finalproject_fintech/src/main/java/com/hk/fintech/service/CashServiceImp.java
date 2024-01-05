@@ -171,5 +171,12 @@ public class CashServiceImp implements ICashService{
 		map.put("mdate", yyyyMMdd);
 		return cashMapper.cashDetailList(map);
 	}
+	
+	@Override
+	public List<AccountDto> Accountsum(String email) {
+		 
+	      return accountMapper.Accountsum(email);
+	      
+	   }
 
 }

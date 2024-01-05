@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=UTF-8"); %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- <html lang="en" style="height: 100%"> -->
@@ -177,6 +178,7 @@
                   <div class="card-body">
                       <canvas id="line-chartO" height="100"></canvas>
                       <canvas id="line-chartT" height="100"></canvas>
+                      <canvas id="line-chartS" height="100"></canvas>
                   </div>
               </div>
           </div>
@@ -203,14 +205,14 @@
   new Chart(document.getElementById("line-chartO"), {
     type: 'line',
     data: {
-      labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
+      labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
       datasets: [{ 
-          data: [86,114,106,106,107,111,133,221,783,2478],
+          data: ['${dlist[4].tran_amt}','${dlist[2].tran_amt}','${dlist[0].tran_amt}'],
           label: "입금",
           borderColor: "#3e95cd",
           fill: false
         }, { 
-          data: [282,350,411,502,635,809,947,1402,3700,5267],
+          data: ['${dlist[5].tran_amt}','${dlist[3].tran_amt}','${dlist[1].tran_amt}'],
           label: "출금",
           borderColor: "#8e5ea2",
           fill: false
@@ -243,14 +245,14 @@
   new Chart(document.getElementById("line-chartT"), {
        type: 'line',
        data: {
-         labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
+         labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
          datasets: [{ 
-             data: [86,114,106,106,107,111,133,221,783,2478],
+             data: ['${blist[4].money}','${blist[2].money}','${blist[0].money}'],
              label: "현금 수입",
              borderColor: "#3e95cd",
              fill: false
            }, { 
-             data: [282,350,411,502,635,809,947,1402,3700,5267],
+             data: ['${blist[5].money}','${blist[3].money}','${blist[1].money}'],
              label: "현금 지출",
              borderColor: "#8e5ea2",
              fill: false
@@ -278,6 +280,47 @@
        }
 
      });
+  
+  new Chart(document.getElementById("line-chartS"), {
+      type: 'line',
+      data: {
+        labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
+        datasets: [
+        	{ 
+            data: [${blist[4].money}+${dlist[4].tran_amt},${blist[2].money}+${dlist[2].tran_amt},${blist[0].money}+${dlist[0].tran_amt}],
+            label: "수입",
+            borderColor: "#3e95cd",
+            fill: false
+          }, 
+          { 
+            data: [${blist[5].money}+${dlist[5].tran_amt},${blist[3].money}+${dlist[3].tran_amt},${blist[1].money}+${dlist[1].tran_amt}],
+            label: "지출",
+            borderColor: "#8e5ea2",
+            fill: false
+          }
+        ]
+      },
+      options: {
+          title: {
+              display: true,
+             
+          },
+          scales: {
+              xAxes: [{
+                  ticks: {
+                      fontSize: 14, // x축 레이블 텍스트 크기 조절
+                  }
+              }],
+              yAxes: [{
+                  ticks: {
+                      fontSize: 14, // y축 레이블 텍스트 크기 조절
+                  }
+              }]
+          }
+
+      }
+
+    });
   
   
   

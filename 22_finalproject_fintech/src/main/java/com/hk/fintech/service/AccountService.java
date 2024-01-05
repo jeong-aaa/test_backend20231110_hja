@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hk.fintech.dtos.AccountDto;
+import com.hk.fintech.dtos.CashDto;
 import com.hk.fintech.dtos.UserDto;
 import com.hk.fintech.mapper.AccountMapper;
 
@@ -42,6 +43,12 @@ public class AccountService {
 		map.put("tran_date", yyyyMMdd);
 		return accountMapper.TransactionDataList(map);
 	}
+	
+	public List<AccountDto> Accountsum(String email) {
+	 
+      return accountMapper.Accountsum(email);
+      
+   }
 
 }
 
