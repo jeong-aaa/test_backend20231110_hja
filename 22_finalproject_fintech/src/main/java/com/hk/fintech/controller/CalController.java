@@ -144,6 +144,7 @@ public class CalController {
        String totalsum = df.format(total);
        model.addAttribute("totalsum", totalsum + "");
        System.out.println("총 합: "+totalsum);
+
        
 //       System.out.println(clist.get(0));
        
