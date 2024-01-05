@@ -177,6 +177,7 @@
                   <div class="card-body">
                       <canvas id="line-chartO" height="100"></canvas>
                       <canvas id="line-chartT" height="100"></canvas>
+                      <button type="button" class="pdf" id="savePdf" th:onclick="">PDF 저장</button>
                   </div>
               </div>
           </div>
