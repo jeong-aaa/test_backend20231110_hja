@@ -134,72 +134,72 @@
       }
    }
    
-	//그래프 합계
-	// AJAX를 사용하여 데이터를 가져오고 차트를 생성하는 함수
-	  function createChartWithData() {
-	    $.ajax({
-	      url: 'your_data_endpoint_url_here', // 데이터 엔드포인트 URL을 입력하세요
-	      method: 'GET', // 필요에 따라 HTTP 메소드를 변경하세요 (GET, POST 등)
-	      success: function(response) {
-	    	  // AJAX 요청이 성공하면 response를 사용하여 차트 데이터를 구성합니다.
-	          var labels = [
-	            response.blist[4].mdate.substring(0, 7),
-	            response.blist[2].mdate.substring(0, 7),
-	            response.blist[0].mdate.substring(0, 7)
-	          ];
+// 	//그래프 합계
+// 	// AJAX를 사용하여 데이터를 가져오고 차트를 생성하는 함수
+// 	  function createChartWithData() {
+// 	    $.ajax({
+// // 	      url: '', // 데이터 엔드포인트 URL을 입력하세요
+// 	      method: 'GET', // 필요에 따라 HTTP 메소드를 변경하세요 (GET, POST 등)
+// 	      success: function(response) {
+// 	    	  // AJAX 요청이 성공하면 response를 사용하여 차트 데이터를 구성합니다.
+// 	          var labels = [
+// 	            response.blist[4].mdate.substring(0, 7),
+// 	            response.blist[2].mdate.substring(0, 7),
+// 	            response.blist[0].mdate.substring(0, 7)
+// 	          ];
 
-	          var incomeData = [
-	            response.blist[4].money + response.dlist[4].tran_amt,
-	            response.blist[2].money + response.dlist[2].tran_amt,
-	            response.blist[0].money + response.dlist[0].tran_amt
-	          ];
+// 	          var incomeData = [
+// 	            response.blist[4].money + response.dlist[4].tran_amt,
+// 	            response.blist[2].money + response.dlist[2].tran_amt,
+// 	            response.blist[0].money + response.dlist[0].tran_amt
+// 	          ];
 
-	          var expenseData = [
-	            response.blist[5].money + response.dlist[5].tran_amt,
-	            response.blist[3].money + response.dlist[3].tran_amt,
-	            response.blist[1].money + response.dlist[1].tran_amt
-	          ];
+// 	          var expenseData = [
+// 	            response.blist[5].money + response.dlist[5].tran_amt,
+// 	            response.blist[3].money + response.dlist[3].tran_amt,
+// 	            response.blist[1].money + response.dlist[1].tran_amt
+// 	          ];
 	
-	        // 차트 생성
-	        var ctx = document.getElementById('line-chartS').getContext('2d');
-	        var myChart = new Chart(ctx, {
-	          type: 'line',
-	          data: chartData,
-	          options: {
-	            title: {
-	              display: true
-	            },
-	            scales: {
-	              xAxes: [
-	                {
-	                  ticks: {
-	                    fontSize: 14 // x축 레이블 텍스트 크기 조절
-	                  }
-	                }
-	              ],
-	              yAxes: [
-	                {
-	                  ticks: {
-	                    fontSize: 14 // y축 레이블 텍스트 크기 조절
-	                  }
-	                }
-	              ]
-	            }
-	          }
-	        });
-	      },
-	      error: function(error) {
-	        console.log('데이터를 가져오는 중 에러 발생:', error);
-	      }
-	    });
-	  }
+// 	        // 차트 생성
+// 	        var ctx = document.getElementById('line-chartS').getContext('2d');
+// 	        var myChart = new Chart(ctx, {
+// 	          type: 'line',
+// 	          data: chartData,
+// 	          options: {
+// 	            title: {
+// 	              display: true
+// 	            },
+// 	            scales: {
+// 	              xAxes: [
+// 	                {
+// 	                  ticks: {
+// 	                    fontSize: 14 // x축 레이블 텍스트 크기 조절
+// 	                  }
+// 	                }
+// 	              ],
+// 	              yAxes: [
+// 	                {
+// 	                  ticks: {
+// 	                    fontSize: 14 // y축 레이블 텍스트 크기 조절
+// 	                  }
+// 	                }
+// 	              ]
+// 	            }
+// 	          }
+// 	        });
+// 	      },
+// 	      error: function(error) {
+// 	        console.log('데이터를 가져오는 중 에러 발생:', error);
+// 	      }
+// 	    });
+// 	  }
 	
-	  // 버튼 클릭 시 차트 생성 함수 실행
-	  $(document).ready(function() {
-	    $('#chartButton').click(function() {
-	      createChartWithData(); // 데이터를 이용하여 차트 생성
-	    });
-	  });
+// 	  // 버튼 클릭 시 차트 생성 함수 실행
+// 	  $(document).ready(function() {
+// 	    $('#chartButton').click(function() {
+// 	      createChartWithData(); // 데이터를 이용하여 차트 생성
+// 	    });
+// 	  });
 
    
    
@@ -239,7 +239,8 @@
 <div class="container">
 	<div class="py-4">
 		<div class="col" style="text-align: center;">
-			<button id="chartButton" type="button" class="sum" style="color: #3C4048;" onclick="createChartWithData()">합계</button>
+			<button id="createChartButton" type="button" class="sum" style="color: #3C4048;">합계</button>
+
 <!--               <h4>월별수입지출</h4> -->
 		</div>
 	</div>
@@ -352,47 +353,48 @@
        }
 
      });
-  
-//   new Chart(document.getElementById("line-chartS"), {
-//       type: 'line',
-//       data: {
-//         labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
-//         datasets: [
-//            { 
-//             data: [${blist[4].money}+${dlist[4].tran_amt},${blist[2].money}+${dlist[2].tran_amt},${blist[0].money}+${dlist[0].tran_amt}],
-//             label: "수입",
-//             borderColor: "#3e95cd",
-//             fill: false
-//           }, 
-//           { 
-//             data: [${blist[5].money}+${dlist[5].tran_amt},${blist[3].money}+${dlist[3].tran_amt},${blist[1].money}+${dlist[1].tran_amt}],
-//             label: "지출",
-//             borderColor: "#8e5ea2",
-//             fill: false
-//           }
-//         ]
-//       },
-//       options: {
-//           title: {
-//               display: true,
+	//버튼 클릭 이벤트 핸들러 함수
+  document.getElementById('createChartButton').addEventListener('click', function() {
+  new Chart(document.getElementById("line-chartS"), {
+      type: 'line',
+      data: {
+        labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
+        datasets: [
+           { 
+            data: [${blist[4].money}+${dlist[4].tran_amt},${blist[2].money}+${dlist[2].tran_amt},${blist[0].money}+${dlist[0].tran_amt}],
+            label: "수입",
+            borderColor: "#3e95cd",
+            fill: false
+          }, 
+          { 
+            data: [${blist[5].money}+${dlist[5].tran_amt},${blist[3].money}+${dlist[3].tran_amt},${blist[1].money}+${dlist[1].tran_amt}],
+            label: "지출",
+            borderColor: "#8e5ea2",
+            fill: false
+          }
+        ]
+      },
+      options: {
+          title: {
+              display: true,
              
-//           },
-//           scales: {
-//               xAxes: [{
-//                   ticks: {
-//                       fontSize: 14, // x축 레이블 텍스트 크기 조절
-//                   }
-//               }],
-//               yAxes: [{
-//                   ticks: {
-//                       fontSize: 14, // y축 레이블 텍스트 크기 조절
-//                   }
-//               }]
-//           }
+          },
+          scales: {
+              xAxes: [{
+                  ticks: {
+                      fontSize: 14, // x축 레이블 텍스트 크기 조절
+                  }
+              }],
+              yAxes: [{
+                  ticks: {
+                      fontSize: 14, // y축 레이블 텍스트 크기 조절
+                  }
+              }]
+          }
 
-//       }
+      }
 
-//     });
+    });
   
   
   
