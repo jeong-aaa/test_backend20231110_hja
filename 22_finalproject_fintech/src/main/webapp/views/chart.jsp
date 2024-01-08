@@ -309,9 +309,9 @@
    <div class="py-4">
       <div class="col" style="text-align: center;">
          <div class="input-group-prepend" style="color:#0E519C;">
-	       <button class="btn btn-outline-secondary"  style="color:#3E5671;" type="button" onclick="createChartWithData()">합계</button>
-	       <button class="btn btn-outline-secondary" style="color:#3E5671;" type="button" onclick="createChartData()">월별수입/지출</button>
-     	</div>
+          <button class="btn btn-outline-secondary"  style="color:#3E5671;" type="button" onclick="createChartWithData()">합계</button>
+          <button class="btn btn-outline-secondary" style="color:#3E5671;" type="button" onclick="createChartData()">월별수입/지출</button>
+        </div>
 <!--               <h4>월별수입지출</h4> -->
       </div>
    </div>
@@ -329,20 +329,20 @@
    <div class="col">
       <div class="card">
          <div class="card-body">
-		   <div class="row my-2" id="plz">
-		               <canvas id="line-chartO" height="100"></canvas>
-		               <canvas id="line-chartT" height="100"></canvas>
-		<!--                     <canvas id="line-chartS" height="100"></canvas> -->
-		            </div>
-		   <div class="row my-2" id="come">
-				<div class="col">
-		<!--          <div class="card"> -->
-		<!--             <div class="card-body"> -->
-		<!--                   <canvas id="line-chartO" height="100"></canvas> -->
-		<!--                   <canvas id="line-chartT" height="100"></canvas> -->
-		                   <canvas id="line-chartS" height="100"></canvas>
-				</div>
-			</div>
+         <div class="row my-2" id="plz">
+                     <canvas id="line-chartO" height="100"></canvas>
+                     <canvas id="line-chartT" height="100"></canvas>
+      <!--                     <canvas id="line-chartS" height="100"></canvas> -->
+                  </div>
+         <div class="row my-2" id="come">
+            <div class="col">
+      <!--          <div class="card"> -->
+      <!--             <div class="card-body"> -->
+      <!--                   <canvas id="line-chartO" height="100"></canvas> -->
+      <!--                   <canvas id="line-chartT" height="100"></canvas> -->
+                         <canvas id="line-chartS" height="100"></canvas>
+            </div>
+         </div>
          </div>
       </div>
    </div>
@@ -469,6 +469,8 @@
       options: {
           title: {
               display: true,
+              text: '합계',
+              fontSize: 18 // 전체 제목의 텍스트 크기 조절
              
           },
           scales: {
