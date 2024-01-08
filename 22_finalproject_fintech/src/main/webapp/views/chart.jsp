@@ -329,20 +329,20 @@
    <div class="col">
       <div class="card">
          <div class="card-body">
-         <div class="row my-2" id="plz">
-                     <canvas id="line-chartO" height="100"></canvas>
-                     <canvas id="line-chartT" height="100"></canvas>
-      <!--                     <canvas id="line-chartS" height="100"></canvas> -->
-                  </div>
-         <div class="row my-2" id="come">
-            <div class="col">
-      <!--          <div class="card"> -->
-      <!--             <div class="card-body"> -->
-      <!--                   <canvas id="line-chartO" height="100"></canvas> -->
-      <!--                   <canvas id="line-chartT" height="100"></canvas> -->
-                         <canvas id="line-chartS" height="100"></canvas>
-            </div>
-         </div>
+		   <div class="row my-2" id="plz">
+		               <canvas id="line-chartO" height="100"></canvas>
+		               <canvas id="line-chartT" height="100"></canvas>
+		<!--                     <canvas id="line-chartS" height="100"></canvas> -->
+		            </div>
+		   <div class="row my-2" id="come">
+				<div class="col">
+		<!--          <div class="card"> -->
+		<!--             <div class="card-body"> -->
+		<!--                   <canvas id="line-chartO" height="100"></canvas> -->
+		<!--                   <canvas id="line-chartT" height="100"></canvas> -->
+		                   <canvas id="line-chartS" height="100"></canvas>
+				</div>
+			</div>
          </div>
       </div>
    </div>
