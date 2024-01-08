@@ -308,8 +308,8 @@
 <div class="container">
    <div class="py-4">
       <div class="col" style="text-align: center;">
-         <a id="chartButton" type="button"  style="color: #3C4048;" onclick="createChartWithData()">합계</a>
-         <a id="chartBtn" type="button"  style="color: #3C4048;" onclick="createChartData()">월별수입/지출</a>
+         <a id="chartButton" type="button" class="btn btn-outline-secondary" style="color: #3C4048;" onclick="createChartWithData()">합계</a>
+         <a id="chartBtn" type="button" class="btn btn-outline-secondary" style="color: #3C4048;" onclick="createChartData()">월별수입/지출</a>
 <!--               <h4>월별수입지출</h4> -->
       </div>
    </div>
@@ -324,27 +324,27 @@
 <!--          </div> -->
 <!--       </div> -->
 <!--    </div> -->
-   <div class="row my-2" id="plz">
-      <div class="col">
-         <div class="card">
-            <div class="card-body">
-               <canvas id="line-chartO" height="100"></canvas>
-               <canvas id="line-chartT" height="100"></canvas>
-<!--                     <canvas id="line-chartS" height="100"></canvas> -->
+   <div class="col">
+      <div class="card">
+         <div class="card-body">
+         <div class="row my-2" id="plz">
+                     <canvas id="line-chartO" height="100"></canvas>
+                     <canvas id="line-chartT" height="100"></canvas>
+      <!--                     <canvas id="line-chartS" height="100"></canvas> -->
+                  </div>
+         <div class="row my-2" id="come">
+            <div class="col">
+      <!--          <div class="card"> -->
+      <!--             <div class="card-body"> -->
+      <!--                   <canvas id="line-chartO" height="100"></canvas> -->
+      <!--                   <canvas id="line-chartT" height="100"></canvas> -->
+                         <canvas id="line-chartS" height="100"></canvas>
             </div>
+         </div>
          </div>
       </div>
    </div>
-   <div class="row my-2" id="come" >
-      <div class="col">
-         <div class="card">
-            <div class="card-body">
-<!--                   <canvas id="line-chartO" height="100"></canvas> -->
-<!--                   <canvas id="line-chartT" height="100"></canvas> -->
-                   <canvas id="line-chartS" height="100"></canvas>
-            </div>
-         </div>
-      </div>
+</div>
 <!--    </div> -->
 <!-- </div> -->
 </section>
