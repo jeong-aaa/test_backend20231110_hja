@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=UTF-8"); %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- <html lang="en" style="height: 100%"> -->
@@ -16,6 +17,7 @@
     <title>SSM</title>
     
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <style type="text/css">
    .box{border-bottom: 1px solid gray; margin-bottom: 10px;}
    .box > .sub_menu{text-align: right;}
@@ -132,6 +134,74 @@
       }
    }
    
+	//그래프 합계
+	// AJAX를 사용하여 데이터를 가져오고 차트를 생성하는 함수
+	  function createChartWithData() {
+	    $.ajax({
+	      url: 'your_data_endpoint_url_here', // 데이터 엔드포인트 URL을 입력하세요
+	      method: 'GET', // 필요에 따라 HTTP 메소드를 변경하세요 (GET, POST 등)
+	      success: function(response) {
+	    	  // AJAX 요청이 성공하면 response를 사용하여 차트 데이터를 구성합니다.
+	          var labels = [
+	            response.blist[4].mdate.substring(0, 7),
+	            response.blist[2].mdate.substring(0, 7),
+	            response.blist[0].mdate.substring(0, 7)
+	          ];
+
+	          var incomeData = [
+	            response.blist[4].money + response.dlist[4].tran_amt,
+	            response.blist[2].money + response.dlist[2].tran_amt,
+	            response.blist[0].money + response.dlist[0].tran_amt
+	          ];
+
+	          var expenseData = [
+	            response.blist[5].money + response.dlist[5].tran_amt,
+	            response.blist[3].money + response.dlist[3].tran_amt,
+	            response.blist[1].money + response.dlist[1].tran_amt
+	          ];
+	
+	        // 차트 생성
+	        var ctx = document.getElementById('line-chartS').getContext('2d');
+	        var myChart = new Chart(ctx, {
+	          type: 'line',
+	          data: chartData,
+	          options: {
+	            title: {
+	              display: true
+	            },
+	            scales: {
+	              xAxes: [
+	                {
+	                  ticks: {
+	                    fontSize: 14 // x축 레이블 텍스트 크기 조절
+	                  }
+	                }
+	              ],
+	              yAxes: [
+	                {
+	                  ticks: {
+	                    fontSize: 14 // y축 레이블 텍스트 크기 조절
+	                  }
+	                }
+	              ]
+	            }
+	          }
+	        });
+	      },
+	      error: function(error) {
+	        console.log('데이터를 가져오는 중 에러 발생:', error);
+	      }
+	    });
+	  }
+	
+	  // 버튼 클릭 시 차트 생성 함수 실행
+	  $(document).ready(function() {
+	    $('#chartButton').click(function() {
+	      createChartWithData(); // 데이터를 이용하여 차트 생성
+	    });
+	  });
+
+   
    
     </script>
     
@@ -160,30 +230,33 @@
         </div>
     </nav>
     
-<div class="a" style="background: #277BC0; height: 10px; "></div>
+<div class="a" style="background: #277BC0; height: 10px;"></div>
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
   
 <div id="list">
+<div id="chartButton">
 <section class="py-4">
 <div class="container">
-      <div class="py-4">
-          <div class="col" style="text-align: center;">
+	<div class="py-4">
+		<div class="col" style="text-align: center;">
+			<button id="chartButton" type="button" class="sum" style="color: #3C4048;" onclick="createChartWithData()">합계</button>
 <!--               <h4>월별수입지출</h4> -->
-          </div>
-      </div>
-      <div class="row my-2">
-          <div class="col">
-              <div class="card">
-                  <div class="card-body">
-                      <canvas id="line-chartO" height="100"></canvas>
-                      <canvas id="line-chartT" height="100"></canvas>
-                      <button type="button" class="pdf" id="savePdf" th:onclick="">PDF 저장</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  </section>
+		</div>
+	</div>
+	<div class="row my-2">
+		<div class="col">
+			<div class="card">
+				<div class="card-body">
+					<canvas id="line-chartO" height="100"></canvas>
+					<canvas id="line-chartT" height="100"></canvas>
+                    <canvas id="line-chartS" height="100"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+</div>
 </div>
 
   <!-- 부트스트랩 -->
@@ -204,14 +277,14 @@
   new Chart(document.getElementById("line-chartO"), {
     type: 'line',
     data: {
-      labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
+      labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
       datasets: [{ 
-          data: [86,114,106,106,107,111,133,221,783,2478],
+          data: ['${dlist[4].tran_amt}','${dlist[2].tran_amt}','${dlist[0].tran_amt}'],
           label: "입금",
           borderColor: "#3e95cd",
           fill: false
         }, { 
-          data: [282,350,411,502,635,809,947,1402,3700,5267],
+          data: ['${dlist[5].tran_amt}','${dlist[3].tran_amt}','${dlist[1].tran_amt}'],
           label: "출금",
           borderColor: "#8e5ea2",
           fill: false
@@ -244,14 +317,14 @@
   new Chart(document.getElementById("line-chartT"), {
        type: 'line',
        data: {
-         labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
+         labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
          datasets: [{ 
-             data: [86,114,106,106,107,111,133,221,783,2478],
+             data: ['${blist[4].money}','${blist[2].money}','${blist[0].money}'],
              label: "현금 수입",
              borderColor: "#3e95cd",
              fill: false
            }, { 
-             data: [282,350,411,502,635,809,947,1402,3700,5267],
+             data: ['${blist[5].money}','${blist[3].money}','${blist[1].money}'],
              label: "현금 지출",
              borderColor: "#8e5ea2",
              fill: false
@@ -279,6 +352,47 @@
        }
 
      });
+  
+//   new Chart(document.getElementById("line-chartS"), {
+//       type: 'line',
+//       data: {
+//         labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
+//         datasets: [
+//            { 
+//             data: [${blist[4].money}+${dlist[4].tran_amt},${blist[2].money}+${dlist[2].tran_amt},${blist[0].money}+${dlist[0].tran_amt}],
+//             label: "수입",
+//             borderColor: "#3e95cd",
+//             fill: false
+//           }, 
+//           { 
+//             data: [${blist[5].money}+${dlist[5].tran_amt},${blist[3].money}+${dlist[3].tran_amt},${blist[1].money}+${dlist[1].tran_amt}],
+//             label: "지출",
+//             borderColor: "#8e5ea2",
+//             fill: false
+//           }
+//         ]
+//       },
+//       options: {
+//           title: {
+//               display: true,
+             
+//           },
+//           scales: {
+//               xAxes: [{
+//                   ticks: {
+//                       fontSize: 14, // x축 레이블 텍스트 크기 조절
+//                   }
+//               }],
+//               yAxes: [{
+//                   ticks: {
+//                       fontSize: 14, // y축 레이블 텍스트 크기 조절
+//                   }
+//               }]
+//           }
+
+//       }
+
+//     });
   
   
   
