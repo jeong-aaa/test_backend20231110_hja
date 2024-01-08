@@ -193,23 +193,40 @@
 <!--               <h4>월별수입지출</h4> -->
       </div>
    </div>
-   <div class="col">
+<!--    <div class="col"> -->
+<!--       <div class="card"> -->
+<!--          <div class="card-body"> -->
+<!--          <div class="row-my-2" id="plz"> -->
+<!--                      <canvas id="line-chartO"  style="width:1060px; height: 300px;"></canvas> -->
+<!--                      <canvas id="line-chartT" style="width:1060px; height: 300px;"></canvas> -->
+<!--                   </div> -->
+<!--          <div class="row-my-2" id="come"> -->
+<!--             <div class="col"> -->
+<!--                <div class="card"> -->
+<!--                   <div class="card-body"> -->
+<!--                          <canvas id="line-chartS" style="width:1060px; height: 300px;"></canvas> -->
+<!--             </div> -->
+<!--          </div> -->
+<!--          </div> -->
+<!--       </div> -->
+<!--    </div> -->
+
+    <div class="col">
       <div class="card">
-         <div class="card-body">
-         <div class="row my-2" id="plz">
-                     <canvas id="line-chartO"  style="width:1060px; height: 300px;"></canvas>
-                     <canvas id="line-chartT" style="width:1060px; height: 300px;"></canvas>
-                  </div>
-         <div class="row my-2" id="come">
+        <div class="card-body">
+          <div class="row-my-2" id="plz" style="height: 350px; overflow-y: auto;">
+            		<canvas id="line-chartO"  style="width:1060px; height: 300px;"></canvas>
+                    <canvas id="line-chartT" style="width:1060px; height: 300px;"></canvas>
+          </div>
+
+          <div class="row-my-2" id="come" style="height: 350px; overflow-y: auto; display: none;">
             <div class="col">
-      <!--          <div class="card"> -->
-      <!--             <div class="card-body"> -->
-                         <canvas id="line-chartS" style="width:1060px; height: 300px;"></canvas>
+              	<canvas id="line-chartS" style="width:1060px; height: 300px;"></canvas>
             </div>
-         </div>
-         </div>
-      </div>
-   </div>
+          </div>
+       </div>
+     </div>
+    </div>
 </div>
 <!--    </div> -->
 <!-- </div> -->
