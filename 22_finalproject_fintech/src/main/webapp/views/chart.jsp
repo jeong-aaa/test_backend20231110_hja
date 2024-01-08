@@ -137,92 +137,92 @@
 //    //월별 수입/지출 차트
 //    function createChartData() {
 //    new Chart(document.getElementById("line-chartO"), {
-// 	    type: 'line',
-// 	    data: {
-// 	      labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
-// 	      datasets: [{ 
-// 	          data: ['${dlist[4].tran_amt}','${dlist[2].tran_amt}','${dlist[0].tran_amt}'],
-// 	          label: "입금",
-// 	          borderColor: "#3e95cd",
-// 	          fill: false
-// 	        }, { 
-// 	          data: ['${dlist[5].tran_amt}','${dlist[3].tran_amt}','${dlist[1].tran_amt}'],
-// 	          label: "출금",
-// 	          borderColor: "#8e5ea2",
-// 	          fill: false
-// 	        }
-// 	      ]
-// 	    },
-// 	    options: {
-// 	        title: {
-// 	            display: true,
-// 	            text: '월별수입지출',
-// 	            fontSize: 18 // 전체 제목의 텍스트 크기 조절
-// 	        },
-// 	        scales: {
-// 	            xAxes: [{
-// 	                ticks: {
-// 	                    fontSize: 14, // x축 레이블 텍스트 크기 조절
-// 	                }
-// 	            }],
-// 	            yAxes: [{
-// 	                ticks: {
-// 	                    fontSize: 14, // y축 레이블 텍스트 크기 조절
-// 	                }
-// 	            }]
-// 	        }
+//        type: 'line',
+//        data: {
+//          labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
+//          datasets: [{ 
+//              data: ['${dlist[4].tran_amt}','${dlist[2].tran_amt}','${dlist[0].tran_amt}'],
+//              label: "입금",
+//              borderColor: "#3e95cd",
+//              fill: false
+//            }, { 
+//              data: ['${dlist[5].tran_amt}','${dlist[3].tran_amt}','${dlist[1].tran_amt}'],
+//              label: "출금",
+//              borderColor: "#8e5ea2",
+//              fill: false
+//            }
+//          ]
+//        },
+//        options: {
+//            title: {
+//                display: true,
+//                text: '월별수입지출',
+//                fontSize: 18 // 전체 제목의 텍스트 크기 조절
+//            },
+//            scales: {
+//                xAxes: [{
+//                    ticks: {
+//                        fontSize: 14, // x축 레이블 텍스트 크기 조절
+//                    }
+//                }],
+//                yAxes: [{
+//                    ticks: {
+//                        fontSize: 14, // y축 레이블 텍스트 크기 조절
+//                    }
+//                }]
+//            }
 
-// 	    }
+//        }
 
-// 	  });
+//      });
    
-// 	  new Chart(document.getElementById("line-chartT"), {
-// 	       type: 'line',
-// 	       data: {
-// 	         labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
-// 	         datasets: [{ 
-// 	             data: ['${blist[4].money}','${blist[2].money}','${blist[0].money}'],
-// 	             label: "현금 수입",
-// 	             borderColor: "#3e95cd",
-// 	             fill: false
-// 	           }, { 
-// 	             data: ['${blist[5].money}','${blist[3].money}','${blist[1].money}'],
-// 	             label: "현금 지출",
-// 	             borderColor: "#8e5ea2",
-// 	             fill: false
-// 	           }
-// 	         ]
-// 	       },
-// 	       options: {
-// 	           title: {
-// 	               display: true,
-	              
-// 	           },
-// 	           scales: {
-// 	               xAxes: [{
-// 	                   ticks: {
-// 	                       fontSize: 14, // x축 레이블 텍스트 크기 조절
-// 	                   }
-// 	               }],
-// 	               yAxes: [{
-// 	                   ticks: {
-// 	                       fontSize: 14, // y축 레이블 텍스트 크기 조절
-// 	                   }
-// 	               }]
-// 	           }
+//      new Chart(document.getElementById("line-chartT"), {
+//           type: 'line',
+//           data: {
+//             labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
+//             datasets: [{ 
+//                 data: ['${blist[4].money}','${blist[2].money}','${blist[0].money}'],
+//                 label: "현금 수입",
+//                 borderColor: "#3e95cd",
+//                 fill: false
+//               }, { 
+//                 data: ['${blist[5].money}','${blist[3].money}','${blist[1].money}'],
+//                 label: "현금 지출",
+//                 borderColor: "#8e5ea2",
+//                 fill: false
+//               }
+//             ]
+//           },
+//           options: {
+//               title: {
+//                   display: true,
+                 
+//               },
+//               scales: {
+//                   xAxes: [{
+//                       ticks: {
+//                           fontSize: 14, // x축 레이블 텍스트 크기 조절
+//                       }
+//                   }],
+//                   yAxes: [{
+//                       ticks: {
+//                           fontSize: 14, // y축 레이블 텍스트 크기 조절
+//                       }
+//                   }]
+//               }
 
-// 	       }
+//           }
 
-// 	     });
-	  
-// 	$("#come").show();
+//         });
+     
+//    $("#come").show();
       
 //    }
 
-	function createChartData() {
-		$("#plz").show();
-		$("#come").hide();
-	}
+   function createChartData() {
+      $("#plz").show();
+      $("#come").hide();
+   }
 
    function createChartWithData() {
 //       new Chart(document.getElementById("line-chartS"), {
@@ -307,58 +307,46 @@
 <section class="py-4">
 <div class="container">
    <div class="py-4">
-<!--       <div class="col" style="text-align: center;"> -->
-<!--          <a id="chartButton" type="button" class="btn btn-outline-secondary" style="color: #3C4048;" onclick="createChartWithData()">합계</a> -->
-<!--          <a id="chartBtn" type="button" class="btn btn-outline-secondary" style="color: #3C4048;" onclick="createChartData()">월별수입/지출</a> -->
-<!--              <h4>월별수입지출</h4> --> 
-<!--       </div> -->
-<!--       <div class="btn-group btn-group-toggle" data-toggle="buttons" style="text-align: center;"> -->
-<!-- 		  <label class="btn btn-secondary active"> -->
-<!-- 		    <input type="radio" id="chartButton" onclick="createChartWithData()" autocomplete="off" checked> 합계 -->
-<!-- 		  </label> -->
-<!-- 		  <label class="btn btn-secondary"> -->
-<!-- 		    <input type="radio" id="chartBtn" onclick="createChartData()" autocomplete="off"> 월별수입/지출 -->
-<!-- 		  </label> -->
-<!-- 	  </div> -->
-
-<!-- 	  <div class="input-group mb-2"> -->
-	  <div class="input-group-prepend" style="color:#0E519C;">
-	    <button class="btn btn-outline-secondary" style="color:#FFFFFF; background-color:#3E5671;" type="button">합계</button>
-	    <button class="btn btn-outline-secondary" style="color:#3E5671;" type="button">월별수입/지출</button>
-	  </div>
-<!--    </div> -->
-   <div class="row my-2" >
-      <div class="col">
-         <div class="card">
-            <div class="card-body">
-               <canvas id="line-chartO" height="100"></canvas>
-               <canvas id="line-chartT" height="100"></canvas>
-                    <canvas id="line-chartS" height="100"></canvas>
-            </div>
-         </div>
+      <div class="col" style="text-align: center;">
+         <div class="input-group-prepend" style="color:#0E519C;">
+          <button class="btn btn-outline-secondary"  style="color:#3E5671;" type="button" onclick="createChartWithData()">합계</button>
+          <button class="btn btn-outline-secondary" style="color:#3E5671;" type="button" onclick="createChartData()">월별수입/지출</button>
+        </div>
+<!--               <h4>월별수입지출</h4> -->
       </div>
    </div>
-   <div class="row my-2" id="plz">
-      <div class="col">
-         <div class="card">
-            <div class="card-body">
-               <canvas id="line-chartO" height="100"></canvas>
-               <canvas id="line-chartT" height="100"></canvas>
-<!--                     <canvas id="line-chartS" height="100"></canvas> -->
-            </div>
-         </div>
-      </div>
-   </div>
-   <div class="row my-2" id="come">
-      <div class="col">
+<!--    <div class="row my-2" > -->
+<!--       <div class="col"> -->
 <!--          <div class="card"> -->
 <!--             <div class="card-body"> -->
-<!-- 	               <canvas id="line-chartO" height="100"></canvas> -->
-<!-- 	               <canvas id="line-chartT" height="100"></canvas> -->
-                   <canvas id="line-chartS" height="100"></canvas>
+<!--                <canvas id="line-chartO" height="100"></canvas> -->
+<!--                <canvas id="line-chartT" height="100"></canvas> -->
+<!--                     <canvas id="line-chartS" height="100"></canvas> -->
+<!--             </div> -->
+<!--          </div> -->
+<!--       </div> -->
+<!--    </div> -->
+   <div class="col">
+      <div class="card">
+         <div class="card-body">
+         <div class="row my-2" id="plz">
+                     <canvas id="line-chartO" height="100"></canvas>
+                     <canvas id="line-chartT" height="100"></canvas>
+      <!--                     <canvas id="line-chartS" height="100"></canvas> -->
+                  </div>
+         <div class="row my-2" id="come">
+            <div class="col">
+      <!--          <div class="card"> -->
+      <!--             <div class="card-body"> -->
+      <!--                   <canvas id="line-chartO" height="100"></canvas> -->
+      <!--                   <canvas id="line-chartT" height="100"></canvas> -->
+                         <canvas id="line-chartS" height="100"></canvas>
             </div>
          </div>
+         </div>
       </div>
+   </div>
+</div>
 <!--    </div> -->
 <!-- </div> -->
 </section>
