@@ -307,12 +307,26 @@
 <section class="py-4">
 <div class="container">
    <div class="py-4">
-      <div class="col" style="text-align: center;">
-         <a id="chartButton" type="button" class="btn btn-outline-secondary" style="color: #3C4048;" onclick="createChartWithData()">합계</a>
-         <a id="chartBtn" type="button" class="btn btn-outline-secondary" style="color: #3C4048;" onclick="createChartData()">월별수입/지출</a>
-<!--               <h4>월별수입지출</h4> -->
-      </div>
-   </div>
+<!--       <div class="col" style="text-align: center;"> -->
+<!--          <a id="chartButton" type="button" class="btn btn-outline-secondary" style="color: #3C4048;" onclick="createChartWithData()">합계</a> -->
+<!--          <a id="chartBtn" type="button" class="btn btn-outline-secondary" style="color: #3C4048;" onclick="createChartData()">월별수입/지출</a> -->
+<!--              <h4>월별수입지출</h4> --> 
+<!--       </div> -->
+<!--       <div class="btn-group btn-group-toggle" data-toggle="buttons" style="text-align: center;"> -->
+<!-- 		  <label class="btn btn-secondary active"> -->
+<!-- 		    <input type="radio" id="chartButton" onclick="createChartWithData()" autocomplete="off" checked> 합계 -->
+<!-- 		  </label> -->
+<!-- 		  <label class="btn btn-secondary"> -->
+<!-- 		    <input type="radio" id="chartBtn" onclick="createChartData()" autocomplete="off"> 월별수입/지출 -->
+<!-- 		  </label> -->
+<!-- 	  </div> -->
+
+<!-- 	  <div class="input-group mb-2"> -->
+	  <div class="input-group-prepend" style="color:#0E519C;">
+	    <button class="btn btn-outline-secondary" style="color:#FFFFFF; background-color:#3E5671;" type="button">합계</button>
+	    <button class="btn btn-outline-secondary" style="color:#3E5671;" type="button">월별수입/지출</button>
+	  </div>
+<!--    </div> -->
    <div class="row my-2" >
       <div class="col">
          <div class="card">
