@@ -22,10 +22,6 @@
    .box{border-bottom: 1px solid gray; margin-bottom: 10px;}
    .box > .sub_menu{text-align: right;}
    .addAccount{text-align: right;}
-   .canvas {
-        width: 1060px;
-        height: 350px;
-      }
    </style>
    <script type="text/javascript">
    
@@ -196,17 +192,14 @@
    <div class="col">
       <div class="card">
          <div class="card-body">
-         <div class="row my-2" id="plz">
-                     <canvas id="line-chartO"  style="width:1060px; height: 300px;"></canvas>
-                     <canvas id="line-chartT" style="width:1060px; height: 300px;"></canvas>
-                  </div>
-         <div class="row my-2" id="come">
-            <div class="col">
-      <!--          <div class="card"> -->
-      <!--             <div class="card-body"> -->
-                         <canvas id="line-chartS" style="width:1060px; height: 300px;"></canvas>
-            </div>
-         </div>
+	         <div class="row my-2" id="plz">
+	             <canvas id="line-chartO"  style="width:1060px; height: 300px;"></canvas>
+	             <canvas id="line-chartT" style="width:1060px; height: 300px;"></canvas>
+	         </div>
+	         <div class="row my-2" id="come">
+				<canvas id="line-chartS" style="width:1060px; height: 300px;"></canvas>
+	         </div>
+	         
          </div>
       </div>
    </div>
