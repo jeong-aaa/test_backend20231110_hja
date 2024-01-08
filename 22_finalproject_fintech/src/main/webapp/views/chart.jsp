@@ -321,15 +321,15 @@
       </div>
    </div>
    <div class="row my-2" id="come">
-      <div class="col">
+		<div class="col">
 <!--          <div class="card"> -->
 <!--             <div class="card-body"> -->
 	               <canvas id="line-chartO" height="100"></canvas>
 	               <canvas id="line-chartT" height="100"></canvas>
                    <canvas id="line-chartS" height="100"></canvas>
-            </div>
-         </div>
-      </div>
+		</div>
+	</div>
+</div>
 <!--    </div> -->
 <!-- </div> -->
 </section>
@@ -351,84 +351,84 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 <script>
-//   new Chart(document.getElementById("line-chartO"), {
-//     type: 'line',
-//     data: {
-//       labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
-//       datasets: [{ 
-//           data: ['${dlist[4].tran_amt}','${dlist[2].tran_amt}','${dlist[0].tran_amt}'],
-//           label: "입금",
-//           borderColor: "#3e95cd",
-//           fill: false
-//         }, { 
-//           data: ['${dlist[5].tran_amt}','${dlist[3].tran_amt}','${dlist[1].tran_amt}'],
-//           label: "출금",
-//           borderColor: "#8e5ea2",
-//           fill: false
-//         }
-//       ]
-//     },
-//     options: {
-//         title: {
-//             display: true,
-//             text: '월별수입지출',
-//             fontSize: 18 // 전체 제목의 텍스트 크기 조절
-//         },
-//         scales: {
-//             xAxes: [{
-//                 ticks: {
-//                     fontSize: 14, // x축 레이블 텍스트 크기 조절
-//                 }
-//             }],
-//             yAxes: [{
-//                 ticks: {
-//                     fontSize: 14, // y축 레이블 텍스트 크기 조절
-//                 }
-//             }]
-//         }
+  new Chart(document.getElementById("line-chartO"), {
+    type: 'line',
+    data: {
+      labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
+      datasets: [{ 
+          data: ['${dlist[4].tran_amt}','${dlist[2].tran_amt}','${dlist[0].tran_amt}'],
+          label: "입금",
+          borderColor: "#3e95cd",
+          fill: false
+        }, { 
+          data: ['${dlist[5].tran_amt}','${dlist[3].tran_amt}','${dlist[1].tran_amt}'],
+          label: "출금",
+          borderColor: "#8e5ea2",
+          fill: false
+        }
+      ]
+    },
+    options: {
+        title: {
+            display: true,
+            text: '월별수입지출',
+            fontSize: 18 // 전체 제목의 텍스트 크기 조절
+        },
+        scales: {
+            xAxes: [{
+                ticks: {
+                    fontSize: 14, // x축 레이블 텍스트 크기 조절
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    fontSize: 14, // y축 레이블 텍스트 크기 조절
+                }
+            }]
+        }
 
-//     }
+    }
 
-//   });
+  });
   
-//   new Chart(document.getElementById("line-chartT"), {
-//        type: 'line',
-//        data: {
-//          labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
-//          datasets: [{ 
-//              data: ['${blist[4].money}','${blist[2].money}','${blist[0].money}'],
-//              label: "현금 수입",
-//              borderColor: "#3e95cd",
-//              fill: false
-//            }, { 
-//              data: ['${blist[5].money}','${blist[3].money}','${blist[1].money}'],
-//              label: "현금 지출",
-//              borderColor: "#8e5ea2",
-//              fill: false
-//            }
-//          ]
-//        },
-//        options: {
-//            title: {
-//                display: true,
+  new Chart(document.getElementById("line-chartT"), {
+       type: 'line',
+       data: {
+         labels: ['${fn:substring(blist[4].mdate,0,7)}','${fn:substring(blist[2].mdate,0,7)}','${fn:substring(blist[0].mdate,0,7)}'],
+         datasets: [{ 
+             data: ['${blist[4].money}','${blist[2].money}','${blist[0].money}'],
+             label: "현금 수입",
+             borderColor: "#3e95cd",
+             fill: false
+           }, { 
+             data: ['${blist[5].money}','${blist[3].money}','${blist[1].money}'],
+             label: "현금 지출",
+             borderColor: "#8e5ea2",
+             fill: false
+           }
+         ]
+       },
+       options: {
+           title: {
+               display: true,
               
-//            },
-//            scales: {
-//                xAxes: [{
-//                    ticks: {
-//                        fontSize: 14, // x축 레이블 텍스트 크기 조절
-//                    }
-//                }],
-//                yAxes: [{
-//                    ticks: {
-//                        fontSize: 14, // y축 레이블 텍스트 크기 조절
-//                    }
-//                }]
-//            }
+           },
+           scales: {
+               xAxes: [{
+                   ticks: {
+                       fontSize: 14, // x축 레이블 텍스트 크기 조절
+                   }
+               }],
+               yAxes: [{
+                   ticks: {
+                       fontSize: 14, // y축 레이블 텍스트 크기 조절
+                   }
+               }]
+           }
 
-//        }
+       }
 
-//      });
+     });
   
 //   new Chart(document.getElementById("line-chartS").style.display="none", {
 //       type: 'line',
