@@ -308,8 +308,10 @@
 <div class="container">
    <div class="py-4">
       <div class="col" style="text-align: center;">
-         <a id="chartButton" type="button" class="btn btn-outline-secondary" style="color: #3C4048;" onclick="createChartWithData()">합계</a>
-         <a id="chartBtn" type="button" class="btn btn-outline-secondary" style="color: #3C4048;" onclick="createChartData()">월별수입/지출</a>
+         <div class="input-group-prepend" style="color:#0E519C;">
+	       <button class="btn btn-outline-secondary"  style="color:#3E5671;" type="button" onclick="createChartWithData()">합계</button>
+	       <button class="btn btn-outline-secondary" style="color:#3E5671;" type="button" onclick="createChartData()">월별수입/지출</button>
+     	</div>
 <!--               <h4>월별수입지출</h4> -->
       </div>
    </div>
