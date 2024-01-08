@@ -17,30 +17,30 @@
 <!--       WHERE RN BETWEEN 1 AND 2 -->
 <!--       GROUP BY MIO -->
       
-        SELECT  MIO, sum(money) as 'money', mdate
-		FROM fintech_cash
-		WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(mdate, '%Y%m') =#{yyyyMM}
-		GROUP BY MIO, mdate
+      SELECT  MIO, sum(money) as 'money', mdate
+      FROM fintech_cash
+      WHERE USEREMAIL = #{useremail} AND DATE_FORMAT(mdate, '%Y%m') =#{yyyyMM}
+      GROUP BY MIO, mdate
 
 
    </select>
    
     <select id ="cashDetailList" parameterType="Map" resultType="CashDto">
-		SELECT USEREMAIL, MDATE, MIO, MONEY, CONTENT
-		FROM FINTECH_CASH
-		WHERE USEREMAIL = #{useremail} AND MDATE = #{mdate}
-	</select>
-	
-	
-	<select id ="cashsum" parameterType="Map" resultType="CashDto">
-		SELECT sum(money) AS MONEY, MIO, mdate
-		FROM fintech_cash
-		WHERE USEREMAIL = #{useremail} 
-		GROUP BY DATE_FORMAT(mdate, '%Y%m'), mio
-		ORDER BY DATE_FORMAT(mdate, '%Y%m') DESC
-		LIMIT 6
-	</select>
-	
+      SELECT USEREMAIL, MDATE, MIO, MONEY, CONTENT
+      FROM FINTECH_CASH
+      WHERE USEREMAIL = #{useremail} AND MDATE = #{mdate}
+   </select>
+   
+   
+   <select id ="cashsum" parameterType="Map" resultType="CashDto">
+      SELECT sum(money) AS MONEY, MIO, mdate
+      FROM fintech_cash
+      WHERE USEREMAIL = #{useremail} 
+      GROUP BY DATE_FORMAT(mdate, '%Y%m'), mio
+      ORDER BY DATE_FORMAT(mdate, '%Y%m') DESC
+      LIMIT 6
+   </select>
+   
    
 <!--    답니 -->
 <!--     해당 날짜의 거래내역 조회 -->
@@ -69,4 +69,4 @@
    
 </mapper>
 
-	
+   
