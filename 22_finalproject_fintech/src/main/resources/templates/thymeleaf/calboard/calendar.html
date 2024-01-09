@@ -655,11 +655,11 @@
         // 수입과 지출이 모두 0이 아닌 경우에만 처리
         if (incomeAmount !== 0 || expenseAmount !== 0) {
             // 지출이 수입의 2배 이상인 경우 알림 표시
-            if (expenseAmount >= 2 * incomeAmount) {
+            if ( incomeAmount <= 2 * expenseAmount) {
                 alert('지출이 수입의 2배 이상입니다! 조심하세요.');
             }
         }
-    }, 2000); // 2초 (2000 밀리초) 뒤에 실행
+    }, 1000); // 2초 (2000 밀리초) 뒤에 실행
 </script>
 
 

@@ -133,12 +133,12 @@
          alert("회원탈퇴되었습니다.");
       }
    }
-	//월별지출 그래프
+   //월별지출 그래프
    function createChartData() {
       $("#plz").show();
       $("#come").hide();
    }
-	//합계그래프
+   //합계그래프
    function createChartWithData() {      
       $("#come").show();
       $("#plz").hide();
@@ -192,14 +192,14 @@
    <div class="col">
       <div class="card">
          <div class="card-body">
-	         <div class="row my-2" id="plz">
-	             <canvas id="line-chartO"  style="width:1050px; height: 300px;"></canvas>
-	             <canvas id="line-chartT" style="width:1050px; height: 300px;"></canvas>
-	         </div>
-	         <div class="row my-2" id="come">
-				<canvas id="line-chartS" style="width:1050px; height: 300px;"></canvas>
-	         </div>
-	         
+            <div class="row my-2" id="plz">
+                <canvas id="line-chartO"  style="width:1050px; height: 300px;"></canvas>
+                <canvas id="line-chartT" style="width:1050px; height: 300px;"></canvas>
+            </div>
+            <div class="row my-2" id="come">
+            <canvas id="line-chartS" style="width:1050px; height: 300px;"></canvas>
+            </div>
+            
          </div>
       </div>
    </div>
