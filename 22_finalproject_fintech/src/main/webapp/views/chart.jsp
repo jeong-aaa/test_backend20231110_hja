@@ -15,7 +15,10 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>SSM</title>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.7.2/bluebird.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://unpkg.com/html2canvas@1.0.0-rc.5/dist/html2canvas.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <style type="text/css">
@@ -145,6 +148,22 @@
       
    }
    
+   //chat -> pdf저장
+   function downloadPdf() {
+	const divToPrint = document.getElementById('pdfCanvas');
+	html2canvas(divToPrint, { scale: 2 }).then(canvas => {
+		const imgData = canvas.toDataURL('image/png');
+		const doc = new jsPDF('p', 'mm', 'a4');
+		doc.addImage(imgData, 'PNG', 0, 0, 210, 297);
+		const fileName = 'document.pdf';
+		const options = {
+			orientation: 'portrait',
+			unit: 'mm',
+			format: 'a4',
+		};
+		doc.save(fileName, options);
+	});
+}
    
     </script>
     
@@ -185,10 +204,12 @@
          <div class="input-group-prepend" style="color:#0E519C;">
           <button class="btn btn-outline-secondary"  style="color:#3E5671;" type="button" onclick="createChartWithData()">합계</button>
           <button class="btn btn-outline-secondary" style="color:#3E5671;" type="button" onclick="createChartData()">월별수입/지출</button>
+        	<button class="btn btn-outline-secondary" style="color:#3E5671;" type="button" onclick="downloadPdf();">PDF저장</button>
         </div>
 <!--               <h4>월별수입지출</h4> -->
       </div>
    </div>
+   <div id="pdfCanvas" >
    <div class="col">
       <div class="card">
          <div class="card-body">
@@ -202,6 +223,7 @@
             
          </div>
       </div>
+   </div>
    </div>
 </div>
 <!--    </div> -->
