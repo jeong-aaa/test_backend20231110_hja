@@ -161,7 +161,7 @@
 			unit: 'mm',
 			format: 'a4',
 		};
-		doc.save(fileName, options);
+		doc.save('월별수입지출.pdf');
 	});
 }
    
