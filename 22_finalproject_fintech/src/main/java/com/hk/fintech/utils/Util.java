@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,13 +48,24 @@ public class Util {
    //(공백수_현재일)%7==0 토요일
    //(공백수_현재일)%7==1 일요일
    public static String fontColor(int i, int dayOfWeek) {
-      String str="black"; //평일
-      if((dayOfWeek-1+i)%7==0) {//토요일
-         str="blue";
-      }else if((dayOfWeek-1+i)%7==1){ //일요일
-         str="red";
-      }
-   return str;
+       String str = "black"; // 평일
+
+       // 현재 날짜 구하기
+       Date currentDate = new Date();
+       Calendar calendar = Calendar.getInstance();
+       calendar.setTime(currentDate);
+       int currentDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+       // 날짜가 오늘인지 확인
+       if (i == currentDayOfMonth) {
+           str = "orange"; // 오늘인 경우
+       } else if ((dayOfWeek - 1 + i) % 7 == 0) { // 토요일
+           str = "blue";
+       } else if ((dayOfWeek - 1 + i) % 7 == 1) { // 일요일
+           str = "red";
+       }
+
+       return str;
    }
 //   //일일별 일정 목록 구하는 기능
    public static String Cash(int i, List<CashDto> clist) {

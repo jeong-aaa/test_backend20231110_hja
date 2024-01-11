@@ -71,8 +71,10 @@
     background-color: #E0EBFF;
     width: 160px;
     text-align: center;
-   margin: 0px 0px 10px;
+    margin: 0px 0px 10px;
+    color: gray;
     }
+    
     .cp{
        position : absolute;
        left : 20px;
@@ -178,7 +180,13 @@
 /*  .btn-1:hover {  */
 /*     background: #96C7ED;  */
 /*     }  */
-    
+
+.gototoday {
+	float:right;
+}
+
+
+
 </style>
 <script type="text/javascript">
    //나의 정보조회[계좌목록]
@@ -389,10 +397,9 @@
          });
       });
    });
-   
 
-   
-   
+
+	//날짜
 
     
 </script>
@@ -459,6 +466,10 @@
             <span>월</span>
             <a th:href="@{/schedule/calendar(year=${calMap.year},month=${calMap.month+1})}">▶</a>
             <a th:href="@{/schedule/calendar(year=${calMap.year+1},month=${calMap.month})}">▷</a>
+            <a class="gototoday" th:href="@{/schedule/goToToday}">오늘</a>
+<!--            <div th:class="${dayOfMonth} == 1 ? 'first-day-style' : 'default-style'"></div>-->
+<!--            <a class="gototoday" th:onclick="highlight()">오늘</a>-->
+            
          </div>
          <div id="thead">
             <div>일</div><div>월</div><div>화</div><div>수</div>

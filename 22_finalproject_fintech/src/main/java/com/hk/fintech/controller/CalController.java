@@ -169,6 +169,23 @@ public class CalController {
 //      return "thymeleaf/calboard/addCalBoardForm";
 //   }
 // 
+   @GetMapping(value="/goToToday")
+   public String goToToday(Model model) {
+       logger.info("오늘 날짜로 이동");
+
+       // Get today's date
+       Calendar cal = Calendar.getInstance();
+       String year = String.valueOf(cal.get(Calendar.YEAR));
+       String month = String.valueOf(cal.get(Calendar.MONTH) + 1);
+       String date = String.valueOf(cal.get(Calendar.DATE));
+       
+       model.addAttribute("year", year);
+       model.addAttribute("month", month);
+       model.addAttribute("date", date);
+       
+       // Redirect to the calendar view with today's date parameters
+       return "redirect:/schedule/calendar?year=" + year + "&month=" + month + "&date=" + date;
+   }
   
   @PostMapping(value = "/addCalBoard")
    public String addCalBoard(@Validated InsertCalCommand insertCalCommand,
