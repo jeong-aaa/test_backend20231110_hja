@@ -28,7 +28,7 @@
    </style>
    <script type="text/javascript">
    
- //나의 정보조회[계좌목록]
+   //나의 정보조회[계좌목록]
    function myInfo(){
       $.ajax({
 //            url:"https://testapi.openbanking.or.kr/v2.0/user/me",
@@ -44,7 +44,7 @@
             
             //계좌등록 버튼
             $("#list").html("<div class='addAccount'>"
-                        +"  <button type='submit' class='btn btn-outline-secondary' onclick='delUserEX()' style='margin-right:200px; margin-top:2%;'>회원탈퇴</button>"
+                        +"  <button type='submit' class='btn btn-outline-secondary' onclick='delUserEX()' style='margin-right:110px'>회원탈퇴</button>"
                         +"</div>"
                           );
             
@@ -161,7 +161,7 @@
 			unit: 'mm',
 			format: 'a4',
 		};
-		doc.save(fileName, options);
+		doc.save('월별수입지출.pdf');
 	});
 	}
    
