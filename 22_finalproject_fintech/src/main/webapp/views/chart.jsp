@@ -28,7 +28,7 @@
    </style>
    <script type="text/javascript">
    
- //나의 정보조회[계좌목록]
+   //나의 정보조회[계좌목록]
    function myInfo(){
       $.ajax({
 //            url:"https://testapi.openbanking.or.kr/v2.0/user/me",
@@ -44,30 +44,52 @@
             
             //계좌등록 버튼
             $("#list").html("<div class='addAccount'>"
-                        +"  <button type='submit' class='btn btn-outline-secondary' onclick='delUserEX()' style='margin-right:200px; margin-top:2%;'>회원탈퇴</button>"
+//             			+"  <button class='btn btn-outline-secondary' onclick='addAccount()'>계좌등록</button>"
+                        +"  <button type='submit' class='btn btn-outline-secondary' onclick='delUserEX()' style='margin-right:110px'>회원탈퇴</button>"
                         +"</div>"
                           );
             
-            //출력할 내용
-            //계좌이름
-            //핀테크이용번호 [은행이름]
             for (var i = 0; i < res_list.length; i++) {
-               $("#list").append(
-                  '<div class="box container">'
-                       +'   <div>'
-                       +'      <h1>'+res_list[i].account_alias+'</h1>'
-                       +'      <p>'+res_list[i].fintech_use_num+' ['+res_list[i].bank_name+']</p>'
-                       +'   </div>'
-                       +'   <div class="sub_menu"> '
-                       +'      <button onclick="balance(\''+res_list[i].fintech_use_num+'\',this)" type="button" class="btn btn-outline-primary">잔액조회</button>'
-                       +'   </div>'
-                       +'   <div class="balance_amt"></div>'
-                       +'</div>   '
-               )
+                var isHidden = localStorage.getItem('hiddenAccount_' + res_list[i].fintech_use_num) === 'true';
+
+                // 계좌가 숨겨져 있으면 숨김 처리
+                if (isHidden) {
+                    continue; // 다음 계좌로 넘어감
+                }
+                $("#list").append(
+                    '<div class="box container">'
+                    + '   <div>'
+                    + '      <h1>' + res_list[i].account_alias + '</h1>'
+                    + '      <p>' + res_list[i].fintech_use_num + ' [' + res_list[i].bank_name + ']</p>'
+                    + '   </div>'
+                    + '   <div class="sub_menu"> '
+                    + '      <button onclick="balance(\'' + res_list[i].fintech_use_num + '\',this)" type="button" class="btn btn-outline-primary">잔액조회</button>'
+                    + '      <button onclick="hideAccount(this, \'' + res_list[i].fintech_use_num + '\')" type="button" class="btn btn-outline-danger">계좌숨기기</button>'
+                    + '   </div>'
+                    + '   <div class="balance_amt"></div>'
+                    + '</div>   '
+                )
             }
-         } //success
-      });
-   }
+            
+            // 숨겨진 계좌 처리 추가
+            for (var i = 0; i < res_list.length; i++) {
+                var isHidden = localStorage.getItem('hiddenAccount_' + res_list[i].fintech_use_num) === 'true';
+                if (isHidden) {
+                    hideAccount($("button:contains('계좌숨기기')[data-fintech_use_num='" + res_list[i].fintech_use_num + "']"), res_list[i].fintech_use_num);
+                }
+            }
+        } // success
+    });
+}
+
+	// 숨겨진 계좌를 숨기기 위한 JavaScript 함수 추가
+	function hideAccount(btnEle, fintechUseNum) {
+	    // 부모 컨테이너 div를 찾아 숨깁니다.
+	    $(btnEle).parents('.box').eq(0).hide();
+	
+	    // 로컬 스토리지에 숨김 상태를 저장
+	    localStorage.setItem('hiddenAccount_' + fintechUseNum, 'true');
+	}
    
    //잔액조회하기
    function balance(fintech_use_num,btnEle){
