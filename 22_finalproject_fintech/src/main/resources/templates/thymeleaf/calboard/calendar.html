@@ -298,10 +298,14 @@
       }
    }
    
-   //현금 작성 모달
+    //현금 작성 모달
+   
    $(function(){
+
       $(".dd").click(function(){ 
-         var i=$(this).prev().text();  
+         var a = new Date(); 
+		 var i = a.getDay()+7;
+		     
          $("select[name=date] option").each(function(){
                if($(this).val()==i){
                   $(this).attr("selected","selected");
@@ -309,6 +313,18 @@
          });
       });
    });
+   
+<!--   $(function(){-->
+<!--   		var a = new Date(); -->
+<!--		var i = a.getDay()+7;-->
+		
+<!--		if(i==$(".d").text()) {-->
+<!--			+ '<p style = "border: 1px solid red; border-radius: 50%; color: white; background-color: red;">'-->
+<!--			+'</p>'-->
+<!--		}-->
+   
+<!--   });-->
+
    
  //거래내역상세리스트
    $(function (){
