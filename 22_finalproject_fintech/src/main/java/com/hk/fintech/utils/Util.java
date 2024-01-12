@@ -47,7 +47,7 @@ public class Util {
    //요일별 날짜 색깔 적용하기: 파라미터 - i , dayOfWeek 필요
    //(공백수_현재일)%7==0 토요일
    //(공백수_현재일)%7==1 일요일
-   public static String fontColor(int i, int dayOfWeek) {
+   public static String fontColor(int i, int dayOfWeek,int year,int month) {
        String str = "black"; // 평일
 
        // 현재 날짜 구하기
@@ -55,11 +55,16 @@ public class Util {
        Calendar calendar = Calendar.getInstance();
        calendar.setTime(currentDate);
        int currentDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-
+       int currentYear=calendar.get(Calendar.YEAR);
+       int currentMonth=calendar.get(Calendar.MONTH)+1;
+       
        // 날짜가 오늘인지 확인
        if (i == currentDayOfMonth) {
-           str = "orange"; // 오늘인 경우
-       } else if ((dayOfWeek - 1 + i) % 7 == 0) { // 토요일
+    	   if(year==currentYear&&month==currentMonth) {
+    		   str = "white"; // 오늘인 경우    		   
+    	   }
+       } 
+       else if ((dayOfWeek - 1 + i) % 7 == 0) { // 토요일
            str = "blue";
        } else if ((dayOfWeek - 1 + i) % 7 == 1) { // 일요일
            str = "red";

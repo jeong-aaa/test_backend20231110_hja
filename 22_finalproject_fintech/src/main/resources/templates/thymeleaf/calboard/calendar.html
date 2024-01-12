@@ -185,7 +185,16 @@
    float:right;
 }
 
-
+#p{
+	
+	display:inline-block;
+   width:30px;
+   height:30px;
+   border:2px solid orange;
+   background-color:orange;
+   
+   border-radius:15px;
+}
 
 </style>
 <script type="text/javascript">
@@ -311,7 +320,13 @@
                }
          });
       });
+      
+      
+      $(".d[style='color:white']").wrap("<span id='p'></span>");
    });
+   
+
+
 
    
  //거래내역상세리스트
@@ -485,7 +500,7 @@
             </th:block>
             <th:block th:each="i:${#numbers.sequence(1,calMap.lastDay)}">
                <div>
-                  <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="d" th:text="${i}" data-toggle="modal" th:style="'color:'+${@util.fontColor(i,calMap.dayOfWeek)}"
+                  <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="d" th:text="${i}" data-toggle="modal" th:style="'color:'+${@util.fontColor(i,calMap.dayOfWeek,calMap.year,calMap.month)}"
                      th:attr="data-target=${'#exampleModal'}">
 <!--                      th:href="@{/schedule/calBoardList(year=${calMap.year},month=${calMap.month},date=${i})}"> -->
                   </a>
