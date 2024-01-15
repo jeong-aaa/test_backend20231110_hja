@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +22,9 @@ import com.hk.fintech.dtos.CashDto;
 
 @Component
 public class Util {
-	
-	static DecimalFormat Comma = new DecimalFormat("###,###.##");
-	
+   
+   static DecimalFormat Comma = new DecimalFormat("###,###.##");
+   
    //한자리를 두자리로 변환
    public static String isTwo(String str) {
       return str.length()<2?"0"+str:str;   //5 --> "05"  10 --> "10"
@@ -46,25 +47,40 @@ public class Util {
    //요일별 날짜 색깔 적용하기: 파라미터 - i , dayOfWeek 필요
    //(공백수_현재일)%7==0 토요일
    //(공백수_현재일)%7==1 일요일
-   public static String fontColor(int i, int dayOfWeek) {
-      String str="black"; //평일
-      if((dayOfWeek-1+i)%7==0) {//토요일
-         str="blue";
-      }else if((dayOfWeek-1+i)%7==1){ //일요일
-         str="red";
-      }
-   return str;
-   }
+   public static String fontColor(int i, int dayOfWeek,int year,int month) {
+       String str = "black"; // 평일
 
-   //일일별 일정 목록 구하는 기능
+       // 현재 날짜 구하기
+       Date currentDate = new Date();
+       Calendar calendar = Calendar.getInstance();
+       calendar.setTime(currentDate);
+       int currentDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+       int currentYear=calendar.get(Calendar.YEAR);
+       int currentMonth=calendar.get(Calendar.MONTH)+1;
+       
+       // 날짜가 오늘인지 확인
+       if (i == currentDayOfMonth) {
+          if(year==currentYear&&month==currentMonth) {
+             str = "white"; // 오늘인 경우             
+          }
+       } 
+       else if ((dayOfWeek - 1 + i) % 7 == 0) { // 토요일
+           str = "blue";
+       } else if ((dayOfWeek - 1 + i) % 7 == 1) { // 일요일
+           str = "red";
+       }
+
+       return str;
+   }
+//   //일일별 일정 목록 구하는 기능
    public static String Cash(int i, List<CashDto> clist) {
       String d=isTwo(i+""); //1 --> "01" 2자리로 변환
       String calList=""; //"<p>title</p><p>title</p><p>title</p>"
       for (int j = 0; j < clist.size(); j++) {
          //한달 일정 목록중에 해당일(i)값과 일치하는지 여부 판단
          if(clist.get(j).getMdate().substring(8).equals(d)) {
-        	 int monn = clist.get(j).getMoney();
-        	 String won = Comma.format(monn);
+            int monn = clist.get(j).getMoney();
+            String won = Comma.format(monn);
             calList+="<p style='color:"+
                   (("수입".equals(clist.get(j).getMio()))?"blue":"red")
                   +"'>"
@@ -104,21 +120,19 @@ public class Util {
       for (int j = 0; j < alist.size(); j++) {
          //한달 일정 목록중에 해당일(i)값과 일치하는지 여부 판단
          if(alist.get(j).getTran_date().substring(8).equals(d)) {
-        	 int monn = alist.get(j).getTran_amt();
-        	 String won = Comma.format(monn);
+            int monn = alist.get(j).getTran_amt();
+            String won = Comma.format(monn);
             calList+="<p style='color:"+
                   (("입금".equals(alist.get(j).getInout_type()))?"blue":"red")
                   +"'>"
                   +(+alist.get(j).getInout_type().length()>7?
                   alist.get(j).getInout_type().substring(0,7)+"..":
-                	  "["+alist.get(j).getInout_type()+"] "+ won +"원")
+                     "["+alist.get(j).getInout_type()+"] "+ won +"원")
 
                   +"</p>";
          }
       }
       return calList;
    }
-
 }
    
-

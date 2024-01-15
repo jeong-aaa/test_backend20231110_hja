@@ -71,8 +71,10 @@
     background-color: #E0EBFF;
     width: 160px;
     text-align: center;
-   margin: 0px 0px 10px;
+    margin: 0px 0px 10px;
+    color: gray;
     }
+    
     .cp{
        position : absolute;
        left : 20px;
@@ -178,10 +180,25 @@
 /*  .btn-1:hover {  */
 /*     background: #96C7ED;  */
 /*     }  */
- 
+
+.gototoday {
+   float:right;
+}
+
+#p{
+   
+   display:inline-block;
+   width:30px;
+   height:30px;
+   border:2px solid #ff4500;
+   background-color:#ff4500;
+   
+   border-radius:15px;
+}
+
 </style>
 <script type="text/javascript">
-    //나의 정보조회[계좌목록]
+   //나의 정보조회[계좌목록]
    function myInfo(){
       $.ajax({
 //            url:"https://testapi.openbanking.or.kr/v2.0/user/me",
@@ -221,30 +238,6 @@
          } //success
       });
    }
-   
-   //계좌해지...해보는중
-   function deleteAccount(fintechUseNum, btnEle) {
-    if (confirm("정말로 계좌를 삭제하시겠습니까?")) {
-        $.ajax({
-            url: "/banking/deleteAccount",
-            method: "get",
-            data: {"fintech_use_num": fintechUseNum},
-            dataType: "json",
-            success: function (data) {
-                if (data.result === "success") {
-                    // 삭제 성공 시 해당 계좌의 UI를 제거
-                    $(btnEle).parents(".box").eq(0).remove();
-                    alert("계좌가 성공적으로 삭제되었습니다.");
-                } else {
-                    alert("계좌 삭제에 실패했습니다. 에러: " + data.error);
-                }
-            },
-            error: function () {
-                alert("통신 실패");
-            }
-        });
-    }
-}
    
   //잔액조회하기
    function balance(fintech_use_num,btnEle){
@@ -316,15 +309,25 @@
    
    //현금 작성 모달
    $(function(){
+
       $(".dd").click(function(){ 
-         var i=$(this).prev().text();  
+         var a = new Date(); 
+       var i = a.getDay()+7;
+           
          $("select[name=date] option").each(function(){
                if($(this).val()==i){
                   $(this).attr("selected","selected");
                }
          });
       });
+      
+      
+      $(".d[style='color:white']").wrap("<span id='p'></span>");
    });
+   
+
+
+
    
  //거래내역상세리스트
    $(function (){
@@ -413,7 +416,9 @@
          });
       });
    });
-   
+
+
+   //날짜
 
     
 </script>
@@ -480,6 +485,10 @@
             <span>월</span>
             <a th:href="@{/schedule/calendar(year=${calMap.year},month=${calMap.month+1})}">▶</a>
             <a th:href="@{/schedule/calendar(year=${calMap.year+1},month=${calMap.month})}">▷</a>
+            <a class="gototoday" th:href="@{/schedule/goToToday}">오늘</a>
+<!--            <div th:class="${dayOfMonth} == 1 ? 'first-day-style' : 'default-style'"></div>-->
+<!--            <a class="gototoday" th:onclick="highlight()">오늘</a>-->
+            
          </div>
          <div id="thead">
             <div>일</div><div>월</div><div>화</div><div>수</div>
@@ -491,7 +500,7 @@
             </th:block>
             <th:block th:each="i:${#numbers.sequence(1,calMap.lastDay)}">
                <div>
-                  <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="d" th:text="${i}" data-toggle="modal" th:style="'color:'+${@util.fontColor(i,calMap.dayOfWeek)}"
+                  <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="d" th:text="${i}" data-toggle="modal" th:style="'color:'+${@util.fontColor(i,calMap.dayOfWeek,calMap.year,calMap.month)}"
                      th:attr="data-target=${'#exampleModal'}">
 <!--                      th:href="@{/schedule/calBoardList(year=${calMap.year},month=${calMap.month},date=${i})}"> -->
                   </a>
@@ -682,6 +691,25 @@
         }
     }, 1000); // 2초 (2000 밀리초) 뒤에 실행
 </script>
+
+
+
+<!--<script>-->
+<!--    // 페이지 로드 후 10초 뒤에 실행되는 함수-->
+<!--    setTimeout(function () {-->
+<!--        // 수입과 지출의 금액을 가져옴 (가정)-->
+<!--        var incomeAmount = parseInt(document.getElementById('incomeAmount').innerText);  // 수입 금액 가져오기-->
+<!--        var expenseAmount = parseInt(document.getElementById('expenseAmount').innerText);  // 지출 금액 가져오기-->
+
+<!--        // 지출이 수입보다 2배 이상인 경우 알림 표시-->
+<!--        if (expenseAmount >= 2 * incomeAmount) {-->
+<!--            alert('지출이 수입의 2배 이상입니다! 조심하세요.');-->
+<!--        }-->
+<!--    }, 2000); // 10초 (10000 밀리초) 뒤에 실행-->
+<!--</script>-->
+   
+
+
 
 </body>
 </html>
