@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,7 +55,8 @@ public class Util {
       }
    return str;
    }
-//   //일일별 일정 목록 구하는 기능
+
+   //일일별 일정 목록 구하는 기능
    public static String Cash(int i, List<CashDto> clist) {
       String d=isTwo(i+""); //1 --> "01" 2자리로 변환
       String calList=""; //"<p>title</p><p>title</p><p>title</p>"
@@ -116,6 +118,7 @@ public class Util {
       }
       return calList;
    }
+
 }
    
 
