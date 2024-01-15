@@ -63,7 +63,94 @@
    .dropdown:hover .dropbtn {
      background-color: #EAECCC;
    }
-   </style>
+   
+   /********************************/
+
+/*   이미지 슬라이드 쇼 영역    */
+
+/********************************/
+
+​.Slidesbackground {
+    margin: 0;
+    padding: 0;
+
+}
+.slideshow-image{
+    border-radius:3%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+/* .mySlides { */
+/*     border-radius:3%; */
+/*     width: 600px; */
+/*     height: 350px; */
+/*     display: flex; */
+/*     justify-content: center; */
+/*     align-items: center; */
+/*     box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.5); */
+/* } */
+
+.mySlides {
+/*     border-radius: 3%; */
+    width: 100%; /* 수정: 슬라이드가 부모 요소에 꽉 차도록 수정 */
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+/*      box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.5);  */
+    display: none; /* 수정: 일단 모든 슬라이드를 숨김 */
+}
+
+
+.slideshow-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: auto;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+</style>
+<script type="text/javascript">
+
+var slideIndex = 0;
+showSlides(); // 페이지 로드 시에 슬라이드 쇼 함수 호출
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+
+    // 모든 슬라이드를 숨김
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    slideIndex++;
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
+    }
+
+    // 현재 slideIndex에 해당하는 슬라이드만 보여줌
+    if (slides[slideIndex - 1]) {
+        slides[slideIndex - 1].style.display = "block";
+    }
+
+    setTimeout(showSlides, 2000); // Change the delay to 2000 milliseconds (2 seconds)
+}
+</script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder; width: auto; background:#00000;">
@@ -85,7 +172,20 @@
 <div class="a" style="background: #277BC0; height: 10px; ">
    <section class="py-4">
       <div class="c" style="background: #00000; height: 250px; text-align : center;">
-      	<img src="/resources/img/MAIN01.jpg" alt="" style="height: 240px; width: 900px;"/>
+<!--       	<img src="/resources/img/MAIN01.jpg" alt="" style="height: 240px; width: 900px;"/> -->
+              	<span class="slideshow-container">
+        		 <div class="Slidesbackground">
+					<div class="mySlides">
+					    <img src="/resources/img/front-view-arrangement-of-economy-elements.jpg" style="height: 240px; width: 900px;" alt="Slide 1">
+					</div>
+					<div class="mySlides">
+					    <img src="/resources/img/MAIN01.jpg" style="height: 240px; width: 900px;" alt="Slide 2">
+					</div>
+					<div class="mySlides">
+					    <img src="/resources/img/stacked-coins-math-blocks-calculator-and-piggybank-on-wooden-tabletop.jpg" style="height: 240px; width: 900px;" alt="Slide 2">
+					</div>
+        		 </div>
+        	 </span> 
       </div>
       
       <div class="d" style="background: #f4f7fc; height: 90px; ">
