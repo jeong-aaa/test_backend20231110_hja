@@ -38,8 +38,10 @@
 <div class="a" style="background: #277BC0; height: 10px; "></div>
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
 
-<form action="/user/login" method="post" style=" width:800px; margin: 0 auto; margin-top: 100px; ">
 
+<form action="/user/login" method="post" style=" width:800px; margin: 0 auto; margin-top: 80px; ">
+	<div style="text-align: center; color: blue; font-size: 40px; font-weight: bold; ">LOGIN</div>
+	<div style="height: 40px;"></div>
    <div class="mb-3 row" style="width: 500px; margin: 0 auto;">
       <label for="staticEmail" class="col-sm-2 col-form-label" style="width: 110px; text-align: center;" >이메일</label>
       <div class="col-sm-10" style="width: 270px;">
@@ -59,7 +61,7 @@
       <input type="submit" style="width: 100px;"  value="SignIn" class="btn btn-primary" /> 
    </div>
       
-   <p style="text-align: center;"><a href="/user/adduser">회원이 아니신가요?</a></p>
+   <p style="text-align: center;"><a href="/user/signup">회원이 아니신가요?</a></p>
    
 
 </form>

@@ -51,11 +51,14 @@
 <div class="a" style="background: #277BC0; height: 10px; "></div>
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
 
-<form action="/user/adduser" method="post" style=" width:800px; margin: 0 auto; margin-top: 70px; ">
+<form action="/user/adduser" method="post" style=" width:800px; margin: 0 auto; margin-top: 80px; ">
+<div style="text-align: center; color: blue; font-size: 40px; font-weight: bold; ">SIGNUP</div>
+<div style="height: 40px;"></div>
 	<div class="mb-3 row" style="width: 500px; margin: 0 auto;">
 		<label for="staticEmail" class="col-sm-2 col-form-label" style="width: 110px; text-align: center; " >이름</label>
 		<div class="col-sm-10" style="width: 270px;">
 			<input type="text" class="form-control" name="username"  >
+			
 		</div>
 	</div>
 	
