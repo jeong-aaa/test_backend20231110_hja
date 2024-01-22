@@ -95,13 +95,19 @@
 /*     border-radius: 3%; */
     width: 100%; /* 수정: 슬라이드가 부모 요소에 꽉 차도록 수정 */
     height: 350px;
-    display: flex;
+/*     display: flex; */
     justify-content: center;
     align-items: center;
 /*      box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.5);  */
-    display: none; /* 수정: 일단 모든 슬라이드를 숨김 */
+/*     display: none; /* 수정: 일단 모든 슬라이드를 숨김 */ */
 }
 
+.mySlides.b{
+    display: none; 
+}
+.mySlides.c{
+    display: none; 
+}
 
 .slideshow-container {
     display: flex;
@@ -154,39 +160,39 @@ function showSlides() {
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 25px; font-family: Arial,  sans-serif; font-weight: bolder; width: auto; background:#00000;">
-	<div class="container" style="margin-left: 30px; width: auto;">           
-		<img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
-		<a class="nav-link" href="/banking/main" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
-		S.S.M
-		</a>           
+   <div class="container" style="margin-left: 30px; width: auto;">           
+      <img src="/resources/img/SSM.png" width="45" height="40" class="d-inline-block align-top" alt=""/>
+      <a class="nav-link" href="/banking/main" style="color: #3C4048; font-family: Arial,  sans-serif; font-weight: bolder; " >
+      S.S.M
+      </a>           
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 1000px; ">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="/" style="color: #3C4048;">Main</a></li>
                 <li class="nav-item"><a class="nav-link" href="/user/signin_form" style="color: #3C4048;">SignIn</a></li>
                 <li class="nav-item"><a class="nav-link" href="/user/signup" style="color: #3C4048;">SignUp</a></li> 
             </ul>
-		</div>
-	</div>
+      </div>
+   </div>
 </nav>
     
 <div class="a" style="background: #277BC0; height: 10px; ">
    <section class="py-4">
-         <div class="c" style="background: #00000; height: 310px; text-align : center;" >
-<!--             <img src="/resources/img/MAIN01.jpg" alt="" style="height: 240px; width: 900px;"/> -->
-        	<span class="slideshow-container">
-        		 <div class="Slidesbackground">
-					<div class="mySlides">
-					    <img src="/resources/img/front-view-arrangement-of-economy-elements.jpg" style="height: 300px; width: 900px;" alt="Slide 1">
-					</div>
-					<div class="mySlides">
-					    <img src="/resources/img/MAIN01.jpg" style="height: 300px; width: 900px;" alt="Slide 2">
-					</div>
-					<div class="mySlides">
-					    <img src="/resources/img/stacked-coins-math-blocks-calculator-and-piggybank-on-wooden-tabletop.jpg" style="height: 300px; width: 900px;" alt="Slide 2">
-					</div>
-        		 </div>
-        	 </span> 
-         </div>
+      <div class="c" style="background: #00000; height: 250px; text-align : center;">
+<!--          <img src="/resources/img/MAIN01.jpg" alt="" style="height: 240px; width: 900px;"/> -->
+                 <span class="slideshow-container">
+               <div class="Slidesbackground">
+               <div class="mySlides a">
+                   <img src="/resources/img/front-view-arrangement-of-economy-elements.jpg" style="height: 240px; width: 900px;" alt="Slide 1">
+               </div>
+               <div class="mySlides b">
+                   <img src="/resources/img/MAIN01.jpg" style="height: 240px; width: 900px;" alt="Slide 2">
+               </div>
+               <div class="mySlides c">
+                   <img src="/resources/img/stacked-coins-math-blocks-calculator-and-piggybank-on-wooden-tabletop.jpg" style="height: 240px; width: 900px;" alt="Slide 3">
+               </div>
+               </div>
+            </span> 
+      </div>
       
       <div class="d" style="background: #f4f7fc; height: 90px; ">
          <div class="main_service_menu">
