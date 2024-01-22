@@ -171,22 +171,22 @@ function showSlides() {
     
 <div class="a" style="background: #277BC0; height: 10px; ">
    <section class="py-4">
-      <div class="c" style="background: #00000; height: 250px; text-align : center;">
-<!--       	<img src="/resources/img/MAIN01.jpg" alt="" style="height: 240px; width: 900px;"/> -->
-              	<span class="slideshow-container">
+         <div class="c" style="background: #00000; height: 310px; text-align : center;" >
+<!--             <img src="/resources/img/MAIN01.jpg" alt="" style="height: 240px; width: 900px;"/> -->
+        	<span class="slideshow-container">
         		 <div class="Slidesbackground">
 					<div class="mySlides">
-					    <img src="/resources/img/front-view-arrangement-of-economy-elements.jpg" style="height: 240px; width: 900px;" alt="Slide 1">
+					    <img src="/resources/img/front-view-arrangement-of-economy-elements.jpg" style="height: 300px; width: 900px;" alt="Slide 1">
 					</div>
 					<div class="mySlides">
-					    <img src="/resources/img/MAIN01.jpg" style="height: 240px; width: 900px;" alt="Slide 2">
+					    <img src="/resources/img/MAIN01.jpg" style="height: 300px; width: 900px;" alt="Slide 2">
 					</div>
 					<div class="mySlides">
-					    <img src="/resources/img/stacked-coins-math-blocks-calculator-and-piggybank-on-wooden-tabletop.jpg" style="height: 240px; width: 900px;" alt="Slide 2">
+					    <img src="/resources/img/stacked-coins-math-blocks-calculator-and-piggybank-on-wooden-tabletop.jpg" style="height: 300px; width: 900px;" alt="Slide 2">
 					</div>
         		 </div>
         	 </span> 
-      </div>
+         </div>
       
       <div class="d" style="background: #f4f7fc; height: 90px; ">
          <div class="main_service_menu">

@@ -670,14 +670,14 @@
    <!--<script src="https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js"></script>-->
 
 <script>
-    // 페이지 로드 후 20초 뒤에 실행되는 함수
+    // 페이지 로드 후 1초 뒤에 실행되는 함수
     setTimeout(function () {
         // 수입과 지출의 금액을 가져옴 (가정)
-        var incomeAmountStr = document.getElementById('incomeAmount').innerText;
-        var expenseAmountStr = document.getElementById('expenseAmount').innerText;
+        var incomeAmountStr = document.getElementById('incomeAmount').innerText.replaceAll(",","");
+        var expenseAmountStr = document.getElementById('expenseAmount').innerText.replaceAll(",","");
     
-        var incomeAmount = parseInt(incomeAmountStr) || 0;
-        var expenseAmount = parseInt(expenseAmountStr) || 0;
+        var incomeAmount = parseInt(incomeAmountStr.replace("원",""));
+        var expenseAmount = parseInt(expenseAmountStr.replace("원",""));
         
         console.log(incomeAmount);
         console.log(expenseAmount);
@@ -685,11 +685,11 @@
         // 수입과 지출이 모두 0이 아닌 경우에만 처리
         if (incomeAmount !== 0 || expenseAmount !== 0) {
             // 지출이 수입의 2배 이상인 경우 알림 표시
-            if ( incomeAmount <= 2 * expenseAmount) {
+            if ( expenseAmount > 2 * incomeAmount) {
                 alert('지출이 수입의 2배 이상입니다! 조심하세요.');
             }
         }
-    }, 1000); // 2초 (2000 밀리초) 뒤에 실행
+    }, 1000); // 1초 (1000 밀리초) 뒤에 실행
 </script>
 
 
