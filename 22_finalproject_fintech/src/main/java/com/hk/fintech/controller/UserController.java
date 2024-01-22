@@ -106,7 +106,7 @@ public class UserController {
 			return "redirect:/";
 		}else {
 			System.out.println("회원가입실패");
-			return "error";
+			return "redirect:/error";
 		}
 	}
 	

@@ -27,6 +27,30 @@
          window.open(url,"인증하기","width=400px, height=600px");
       }
       
+      
+      
+      function Chk(form){
+          //입력된 ID값 구하기
+          var id=document.getElementsByName("username")[0].value;
+          var email = document.getElementsByName("useremail")[0].value;
+          var password = document.getElementsByName("userpassword")[0].value;
+          
+          if(id==""){
+             alert("이름을 입력하세요");
+             return false;
+          }
+          else if (email=="") {
+        	  alert("이메일을 입력하세요");
+        	  return false;
+		}
+          else if (password=="") {
+        	  alert("비밀번호를 입력하세요");
+        	  return false;
+		}
+          
+
+       }
+      
    </script>   
 
 </head>
@@ -51,7 +75,7 @@
 <div class="a" style="background: #277BC0; height: 10px; "></div>
 <div class="b" style="background: #4CB9E7; height: 5px; margin-left:20px;"></div>
 
-<form action="/user/adduser" method="post" style=" width:800px; margin: 0 auto; margin-top: 80px; ">
+<form action="/user/adduser" method="post"  onsubmit = "return Chk(this)" style=" width:800px; margin: 0 auto; margin-top: 80px; ">
 <div style="text-align: center; color: blue; font-size: 40px; font-weight: bold; ">SIGNUP</div>
 <div style="height: 40px;"></div>
 	<div class="mb-3 row" style="width: 500px; margin: 0 auto;">
@@ -109,52 +133,6 @@
 
 
 
-<!-- Responsive navbar-->
-   
-   <!-- Content section-->
-<!--     <section class="py-5"> -->
-<!--         <div class="container my-5"> -->
-<!--             <div class="row justify-content-center"> -->
-<!--                 <div class="col-lg-6"> -->
-<!--                     <form action="/user/adduser" method="post"> -->
-<!--                        <table class="table"> -->
-<!--                           <tr> -->
-<!--                              <th>이름</th> -->
-<!--                              <td><input type="text" name="username" class="form-control"/></td> -->
-<!--                           </tr> -->
-<!--                           <tr> -->
-<!--                              <th>이메일</th> -->
-<!--                              <td><input type="email" name="useremail" class="form-control"/></td> -->
-<!--                           </tr> -->
-<!--                           <tr> -->
-<!--                              <th>비밀번호</th> -->
-<!--                              <td><input type="password" name="userpassword" class="form-control"/></td> -->
-<!--                           </tr> -->
-<!--                           <tr> -->
-<!--                              <th>AccessToken</th> -->
-<!--                              <td><input type="text" name="useraccesstoken" class="form-control"/></td> -->
-<!--                           </tr> -->
-<!--                           <tr> -->
-<!--                              <th>RefreshToken</th> -->
-<!--                              <td><input type="text" name="userrefreshtoken" class="form-control"/></td> -->
-<!--                           </tr> -->
-<!--                           <tr> -->
-<!--                              <th>userSeqNo</th> -->
-<!--                              <td><input type="text" name="userseqno" class="form-control"/></td> -->
-<!--                           </tr> -->
-<!--                           <tr style="text-align: center;"> -->
-<!--                              <td colspan="2"> -->
-<!--                                 <input type="button" value="인증하기" onclick="authorization()" class="btn"/> -->
-<!--                                 <input type="submit" value="가입하기" class="btn"/><br/> -->
-<!--                                 <a href="/user/signin_form">계정이 있으신가요? 로그인하기</a>                           -->
-<!--                              </td> -->
-<!--                           </tr> -->
-<!--                        </table> -->
-<!--                     </form> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </div> -->
-<!--     </section> -->
    
 </body>
 </html>
